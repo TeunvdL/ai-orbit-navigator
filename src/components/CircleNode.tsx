@@ -8,6 +8,7 @@ interface CircleNodeProps {
   isRoot?: boolean;
   onClick?: () => void;
   onHover?: (node: TreeNodeData | null) => void;
+  className?: string;
 }
 
 export const CircleNode: React.FC<CircleNodeProps> = ({
@@ -16,7 +17,8 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   size,
   isRoot = false,
   onClick,
-  onHover
+  onHover,
+  className = ''
 }) => {
   const handleMouseEnter = () => {
     onHover?.(node);
@@ -30,7 +32,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     <div
       className={`cosmic-node absolute flex items-center justify-center text-white font-semibold select-none ${
         isRoot ? 'pulse-glow' : ''
-      }`}
+      } ${className}`}
       style={{
         width: `${size}px`,
         height: `${size}px`,

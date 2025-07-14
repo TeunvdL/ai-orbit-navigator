@@ -17,10 +17,19 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy })
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
-      {/* Main content */}
-      <div className="relative z-10 text-center">
-        {/* Main AI circle */}
-        <div className="relative mb-8 float-animation">
+      {/* Top centered content */}
+      <div className="absolute top-16 left-0 right-0 z-10 text-center">
+        <h2 className="text-2xl font-light text-foreground/90 tracking-wide">
+          Navigate the frontier of artificial intelligence
+        </h2>
+        <p className="text-muted-foreground max-w-md mx-auto leading-relaxed mt-4">
+          Explore AI techniques and guide clients to the right solutions through an interactive taxonomy
+        </p>
+      </div>
+
+      {/* Main AI circle in center */}
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <div className="relative float-animation">
           <CircleNode
             node={rootNode}
             position={{ x: 200, y: 200, angle: 0, radius: 0 }}
@@ -28,21 +37,11 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy })
             isRoot={true}
             onClick={onEnterTaxonomy}
           />
-        </div>
-
-        {/* Tagline */}
-        <div className="mt-16 space-y-4">
-          <h2 className="text-2xl font-light text-foreground/90 tracking-wide">
-            Navigate the frontier of artificial intelligence
-          </h2>
-          <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Explore AI techniques and guide clients to the right solutions through an interactive taxonomy
-          </p>
-        </div>
-
-        {/* Subtle interaction hint */}
-        <div className="mt-8 text-sm text-muted-foreground/70 animate-pulse">
-          Click the circle to begin exploration
+          
+          {/* Bottom right hint */}
+          <div className="absolute bottom-0 right-0 transform translate-x-8 translate-y-8 text-sm text-muted-foreground/70 animate-pulse">
+            Click the circle to begin exploration
+          </div>
         </div>
       </div>
     </div>

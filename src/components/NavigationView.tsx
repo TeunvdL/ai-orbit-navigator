@@ -22,6 +22,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const [hoveredNode, setHoveredNode] = useState<TreeNodeData | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const [animatingNode, setAnimatingNode] = useState<TreeNodeData | null>(null);
+  const [animatingNodePosition, setAnimatingNodePosition] = useState<NodePosition | null>(null);
 
   useEffect(() => {
     const updateSize = () => {
@@ -71,6 +73,23 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     });
   };
 
+  const handleNodeClick = (node: TreeNodeData, position: NodePosition) => {
+    if (node.children && node.children.length > 0) {
+      // Start zoom animation
+      setAnimatingNode(node);
+      setAnimatingNodePosition(position);
+      
+      // Trigger navigation after a short delay to allow animation to start
+      setTimeout(() => {
+        onNodeClick(node);
+        setAnimatingNode(null);
+        setAnimatingNodePosition(null);
+      }, 600);
+    } else {
+      onNodeClick(node);
+    }
+  };
+
   const positions = calculateNodePositions();
   const childNodeSize = Math.max(80, Math.min(150, containerSize.width / (currentNode.children?.length || 1) * 0.8));
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
@@ -80,30 +99,48 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
       <Breadcrumb path={path} onNavigate={onNavigate} onBack={onBack} />
       
       {/* Parent node (current level) */}
-      <CircleNode
-        node={currentNode}
-        position={{
-          x: containerSize.width / 2,
-          y: containerSize.height / 2,
-          angle: 0,
-          radius: 0
-        }}
-        size={parentNodeSize}
-        isRoot={path.length === 1}
-        onHover={setHoveredNode}
-      />
-
-      {/* Child nodes */}
-      {currentNode.children?.map((child, index) => (
+      <div className="z-10">
         <CircleNode
-          key={child.id}
-          node={child}
-          position={positions[index]}
-          size={childNodeSize}
-          onClick={() => onNodeClick(child)}
+          node={currentNode}
+          position={{
+            x: containerSize.width / 2,
+            y: containerSize.height / 2,
+            angle: 0,
+            radius: 0
+          }}
+          size={parentNodeSize}
+          isRoot={path.length === 1}
           onHover={setHoveredNode}
         />
-      ))}
+      </div>
+
+      {/* Child nodes */}
+      <div className="z-20">
+        {currentNode.children?.map((child, index) => (
+          <CircleNode
+            key={child.id}
+            node={child}
+            position={positions[index]}
+            size={childNodeSize}
+            onClick={() => handleNodeClick(child, positions[index])}
+            onHover={setHoveredNode}
+          />
+        ))}
+      </div>
+
+      {/* Animating node */}
+      {animatingNode && animatingNodePosition && (
+        <div className="z-30">
+          <CircleNode
+            node={animatingNode}
+            position={animatingNodePosition}
+            size={childNodeSize}
+            isRoot={false}
+            onHover={() => {}}
+            className="animate-zoom-to-center"
+          />
+        </div>
+      )}
 
       {/* Tooltip */}
       <Tooltip node={hoveredNode} position={mousePosition} />
