@@ -77,7 +77,14 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     if (node.children && node.children.length > 0) {
       // Start zoom animation
       setAnimatingNode(node);
-      setAnimatingNodePosition(position);
+      // Calculate position to center the animating node
+      const centerX = containerSize.width / 2;
+      const centerY = containerSize.height / 2;
+      setAnimatingNodePosition({
+        ...position,
+        x: centerX,
+        y: centerY
+      });
       
       // Trigger navigation after a short delay to allow animation to start
       setTimeout(() => {

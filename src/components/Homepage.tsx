@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TreeNodeData } from '../types/treeTypes';
 import { CircleNode } from './CircleNode';
 
@@ -8,6 +8,16 @@ interface HomepageProps {
 }
 
 export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy }) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleEnterTaxonomy = () => {
+    setIsAnimating(true);
+    // Trigger navigation after animation completes
+    setTimeout(() => {
+      onEnterTaxonomy();
+    }, 800);
+  };
+
   return (
     <div className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background gradient effects */}
@@ -29,20 +39,21 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy })
 
       {/* Main AI circle in center */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="relative float-animation">
+        <div className={`relative ${isAnimating ? '' : 'float-animation'}`}>
           <CircleNode
             node={rootNode}
-            position={{ x: 200, y: 200, angle: 0, radius: 0 }}
+            position={{ x: 0, y: 0, angle: 0, radius: 0 }}
             size={400}
             isRoot={true}
-            onClick={onEnterTaxonomy}
+            onClick={handleEnterTaxonomy}
+            className={isAnimating ? 'animate-zoom-homepage' : ''}
           />
-          
-          {/* Bottom right hint */}
-          <div className="absolute bottom-0 right-0 transform translate-x-8 translate-y-8 text-sm text-muted-foreground/70 animate-pulse">
-            Click the circle to begin exploration
-          </div>
         </div>
+      </div>
+
+      {/* Bottom right hint - positioned relative to screen center where AI node is */}
+      <div className="absolute top-1/2 left-1/2 transform translate-x-52 translate-y-52 text-sm text-muted-foreground/70 animate-pulse z-20">
+        Click the circle to begin exploration
       </div>
     </div>
   );
