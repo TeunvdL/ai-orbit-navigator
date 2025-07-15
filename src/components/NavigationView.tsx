@@ -24,6 +24,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [animatingNode, setAnimatingNode] = useState<TreeNodeData | null>(null);
   const [animatingNodePosition, setAnimatingNodePosition] = useState<NodePosition | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const updateSize = () => {
@@ -74,8 +75,11 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   };
 
   const handleNodeClick = (node: TreeNodeData, position: NodePosition) => {
+    if (isAnimating) return; // Prevent clicks during animation
+    
     if (node.children && node.children.length > 0) {
       // Start zoom animation at the original child position
+      setIsAnimating(true);
       setAnimatingNode(node);
       setAnimatingNodePosition(position);
       
@@ -84,6 +88,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
         onNodeClick(node);
         setAnimatingNode(null);
         setAnimatingNodePosition(null);
+        setIsAnimating(false);
       }, 600);
     } else {
       onNodeClick(node);
@@ -116,16 +121,23 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
 
       {/* Child nodes */}
       <div className="z-20">
-        {currentNode.children?.map((child, index) => (
-          <CircleNode
-            key={child.id}
-            node={child}
-            position={positions[index]}
-            size={childNodeSize}
-            onClick={() => handleNodeClick(child, positions[index])}
-            onHover={setHoveredNode}
-          />
-        ))}
+        {currentNode.children?.map((child, index) => {
+          // Hide the node that's currently animating to prevent duplication
+          if (animatingNode && child.id === animatingNode.id) {
+            return null;
+          }
+          
+          return (
+            <CircleNode
+              key={child.id}
+              node={child}
+              position={positions[index]}
+              size={childNodeSize}
+              onClick={() => handleNodeClick(child, positions[index])}
+              onHover={setHoveredNode}
+            />
+          );
+        })}
       </div>
 
       {/* Animating node */}
