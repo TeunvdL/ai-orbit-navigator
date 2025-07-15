@@ -103,8 +103,13 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     <div className="relative w-full h-screen overflow-hidden">
       <Breadcrumb path={path} onNavigate={onNavigate} onBack={onBack} />
       
-      {/* Parent node (current level) */}
-      <div className="z-10">
+      {/* Title in top left */}
+      <div className="absolute top-4 left-4 z-50">
+        <h1 className="text-2xl font-bold text-white">{currentNode.name}</h1>
+      </div>
+      
+      {/* Parent node (current level) - transparent and unclickable */}
+      <div className="z-10 pointer-events-none">
         <CircleNode
           node={currentNode}
           position={{
@@ -115,7 +120,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
           }}
           size={parentNodeSize}
           isRoot={path.length === 1}
-          onHover={setHoveredNode}
+          className="opacity-0"
         />
       </div>
 
