@@ -75,16 +75,9 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
 
   const handleNodeClick = (node: TreeNodeData, position: NodePosition) => {
     if (node.children && node.children.length > 0) {
-      // Start zoom animation
+      // Start zoom animation at the original child position
       setAnimatingNode(node);
-      // Calculate position to center the animating node
-      const centerX = containerSize.width / 2;
-      const centerY = containerSize.height / 2;
-      setAnimatingNodePosition({
-        ...position,
-        x: centerX,
-        y: centerY
-      });
+      setAnimatingNodePosition(position);
       
       // Trigger navigation after a short delay to allow animation to start
       setTimeout(() => {
@@ -145,6 +138,12 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
             isRoot={false}
             onHover={() => {}}
             className="animate-zoom-to-center"
+            style={{
+              '--start-x': `${animatingNodePosition.x}px`,
+              '--start-y': `${animatingNodePosition.y}px`,
+              '--center-x': `${containerSize.width / 2}px`,
+              '--center-y': `${containerSize.height / 2}px`
+            } as React.CSSProperties}
           />
         </div>
       )}

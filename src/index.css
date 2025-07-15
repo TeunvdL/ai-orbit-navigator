@@ -193,11 +193,11 @@ All colors MUST be HSL.
 
   @keyframes zoomToCenter {
     0% {
-      transform: scale(1);
+      transform: translate(0, 0) scale(1);
       opacity: 1;
     }
     100% {
-      transform: scale(4);
+      transform: translate(calc(var(--center-x) - var(--start-x)), calc(var(--center-y) - var(--start-y))) scale(4);
       opacity: 0;
     }
   }

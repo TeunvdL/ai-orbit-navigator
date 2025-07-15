@@ -9,6 +9,7 @@ interface CircleNodeProps {
   onClick?: () => void;
   onHover?: (node: TreeNodeData | null) => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export const CircleNode: React.FC<CircleNodeProps> = ({
@@ -18,7 +19,8 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   isRoot = false,
   onClick,
   onHover,
-  className = ''
+  className = '',
+  style = {}
 }) => {
   const handleMouseEnter = () => {
     onHover?.(node);
@@ -39,7 +41,8 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
         left: `${position.x - size / 2}px`,
         top: `${position.y - size / 2}px`,
         fontSize: `${Math.max(12, size / 8)}px`,
-        lineHeight: '1.2'
+        lineHeight: '1.2',
+        ...style
       }}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
