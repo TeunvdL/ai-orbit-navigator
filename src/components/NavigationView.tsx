@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Home } from 'lucide-react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
 import { CircleNode } from './CircleNode';
 import { Tooltip } from './Tooltip';
@@ -10,6 +11,7 @@ interface NavigationViewProps {
   onNodeClick: (node: TreeNodeData) => void;
   onNavigate: (index: number) => void;
   onBack: () => void;
+  onHome?: () => void;
 }
 
 export const NavigationView: React.FC<NavigationViewProps> = ({
@@ -17,7 +19,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   path,
   onNodeClick,
   onNavigate,
-  onBack
+  onBack,
+  onHome
 }) => {
   const [hoveredNode, setHoveredNode] = useState<TreeNodeData | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -102,6 +105,17 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <Breadcrumb path={path} onNavigate={onNavigate} onBack={onBack} />
+      
+      {/* Home button */}
+      {onHome && (
+        <button
+          onClick={onHome}
+          className="absolute top-4 left-4 z-50 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors"
+          aria-label="Go to homepage"
+        >
+          <Home size={20} />
+        </button>
+      )}
       
       {/* Title centered at top */}
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50">

@@ -41,6 +41,11 @@ export const AIExplorer: React.FC = () => {
     }
   };
 
+  const handleHome = () => {
+    setViewMode('homepage');
+    setCurrentPath([aiTaxonomyData]);
+  };
+
   const handleBackToTaxonomy = () => {
     setViewMode('navigation');
     setDetailNode(null);
@@ -74,6 +79,7 @@ export const AIExplorer: React.FC = () => {
           onNodeClick={handleNodeClick}
           onNavigate={handleNavigate}
           onBack={handleBack}
+          onHome={handleHome}
         />
       );
 
