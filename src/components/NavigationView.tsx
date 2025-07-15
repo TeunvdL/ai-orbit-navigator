@@ -103,8 +103,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     <div className="relative w-full h-screen overflow-hidden">
       <Breadcrumb path={path} onNavigate={onNavigate} onBack={onBack} />
       
-      {/* Title in top left */}
-      <div className="absolute top-4 left-4 z-50">
+      {/* Title centered at top */}
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50">
         <h1 className="text-2xl font-bold text-white">{currentNode.name}</h1>
       </div>
       
