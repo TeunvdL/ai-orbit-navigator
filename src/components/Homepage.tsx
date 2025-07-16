@@ -19,12 +19,16 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy })
   };
 
   return (
-    <div className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 bg-gradient-cosmic opacity-80" />
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+      {/* Radial Color Highlights */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgb(255, 0, 255) 0%, transparent 50%)
+          `
+        }}>
+        </div>
       </div>
 
       {/* Top centered content */}
