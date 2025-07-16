@@ -103,7 +103,18 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full h-screen overflow-hidden">
+      {/* Radial Color Highlights */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgb(255, 0, 255) 0%, transparent 50%)
+          `
+        }}>
+        </div>
+      </div>
+      
       <Breadcrumb path={path} onNavigate={onNavigate} onBack={onBack} />
       
       {/* Home button */}
