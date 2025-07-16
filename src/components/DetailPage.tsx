@@ -11,7 +11,7 @@ interface DetailPageProps {
 
 export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6 overflow-y-auto">
       {/* Radial Color Highlights */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
