@@ -1,8 +1,7 @@
 import React from 'react';
-import { ArrowLeft, Lightbulb, Cog, Target, TrendingUp, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Lightbulb, Cog, Target, TrendingUp, AlertTriangle, Check, AlertCircle } from 'lucide-react';
 import { TreeNodeData } from '../types/treeTypes';
 import { Button } from './ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 interface DetailPageProps {
   node: TreeNodeData;
@@ -12,126 +11,125 @@ interface DetailPageProps {
 
 export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack }) => {
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6">
+      {/* Radial Color Highlights */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgb(255, 0, 255) 0%, transparent 50%)
+          `
+        }}>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto relative">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Button
             variant="ghost"
             size="sm"
             onClick={onBack}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Taxonomy
           </Button>
         </div>
 
-        {/* Title Section */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">{node.name}</h1>
-          {parentName && (
-            <p className="text-xl text-muted-foreground">Category: {parentName}</p>
-          )}
-        </div>
+        {/* Card Container */}
+        <div className="bg-gray-800/50 border-cyan-500/30 backdrop-blur-sm shadow-2xl rounded-lg border">
+          {/* Card Header */}
+          <div className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-t-lg p-8">
+            <h1 className="text-3xl font-semibold tracking-tight flex items-center space-x-3">
+              <Lightbulb className="w-8 h-8" />
+              <span>{node.name}</span>
+            </h1>
+            {parentName && (
+              <p className="text-cyan-100 text-lg mt-2">Category: {parentName}</p>
+            )}
+          </div>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Overview */}
-          {node.overview && (
-            <Card className="cosmic-node border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-primary">
-                  <Lightbulb className="w-5 h-5" />
-                  Overview
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-foreground leading-relaxed">{node.overview}</p>
-              </CardContent>
-            </Card>
-          )}
+          {/* Card Content */}
+          <div className="p-8 text-gray-100">
+            <div className="grid gap-8">
+              {/* Overview */}
+              {node.overview && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-4 flex items-center text-cyan-400">
+                    <Lightbulb className="w-5 h-5 mr-2" />
+                    Overview
+                  </h2>
+                  <p className="text-lg leading-relaxed">{node.overview}</p>
+                </div>
+              )}
 
-          {/* How It Works */}
-          {node.howItWorks && (
-            <Card className="cosmic-node border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-secondary">
-                  <Cog className="w-5 h-5" />
-                  How It Works
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-foreground leading-relaxed">{node.howItWorks}</p>
-              </CardContent>
-            </Card>
-          )}
+              {/* How It Works */}
+              {node.howItWorks && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-4 flex items-center text-cyan-400">
+                    <Cog className="w-5 h-5 mr-2" />
+                    How It Works
+                  </h2>
+                  <p className="text-lg leading-relaxed">{node.howItWorks}</p>
+                </div>
+              )}
 
-          {/* Applications */}
-          {node.applications && node.applications.length > 0 && (
-            <Card className="cosmic-node border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-accent">
-                  <Target className="w-5 h-5" />
-                  Applications
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {node.applications.map((app, index) => (
-                    <li key={index} className="flex items-start gap-2 text-foreground">
-                      <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                      {app}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          )}
+              {/* Applications */}
+              {node.applications && node.applications.length > 0 && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-4 flex items-center text-cyan-400">
+                    <Target className="w-5 h-5 mr-2" />
+                    Applications
+                  </h2>
+                  <ul className="space-y-2">
+                    {node.applications.map((app, index) => (
+                      <li key={index} className="flex items-start space-x-2">
+                        <Check className="text-green-400 mt-1 w-5 h-5 flex-shrink-0" />
+                        <span className="text-lg leading-relaxed">{app}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-          {/* Advantages */}
-          {node.advantages && node.advantages.length > 0 && (
-            <Card className="cosmic-node border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-green-400">
-                  <TrendingUp className="w-5 h-5" />
-                  Advantages
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {node.advantages.map((advantage, index) => (
-                    <li key={index} className="flex items-start gap-2 text-foreground">
-                      <span className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0" />
-                      {advantage}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          )}
+              {/* Advantages */}
+              {node.advantages && node.advantages.length > 0 && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-4 flex items-center text-cyan-400">
+                    <TrendingUp className="w-5 h-5 mr-2" />
+                    Advantages
+                  </h2>
+                  <ul className="space-y-2">
+                    {node.advantages.map((advantage, index) => (
+                      <li key={index} className="flex items-start space-x-2">
+                        <Check className="text-green-400 mt-1 w-5 h-5 flex-shrink-0" />
+                        <span className="text-lg leading-relaxed">{advantage}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-          {/* Limitations */}
-          {node.limitations && node.limitations.length > 0 && (
-            <Card className="cosmic-node border-border/50 lg:col-span-2">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-orange-400">
-                  <AlertTriangle className="w-5 h-5" />
-                  Limitations
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {node.limitations.map((limitation, index) => (
-                    <li key={index} className="flex items-start gap-2 text-foreground">
-                      <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0" />
-                      {limitation}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          )}
+              {/* Limitations */}
+              {node.limitations && node.limitations.length > 0 && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-4 flex items-center text-cyan-400">
+                    <AlertTriangle className="w-5 h-5 mr-2" />
+                    Limitations
+                  </h2>
+                  <ul className="space-y-2">
+                    {node.limitations.map((limitation, index) => (
+                      <li key={index} className="flex items-start space-x-2">
+                        <AlertCircle className="text-yellow-400 mt-1 w-5 h-5 flex-shrink-0" />
+                        <span className="text-lg leading-relaxed">{limitation}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
