@@ -1,5 +1,6 @@
 import React from 'react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
+import LinearRegressionViz from './LinearRegressionViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -29,6 +30,34 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   const handleMouseLeave = () => {
     onHover?.(null);
   };
+
+  // Check if this is the linear regression node
+  if (node.id === 'linear-regression') {
+    return (
+      <div
+        className={`cosmic-node absolute flex items-center justify-center text-white font-semibold select-none ${
+          isRoot ? 'pulse-glow' : ''
+        } ${className}`}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${position.x - size / 2}px`,
+          top: `${position.y - size / 2}px`,
+          ...style
+        }}
+        onClick={onClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <LinearRegressionViz />
+        <div className="absolute inset-0 flex items-end justify-center pb-2 z-10">
+          <span className="text-xs font-medium text-white text-center px-1 bg-black/50 rounded">
+            {node.name}
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
