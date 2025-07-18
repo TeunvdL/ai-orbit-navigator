@@ -1,6 +1,8 @@
 import React from 'react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
 import LinearRegressionViz from './LinearRegressionViz';
+import MachineLearningViz from './MachineLearningViz';
+import SymbolicAIViz from './SymbolicAIViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -31,8 +33,16 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     onHover?.(null);
   };
 
-  // Check if this is the linear regression node
-  if (node.id === 'linear-regression') {
+  // Check for special visualization nodes
+  if (node.id === 'linear-regression' || node.id === 'machine-learning' || node.id === 'symbolic-ai') {
+    let VizComponent;
+    if (node.id === 'linear-regression') {
+      VizComponent = LinearRegressionViz;
+    } else if (node.id === 'machine-learning') {
+      VizComponent = MachineLearningViz;
+    } else if (node.id === 'symbolic-ai') {
+      VizComponent = SymbolicAIViz;
+    }
     return (
       <div
         className={`cosmic-node absolute flex items-center justify-center text-white font-semibold select-none ${
@@ -53,14 +63,14 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       >
         <div className="cosmic-node-glow" />
         
-        {/* Linear regression visualization within circular boundary */}
+        {/* Visualization within circular boundary */}
         <div 
           className="absolute inset-2 rounded-full overflow-hidden z-10"
           style={{
             clipPath: 'circle(50%)'
           }}
         >
-          <LinearRegressionViz />
+          <VizComponent />
         </div>
         
         {/* Node label */}
