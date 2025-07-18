@@ -43,18 +43,30 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
           height: `${size}px`,
           left: `${position.x - size / 2}px`,
           top: `${position.y - size / 2}px`,
+          fontSize: `${Math.max(12, size / 8)}px`,
+          lineHeight: '1.2',
           ...style
         }}
         onClick={onClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <LinearRegressionViz />
-        <div className="absolute inset-0 flex items-end justify-center pb-2 z-10">
-          <span className="text-xs font-medium text-white text-center px-1 bg-black/50 rounded">
-            {node.name}
-          </span>
+        <div className="cosmic-node-glow" />
+        
+        {/* Linear regression visualization within circular boundary */}
+        <div 
+          className="absolute inset-2 rounded-full overflow-hidden z-10"
+          style={{
+            clipPath: 'circle(50%)'
+          }}
+        >
+          <LinearRegressionViz />
         </div>
+        
+        {/* Node label */}
+        <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-xs font-medium text-center px-1 bg-black/70 rounded z-20">
+          {node.name}
+        </span>
       </div>
     );
   }
