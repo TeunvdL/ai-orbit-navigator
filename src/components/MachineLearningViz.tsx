@@ -1,26 +1,19 @@
 import React from 'react';
 
 export default function MachineLearningViz() {
-  // Neural network structure: 3 layers (input, hidden, output)
-  const inputLayer = [
-    { x: 80, y: 120 },
-    { x: 80, y: 160 },
-    { x: 80, y: 200 },
-    { x: 80, y: 240 },
+  // Performance data showing improvement over time
+  const iterations = [
+    { x: 80, accuracy: 0.3, iteration: 1 },
+    { x: 120, accuracy: 0.45, iteration: 2 },
+    { x: 160, accuracy: 0.6, iteration: 3 },
+    { x: 200, accuracy: 0.72, iteration: 4 },
+    { x: 240, accuracy: 0.81, iteration: 5 },
+    { x: 280, accuracy: 0.87, iteration: 6 },
+    { x: 320, accuracy: 0.91, iteration: 7 },
   ];
-  
-  const hiddenLayer = [
-    { x: 200, y: 100 },
-    { x: 200, y: 140 },
-    { x: 200, y: 180 },
-    { x: 200, y: 220 },
-    { x: 200, y: 260 },
-  ];
-  
-  const outputLayer = [
-    { x: 320, y: 140 },
-    { x: 320, y: 200 },
-  ];
+
+  // Convert accuracy to y coordinate (invert since SVG y increases downward)
+  const getY = (accuracy: number) => 300 - (accuracy * 200);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -34,20 +27,21 @@ export default function MachineLearningViz() {
           <defs>
             {/* Background gradient */}
             <radialGradient id="mlBgGradient" cx="50%" cy="50%" r="70%">
-              <stop offset="0%" stopColor="#1e1a2e" />
-              <stop offset="50%" stopColor="#2a1f3d" />
-              <stop offset="100%" stopColor="#0f0f0f" />
+              <stop offset="0%" stopColor="#0f1419" />
+              <stop offset="50%" stopColor="#1a1f2e" />
+              <stop offset="100%" stopColor="#0a0a0a" />
             </radialGradient>
 
-            {/* Connection gradient */}
-            <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#ff6b35" />
-              <stop offset="50%" stopColor="#f7931e" />
-              <stop offset="100%" stopColor="#ffd23f" />
+            {/* Learning curve gradient */}
+            <linearGradient id="learningGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ff4444" />
+              <stop offset="30%" stopColor="#ff8800" />
+              <stop offset="60%" stopColor="#44ff44" />
+              <stop offset="100%" stopColor="#0088ff" />
             </linearGradient>
 
-            {/* Node glow */}
-            <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+            {/* Point glow */}
+            <filter id="pointGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
               <feMerge> 
                 <feMergeNode in="coloredBlur"/>
@@ -55,9 +49,9 @@ export default function MachineLearningViz() {
               </feMerge>
             </filter>
 
-            {/* Connection glow */}
-            <filter id="connectionGlow" x="-10%" y="-10%" width="120%" height="120%">
-              <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+            {/* Line glow */}
+            <filter id="lineGlow" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
               <feMerge> 
                 <feMergeNode in="coloredBlur"/>
                 <feMergeNode in="SourceGraphic"/>
@@ -68,131 +62,105 @@ export default function MachineLearningViz() {
           {/* Background */}
           <rect width="400" height="400" fill="url(#mlBgGradient)" />
 
-          {/* Neural network connections */}
-          <g opacity="0.6">
-            {/* Input to hidden connections */}
-            {inputLayer.map((input, i) => 
-              hiddenLayer.map((hidden, j) => (
-                <line
-                  key={`input-${i}-hidden-${j}`}
-                  x1={input.x}
-                  y1={input.y}
-                  x2={hidden.x}
-                  y2={hidden.y}
-                  stroke="url(#connectionGradient)"
-                  strokeWidth="1.5"
-                  opacity="0.4"
-                  filter="url(#connectionGlow)"
-                />
-              ))
-            )}
-
-            {/* Hidden to output connections */}
-            {hiddenLayer.map((hidden, i) => 
-              outputLayer.map((output, j) => (
-                <line
-                  key={`hidden-${i}-output-${j}`}
-                  x1={hidden.x}
-                  y1={hidden.y}
-                  x2={output.x}
-                  y2={output.y}
-                  stroke="url(#connectionGradient)"
-                  strokeWidth="1.5"
-                  opacity="0.4"
-                  filter="url(#connectionGlow)"
-                />
-              ))
-            )}
+          {/* Grid lines for reference */}
+          <g opacity="0.2">
+            <line x1="60" y1="120" x2="340" y2="120" stroke="#888" strokeWidth="0.5" />
+            <line x1="60" y1="160" x2="340" y2="160" stroke="#888" strokeWidth="0.5" />
+            <line x1="60" y1="200" x2="340" y2="200" stroke="#888" strokeWidth="0.5" />
+            <line x1="60" y1="240" x2="340" y2="240" stroke="#888" strokeWidth="0.5" />
+            <line x1="60" y1="280" x2="340" y2="280" stroke="#888" strokeWidth="0.5" />
           </g>
 
-          {/* Input layer nodes */}
-          {inputLayer.map((node, index) => (
-            <g key={`input-${index}`}>
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="12"
-                fill="#4fc3f7"
-                filter="url(#nodeGlow)"
-                opacity="0.9"
-              />
-              <circle
-                cx={node.x - 2}
-                cy={node.y - 2}
-                r="4"
-                fill="#ffffff"
-                opacity="0.7"
-              />
-            </g>
-          ))}
+          {/* Learning curve line */}
+          <path
+            d={`M ${iterations.map(point => `${point.x},${getY(point.accuracy)}`).join(' L ')}`}
+            fill="none"
+            stroke="url(#learningGradient)"
+            strokeWidth="3"
+            filter="url(#lineGlow)"
+            opacity="0.9"
+          />
 
-          {/* Hidden layer nodes */}
-          {hiddenLayer.map((node, index) => (
-            <g key={`hidden-${index}`}>
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="10"
-                fill="#ff6b35"
-                filter="url(#nodeGlow)"
-                opacity="0.9"
-              />
-              <circle
-                cx={node.x - 1.5}
-                cy={node.y - 1.5}
-                r="3"
-                fill="#ffffff"
-                opacity="0.7"
-              />
-            </g>
-          ))}
+          {/* Data points showing improvement */}
+          {iterations.map((point, index) => {
+            const y = getY(point.accuracy);
+            const color = index < 2 ? '#ff4444' : index < 4 ? '#ff8800' : index < 6 ? '#44ff44' : '#0088ff';
+            
+            return (
+              <g key={index}>
+                {/* Outer glow */}
+                <circle
+                  cx={point.x}
+                  cy={y}
+                  r="8"
+                  fill={color}
+                  opacity="0.3"
+                  filter="url(#pointGlow)"
+                />
+                {/* Main point */}
+                <circle
+                  cx={point.x}
+                  cy={y}
+                  r="4"
+                  fill={color}
+                  opacity="0.9"
+                />
+                {/* Inner highlight */}
+                <circle
+                  cx={point.x - 1}
+                  cy={y - 1}
+                  r="1.5"
+                  fill="#ffffff"
+                  opacity="0.7"
+                />
+              </g>
+            );
+          })}
 
-          {/* Output layer nodes */}
-          {outputLayer.map((node, index) => (
-            <g key={`output-${index}`}>
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="14"
-                fill="#4caf50"
-                filter="url(#nodeGlow)"
-                opacity="0.9"
-              />
-              <circle
-                cx={node.x - 2.5}
-                cy={node.y - 2.5}
-                r="5"
-                fill="#ffffff"
-                opacity="0.7"
-              />
-            </g>
-          ))}
-
-          {/* Data flow particles */}
-          <g opacity="0.5">
-            <circle cx="50" cy="180" r="2" fill="#4fc3f7">
-              <animate attributeName="cx" values="50;380;50" dur="4s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite" />
+          {/* Experience indicators - floating data */}
+          <g opacity="0.4">
+            <text x="100" y="340" fontSize="10" fill="#ff8800" opacity="0.7">
+              Experience
+            </text>
+            <text x="280" y="120" fontSize="10" fill="#44ff44" opacity="0.7">
+              Performance
+            </text>
+            
+            {/* Animated learning particles */}
+            <circle cx="90" cy="320" r="1.5" fill="#ff4444">
+              <animate attributeName="cy" values="320;120;320" dur="6s" repeatCount="indefinite" />
+              <animate attributeName="fill" values="#ff4444;#44ff44;#ff4444" dur="6s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="6s" repeatCount="indefinite" />
             </circle>
-            <circle cx="45" cy="200" r="1.5" fill="#ff6b35">
-              <animate attributeName="cx" values="45;375;45" dur="4.5s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0;1;0" dur="4.5s" repeatCount="indefinite" />
+            <circle cx="150" cy="310" r="1.2" fill="#ff8800">
+              <animate attributeName="cy" values="310;130;310" dur="5.5s" repeatCount="indefinite" />
+              <animate attributeName="fill" values="#ff8800;#0088ff;#ff8800" dur="5.5s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.2;0.9;0.2" dur="5.5s" repeatCount="indefinite" />
             </circle>
-            <circle cx="55" cy="160" r="1.8" fill="#4caf50">
-              <animate attributeName="cx" values="55;385;55" dur="3.8s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0;1;0" dur="3.8s" repeatCount="indefinite" />
+            <circle cx="210" cy="315" r="1.8" fill="#ff4444">
+              <animate attributeName="cy" values="315;125;315" dur="6.2s" repeatCount="indefinite" />
+              <animate attributeName="fill" values="#ff4444;#44ff44;#ff4444" dur="6.2s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.4;0.7;0.4" dur="6.2s" repeatCount="indefinite" />
             </circle>
           </g>
 
-          {/* Layer labels */}
-          <text x="80" y="300" textAnchor="middle" fontSize="12" fill="#ffffff" opacity="0.7">
-            Input
+          {/* Arrow showing upward trend */}
+          <path
+            d="M 320 180 L 340 160 L 320 140 M 340 160 L 320 160"
+            stroke="#0088ff"
+            strokeWidth="2"
+            fill="none"
+            opacity="0.8"
+            filter="url(#lineGlow)"
+          />
+
+          {/* Axis labels */}
+          <text x="200" y="390" textAnchor="middle" fontSize="12" fill="#ffffff" opacity="0.6">
+            Training Iterations
           </text>
-          <text x="200" y="300" textAnchor="middle" fontSize="12" fill="#ffffff" opacity="0.7">
-            Hidden
-          </text>
-          <text x="320" y="300" textAnchor="middle" fontSize="12" fill="#ffffff" opacity="0.7">
-            Output
+          <text x="30" y="200" textAnchor="middle" fontSize="12" fill="#ffffff" opacity="0.6" 
+                transform="rotate(-90 30 200)">
+            Accuracy
           </text>
         </svg>
       </div>

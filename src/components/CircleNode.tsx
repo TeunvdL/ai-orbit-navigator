@@ -2,6 +2,7 @@ import React from 'react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
 import LinearRegressionViz from './LinearRegressionViz';
 import MachineLearningViz from './MachineLearningViz';
+import NeuralNetworksViz from './NeuralNetworksViz';
 import SymbolicAIViz from './SymbolicAIViz';
 
 interface CircleNodeProps {
@@ -34,12 +35,14 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   };
 
   // Check for special visualization nodes
-  if (node.id === 'linear-regression' || node.id === 'machine-learning' || node.id === 'symbolic-ai') {
+  if (node.id === 'linear-regression' || node.id === 'machine-learning' || node.id === 'neural-networks' || node.id === 'symbolic-ai') {
     let VizComponent;
     if (node.id === 'linear-regression') {
       VizComponent = LinearRegressionViz;
     } else if (node.id === 'machine-learning') {
       VizComponent = MachineLearningViz;
+    } else if (node.id === 'neural-networks') {
+      VizComponent = NeuralNetworksViz;
     } else if (node.id === 'symbolic-ai') {
       VizComponent = SymbolicAIViz;
     }
