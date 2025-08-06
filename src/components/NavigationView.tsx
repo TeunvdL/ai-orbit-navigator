@@ -51,19 +51,63 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const calculateNodePositions = (): NodePosition[] => {
-    if (!currentNode.children || currentNode.children.length === 0) return [];
+  const calculateNodePositions = (): { positions: NodePosition[], nodeSize: number } => {
+    if (!currentNode.children || currentNode.children.length === 0) return { positions: [], nodeSize: 80 };
 
     const centerX = containerSize.width / 2;
     const centerY = containerSize.height / 2;
     const children = currentNode.children;
     const childCount = children.length;
 
-    // Calculate radius based on container size and number of children
-    const baseRadius = Math.min(containerSize.width, containerSize.height) * 0.25;
-    const radius = Math.max(baseRadius, childCount * 30);
+    // Calculate optimal node size and spacing
+    const availableWidth = containerSize.width * 0.8; // Use 80% of screen width
+    const availableHeight = containerSize.height * 0.7; // Use 70% of screen height
+    const minSpacing = 20; // Minimum distance between node boundaries
+    
+    // For circular layout, calculate the radius needed to fit all nodes with proper spacing
+    let nodeSize: number;
+    let radius: number;
+    
+    if (childCount === 1) {
+      // Single node - make it reasonably sized
+      nodeSize = Math.min(200, Math.min(availableWidth, availableHeight) * 0.3);
+      radius = 0;
+    } else {
+      // Multiple nodes - calculate size based on available space and spacing requirements
+      // Start with a reasonable size and adjust based on spacing constraints
+      const maxNodeSize = Math.min(availableWidth, availableHeight) * 0.2;
+      const minNodeSize = 80;
+      
+      // Calculate radius needed for the circular layout
+      const circumference = childCount * (maxNodeSize + minSpacing);
+      const calculatedRadius = circumference / (2 * Math.PI);
+      
+      // Ensure the circle fits within available space
+      const maxRadius = Math.min(availableWidth, availableHeight) / 2 - maxNodeSize / 2;
+      radius = Math.min(calculatedRadius, maxRadius);
+      
+      // Recalculate node size based on the actual radius
+      const availableCircumference = 2 * Math.PI * radius;
+      const spacePerNode = availableCircumference / childCount;
+      nodeSize = Math.max(minNodeSize, Math.min(maxNodeSize, spacePerNode - minSpacing));
+      
+      // If nodes are still too large, reduce radius and size proportionally
+      if (radius < 100) {
+        radius = Math.max(100, childCount * 25);
+        nodeSize = Math.max(minNodeSize, Math.min(120, (2 * Math.PI * radius) / childCount - minSpacing));
+      }
+    }
 
-    return children.map((_, index) => {
+    const positions = children.map((_, index) => {
+      if (childCount === 1) {
+        return {
+          x: centerX,
+          y: centerY,
+          angle: 0,
+          radius: 0
+        };
+      }
+      
       const angle = (index * 2 * Math.PI) / childCount;
       const x = centerX + radius * Math.cos(angle);
       const y = centerY + radius * Math.sin(angle);
@@ -75,6 +119,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
         radius
       };
     });
+
+    return { positions, nodeSize };
   };
 
   const handleNodeClick = (node: TreeNodeData, position: NodePosition) => {
@@ -98,8 +144,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     }
   };
 
-  const positions = calculateNodePositions();
-  const childNodeSize = Math.max(80, Math.min(150, containerSize.width / (currentNode.children?.length || 1) * 0.8));
+  const { positions, nodeSize: childNodeSize } = calculateNodePositions();
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
 
   return (
