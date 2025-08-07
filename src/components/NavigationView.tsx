@@ -62,7 +62,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     // Calculate optimal node size and spacing
     const availableWidth = containerSize.width * 0.8; // Use 80% of screen width
     const availableHeight = containerSize.height * 0.7; // Use 70% of screen height
-    const minSpacing = 20; // Minimum distance between node boundaries
+    const minSpacing = 10; // Minimum distance between node boundaries
     
     // Calculate node size based on available space
     let nodeSize: number;
@@ -91,8 +91,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
       nodeSize = Math.max(minNodeSize, Math.min(maxNodeSize, spacePerNode - minSpacing));
       
       // Apply user's formula: R = 0.5 * F * min(wh, ww) - r
-      // Where F = 0.85, R = radius of circle on which node centers lie, r = node radius
-      const F = 0.85;
+      // Where F = 0.78, R = radius of circle on which node centers lie, r = node radius
+      const F = 0.78;
       const minDimension = Math.min(containerSize.width, containerSize.height);
       const nodeRadius = nodeSize / 2;
       radius = 0.5 * F * minDimension - nodeRadius;
