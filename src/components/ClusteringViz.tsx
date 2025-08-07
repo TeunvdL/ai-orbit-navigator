@@ -75,9 +75,6 @@ export default function ClusteringViz() {
             </g>
           ))}
 
-          <text x="200" y="380" textAnchor="middle" fontSize="12" fill="#fff" opacity="0.7">
-            Grouping Similar Data
-          </text>
         </svg>
       </div>
     </div>

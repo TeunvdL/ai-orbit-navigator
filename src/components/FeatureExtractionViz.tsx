@@ -59,10 +59,7 @@ export default function FeatureExtractionViz() {
               <polygon points="0 0, 10 3.5, 0 7" fill="#fff" />
             </marker>
           </defs>
-
-          <text x="200" y="380" textAnchor="middle" fontSize="12" fill="#fff" opacity="0.7">
-            Dimensionality Reduction
-          </text>
+          
         </svg>
       </div>
     </div>

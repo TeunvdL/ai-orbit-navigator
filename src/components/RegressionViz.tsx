@@ -41,9 +41,6 @@ export default function RegressionViz() {
           <circle cx="350" cy="70" r="8" fill="#4caf50" opacity="0.7" strokeDasharray="3,3" stroke="#4caf50" strokeWidth="2" />
           <text x="360" y="75" fontSize="10" fill="#4caf50">Prediction</text>
 
-          <text x="200" y="380" textAnchor="middle" fontSize="12" fill="#fff" opacity="0.7">
-            Continuous Value Prediction
-          </text>
         </svg>
       </div>
     </div>

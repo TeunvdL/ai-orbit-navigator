@@ -49,10 +49,7 @@ export default function ClassificationViz() {
           {/* Labels */}
           <text x="125" y="200" fontSize="14" fill="#4fc3f7" fontWeight="bold">Class A</text>
           <text x="255" y="200" fontSize="14" fill="#ff6b35" fontWeight="bold">Class B</text>
-
-          <text x="200" y="380" textAnchor="middle" fontSize="12" fill="#fff" opacity="0.7">
-            Discrete Class Labels
-          </text>
+          
         </svg>
       </div>
     </div>
