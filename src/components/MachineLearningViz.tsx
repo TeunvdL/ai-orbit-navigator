@@ -119,10 +119,10 @@ export default function MachineLearningViz() {
 
           {/* Experience indicators - floating data */}
           <g opacity="0.4">
-            <text x="100" y="340" fontSize="10" fill="#ff8800" opacity="0.7">
+            <text x="100" y="280" fontSize="10" fill="#ff8800" opacity="0.7">
               Experience
             </text>
-            <text x="280" y="120" fontSize="10" fill="#44ff44" opacity="0.7">
+            <text x="250" y="100" fontSize="10" fill="#44ff44" opacity="0.7">
               Performance
             </text>
             
@@ -146,22 +146,13 @@ export default function MachineLearningViz() {
 
           {/* Arrow showing upward trend */}
           <path
-            d="M 320 180 L 340 160 L 320 140 M 340 160 L 320 160"
+            d="M 105 145 L 120 130 L 105 115 M 120 130 L 70 130"
             stroke="#0088ff"
             strokeWidth="2"
             fill="none"
             opacity="0.8"
             filter="url(#lineGlow)"
           />
-
-          {/* Axis labels */}
-          <text x="200" y="390" textAnchor="middle" fontSize="12" fill="#ffffff" opacity="0.6">
-            Training Iterations
-          </text>
-          <text x="30" y="200" textAnchor="middle" fontSize="12" fill="#ffffff" opacity="0.6" 
-                transform="rotate(-90 30 200)">
-            Accuracy
-          </text>
         </svg>
       </div>
     </div>
