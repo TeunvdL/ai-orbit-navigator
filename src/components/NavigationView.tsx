@@ -62,7 +62,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
     // Calculate optimal node size and spacing
     const availableWidth = containerSize.width * 0.8; // Use 80% of screen width
     const availableHeight = containerSize.height * 0.7; // Use 70% of screen height
-    const minSpacing = 10; // Minimum distance between node boundaries
+    const minSpacing = 15; // Minimum distance between node boundaries
     
     // Calculate node size based on available space
     let nodeSize: number;
