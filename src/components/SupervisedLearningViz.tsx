@@ -34,7 +34,7 @@ export default function SupervisedLearningViz() {
           {/* Training data points with labels */}
           {trainingData.map((point, index) => (
             <g key={index}>
-              <circle cx={point.x} cy={point.y} r="8" fill={point.color} opacity="0.8" filter="url(#glow)" />
+              <circle cx={point.x} cy={point.y} r="12" fill={point.color} opacity="0.8" filter="url(#glow)" />
               <text x={point.x} y={point.y + 3} textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">
                 {point.label}
               </text>
