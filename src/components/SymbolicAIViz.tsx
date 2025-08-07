@@ -102,7 +102,7 @@ export default function SymbolicAIViz() {
                   x={(fromNode.x + toNode.x) / 2}
                   y={(fromNode.y + toNode.y) / 2 - 5}
                   textAnchor="middle"
-                  fontSize="8"
+                  fontSize="12"
                   fill="#ffffff"
                   opacity="0.6"
                 >
@@ -172,7 +172,7 @@ export default function SymbolicAIViz() {
                   x={node.x}
                   y={node.y + 2}
                   textAnchor="middle"
-                  fontSize="10"
+                  fontSize="12"
                   fill="#ffffff"
                   fontWeight="bold"
                 >
