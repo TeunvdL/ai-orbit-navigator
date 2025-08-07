@@ -94,7 +94,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
         </div>
         
         {/* Node label */}
-        <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-xs font-medium text-center px-1 bg-black/70 rounded z-20">
+        <span className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-xs font-medium text-center px-1 bg-black/70 rounded z-20">
           {node.name}
         </span>
       </div>
