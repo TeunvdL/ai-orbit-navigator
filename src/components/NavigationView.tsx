@@ -73,32 +73,37 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
       nodeSize = Math.min(200, Math.min(availableWidth, availableHeight) * 0.3);
       radius = 0;
     } else {
-      // Calculate node size first
-      const maxNodeSize = Math.min(availableWidth, availableHeight) * 0.2;
-      const minNodeSize = 80;
-      
-      // Calculate circumference needed for all nodes with spacing
-      const circumference = childCount * (maxNodeSize + minSpacing);
-      const calculatedRadius = circumference / (2 * Math.PI);
-      
-      // Ensure the circle fits within available space
-      const maxRadius = Math.min(availableWidth, availableHeight) / 2 - maxNodeSize / 2;
-      const optimalRadius = Math.min(calculatedRadius, maxRadius);
-      
-      // Recalculate node size based on the optimal radius
-      const availableCircumference = 2 * Math.PI * optimalRadius;
-      const spacePerNode = availableCircumference / childCount;
-      nodeSize = Math.max(minNodeSize, Math.min(maxNodeSize, spacePerNode - minSpacing));
-      
-      // Apply user's formula: R = 0.5 * F * min(wh, ww) - r
-      // Where F = 0.78, R = radius of circle on which node centers lie, r = node radius
+      // Apply user's formula first: R = 0.5 * F * min(wh, ww) - r
+      // We'll iteratively find the optimal node size that maximizes space usage
       const F = 0.78;
       const minDimension = Math.min(containerSize.width, containerSize.height);
-      const nodeRadius = nodeSize / 2;
-      radius = 0.5 * F * minDimension - nodeRadius;
+      const minNodeSize = 80;
+      const maxNodeSize = Math.min(availableWidth, availableHeight) * 0.4; // Increased max size
       
-      // Ensure minimum radius
-      radius = Math.max(radius, 100);
+      // Calculate optimal node size by maximizing the use of available circumference
+      let bestNodeSize = minNodeSize;
+      let bestRadius = 0;
+      
+      // Try different node sizes to find the one that best fills the space
+      for (let testNodeSize = minNodeSize; testNodeSize <= maxNodeSize; testNodeSize += 5) {
+        const testNodeRadius = testNodeSize / 2;
+        const testRadius = 0.5 * F * minDimension - testNodeRadius;
+        
+        if (testRadius > 50) { // Ensure minimum radius
+          const testCircumference = 2 * Math.PI * testRadius;
+          const testSpacePerNode = testCircumference / childCount;
+          const testRequiredSpace = testNodeSize + minSpacing;
+          
+          // Check if nodes fit with required spacing
+          if (testRequiredSpace <= testSpacePerNode) {
+            bestNodeSize = testNodeSize;
+            bestRadius = testRadius;
+          }
+        }
+      }
+      
+      nodeSize = bestNodeSize;
+      radius = Math.max(bestRadius, 100);
     }
 
     const positions = children.map((_, index) => {
