@@ -43,10 +43,6 @@ export default function ReinforcementLearningViz() {
               <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
             </marker>
           </defs>
-
-          <text x="200" y="380" textAnchor="middle" fontSize="12" fill="#fff" opacity="0.7">
-            Learning Through Rewards
-          </text>
         </svg>
       </div>
     </div>
