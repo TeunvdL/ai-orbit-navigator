@@ -119,10 +119,10 @@ export default function MachineLearningViz() {
 
           {/* Experience indicators - floating data */}
           <g opacity="0.4">
-            <text x="100" y="295" fontSize="10" fill="#ff8800" opacity="0.7">
+            <text x="100" y="295" fontSize="12" fill="#ff8800" opacity="0.85">
               Experience
             </text>
-            <text x="230" y="105" fontSize="10" fill="#44ff44" opacity="0.7">
+            <text x="210" y="105" fontSize="12" fill="#44ff44" opacity="0.85">
               Performance
             </text>
             
