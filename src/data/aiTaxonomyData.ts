@@ -50,18 +50,20 @@ export const aiTaxonomyData: TreeNodeData = {
                       applications: ['Sales forecasting', 'Risk assessment', 'Economic modeling', 'Scientific research'],
                       advantages: ['Simple and interpretable', 'Fast computation', 'Well-understood theory'],
                       limitations: ['Assumes linear relationships', 'Sensitive to outliers', 'May underfit complex data'],
+                      children: [
+                        { 
+                          id: 'ridge-lasso', 
+                          name: 'Ridge / Lasso Regression', 
+                          description: 'Regularized regression techniques',
+                          overview: 'Regularized regression methods that add penalty terms to prevent overfitting and improve model generalization.',
+                          howItWorks: 'Ridge adds L2 penalty (sum of squared coefficients), Lasso adds L1 penalty (sum of absolute coefficients).',
+                          applications: ['High-dimensional data analysis', 'Feature selection', 'Genomics', 'Finance modeling'],
+                          advantages: ['Prevents overfitting', 'Handles multicollinearity', 'Lasso performs feature selection'],
+                          limitations: ['Requires hyperparameter tuning', 'May overshrink coefficients', 'Less interpretable'],
+                        }
+                      ]
                     }
                   ] 
-                },
-                { 
-                  id: 'ridge-lasso', 
-                  name: 'Ridge / Lasso Regression', 
-                  description: 'Regularized regression techniques',
-                  overview: 'Regularized regression methods that add penalty terms to prevent overfitting and improve model generalization.',
-                  howItWorks: 'Ridge adds L2 penalty (sum of squared coefficients), Lasso adds L1 penalty (sum of absolute coefficients).',
-                  applications: ['High-dimensional data analysis', 'Feature selection', 'Genomics', 'Finance modeling'],
-                  advantages: ['Prevents overfitting', 'Handles multicollinearity', 'Lasso performs feature selection'],
-                  limitations: ['Requires hyperparameter tuning', 'May overshrink coefficients', 'Less interpretable'],
                 },
                 { 
                   id: 'decision-tree-regressor', 
