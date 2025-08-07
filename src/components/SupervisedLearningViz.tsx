@@ -40,17 +40,6 @@ export default function SupervisedLearningViz() {
               </text>
             </g>
           ))}
-
-          {/* Arrow from data to model */}
-          <path d="M 200 300 L 200 320" stroke="#fff" strokeWidth="2" markerEnd="url(#arrowhead)" />
-          
-          {/* Model representation */}
-          <rect x="170" y="325" width="60" height="30" fill="#333" stroke="#fff" strokeWidth="1" rx="5" />
-          <text x="200" y="345" textAnchor="middle" fontSize="12" fill="#fff">Model</text>
-
-          <text x="200" y="380" textAnchor="middle" fontSize="12" fill="#fff" opacity="0.7">
-            Learning with Labels
-          </text>
         </svg>
       </div>
     </div>
