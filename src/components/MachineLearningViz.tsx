@@ -146,7 +146,7 @@ export default function MachineLearningViz() {
 
           {/* Arrow showing upward trend */}
           <path
-            d="M 305 145 L 320 130 L 305 115 M 320 130 L 270 130"
+            d="M 305 215 L 320 200 L 305 185 M 320 200 L 270 200"
             stroke="#0088ff"
             strokeWidth="2"
             fill="none"
