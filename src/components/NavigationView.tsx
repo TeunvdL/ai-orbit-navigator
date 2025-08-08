@@ -4,6 +4,7 @@ import { TreeNodeData, NodePosition } from '../types/treeTypes';
 import { CircleNode } from './CircleNode';
 import { Tooltip } from './Tooltip';
 import { Breadcrumb } from './Breadcrumb';
+import { DetailPage } from './DetailPage';
 
 interface NavigationViewProps {
   currentNode: TreeNodeData;
@@ -141,96 +142,117 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const { positions, nodeSize: childNodeSize } = calculateNodePositions();
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
 
+  const getParentName = (node: TreeNodeData): string | undefined => {
+    // Find the parent of the current node in the path
+    if (path.length < 2) return undefined;
+    return path[path.length - 2].name;
+  };
+
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full h-screen overflow-hidden">
-      {/* Radial Color Highlights */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgb(255, 0, 255) 0%, transparent 50%)
-          `
-        }}>
+    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full overflow-y-auto">
+      {/* Navigation View Section */}
+      <div className="relative h-screen overflow-hidden">
+        {/* Radial Color Highlights */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgb(255, 0, 255) 0%, transparent 50%)
+            `
+          }}>
+          </div>
         </div>
-      </div>
-      
-      <Breadcrumb path={path} onNavigate={onNavigate} onBack={onBack} />
-      
-      {/* Home button */}
-      {onHome && (
-        <button
-          onClick={onHome}
-          className="absolute top-4 left-4 z-50 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors"
-          aria-label="Go to homepage"
-        >
-          <Home size={20} />
-        </button>
-      )}
-      
-      {/* Title centered at top */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <h1 className="text-2xl font-bold text-white">{currentNode.name}</h1>
-      </div>
-      
-      {/* Parent node (current level) - transparent and unclickable */}
-      <div className="z-10 pointer-events-none">
-        <CircleNode
-          node={currentNode}
-          position={{
-            x: containerSize.width / 2,
-            y: containerSize.height / 2,
-            angle: 0,
-            radius: 0
-          }}
-          size={parentNodeSize}
-          isRoot={path.length === 1}
-          className="opacity-0"
-        />
-      </div>
-
-      {/* Child nodes */}
-      <div className="z-20">
-        {currentNode.children?.map((child, index) => {
-          // Hide the node that's currently animating to prevent duplication
-          if (animatingNode && child.id === animatingNode.id) {
-            return null;
-          }
-          
-          return (
-            <CircleNode
-              key={child.id}
-              node={child}
-              position={positions[index]}
-              size={childNodeSize}
-              onClick={() => handleNodeClick(child, positions[index])}
-              onHover={setHoveredNode}
-            />
-          );
-        })}
-      </div>
-
-      {/* Animating node */}
-      {animatingNode && animatingNodePosition && (
-        <div className="z-30">
+        
+        <Breadcrumb path={path} onNavigate={onNavigate} onBack={onBack} />
+        
+        {/* Home button */}
+        {onHome && (
+          <button
+            onClick={onHome}
+            className="absolute top-4 left-4 z-50 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors"
+            aria-label="Go to homepage"
+          >
+            <Home size={20} />
+          </button>
+        )}
+        
+        {/* Title centered at top */}
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50">
+          <h1 className="text-2xl font-bold text-white">{currentNode.name}</h1>
+        </div>
+        
+        {/* Parent node (current level) - transparent and unclickable */}
+        <div className="z-10 pointer-events-none">
           <CircleNode
-            node={animatingNode}
-            position={animatingNodePosition}
-            size={childNodeSize}
-            isRoot={false}
-            onHover={() => {}}
-            className="animate-zoom-to-center"
-            style={{
-              '--start-x': `${animatingNodePosition.x}px`,
-              '--start-y': `${animatingNodePosition.y}px`,
-              '--center-x': `${containerSize.width / 2}px`,
-              '--center-y': `${containerSize.height / 2}px`
-            } as React.CSSProperties}
+            node={currentNode}
+            position={{
+              x: containerSize.width / 2,
+              y: containerSize.height / 2,
+              angle: 0,
+              radius: 0
+            }}
+            size={parentNodeSize}
+            isRoot={path.length === 1}
+            className="opacity-0"
+          />
+        </div>
+
+        {/* Child nodes */}
+        <div className="z-20">
+          {currentNode.children?.map((child, index) => {
+            // Hide the node that's currently animating to prevent duplication
+            if (animatingNode && child.id === animatingNode.id) {
+              return null;
+            }
+            
+            return (
+              <CircleNode
+                key={child.id}
+                node={child}
+                position={positions[index]}
+                size={childNodeSize}
+                onClick={() => handleNodeClick(child, positions[index])}
+                onHover={setHoveredNode}
+              />
+            );
+          })}
+        </div>
+
+        {/* Animating node */}
+        {animatingNode && animatingNodePosition && (
+          <div className="z-30">
+            <CircleNode
+              node={animatingNode}
+              position={animatingNodePosition}
+              size={childNodeSize}
+              isRoot={false}
+              onHover={() => {}}
+              className="animate-zoom-to-center"
+              style={{
+                '--start-x': `${animatingNodePosition.x}px`,
+                '--start-y': `${animatingNodePosition.y}px`,
+                '--center-x': `${containerSize.width / 2}px`,
+                '--center-y': `${containerSize.height / 2}px`
+              } as React.CSSProperties}
+            />
+          </div>
+        )}
+
+        {/* Tooltip */}
+        <Tooltip node={hoveredNode} position={mousePosition} />
+      </div>
+
+      {/* Detail Section for Non-Leaf Nodes */}
+      {currentNode.children && currentNode.children.length > 0 && (
+        <div className="relative">
+          <DetailPage
+            node={currentNode}
+            parentName={getParentName(currentNode)}
+            onBack={() => {}} // Empty function since we don't want the back button in this context
+            showBackButton={false}
           />
         </div>
       )}
-
-      {/* Tooltip */}
-      <Tooltip node={hoveredNode} position={mousePosition} />
     </div>
   );
 };
