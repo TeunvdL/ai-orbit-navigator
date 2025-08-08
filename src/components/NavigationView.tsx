@@ -151,9 +151,9 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   return (
     <div className="w-full">
       {/* Navigation View Section - Fixed Height */}
-      <div className="relative h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
+      <div className="relative h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
         {/* Radial Color Highlights */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute inset-0" style={{
             backgroundImage: `
               radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
