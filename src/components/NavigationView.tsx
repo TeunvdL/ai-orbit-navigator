@@ -149,9 +149,9 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   };
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full overflow-y-auto">
-      {/* Navigation View Section */}
-      <div className="relative h-screen overflow-hidden">
+    <div className="w-full">
+      {/* Navigation View Section - Fixed Height */}
+      <div className="relative h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
         {/* Radial Color Highlights */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -242,16 +242,14 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
         <Tooltip node={hoveredNode} position={mousePosition} />
       </div>
 
-      {/* Detail Section for Non-Leaf Nodes */}
+      {/* Detail Section for Non-Leaf Nodes - Scrollable */}
       {currentNode.children && currentNode.children.length > 0 && (
-        <div className="relative">
-          <DetailPage
-            node={currentNode}
-            parentName={getParentName(currentNode)}
-            onBack={() => {}} // Empty function since we don't want the back button in this context
-            showBackButton={false}
-          />
-        </div>
+        <DetailPage
+          node={currentNode}
+          parentName={getParentName(currentNode)}
+          onBack={() => {}} // Empty function since we don't want the back button in this context
+          showBackButton={false}
+        />
       )}
     </div>
   );
