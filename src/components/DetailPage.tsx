@@ -7,14 +7,13 @@ interface DetailPageProps {
   node: TreeNodeData;
   parentName?: string;
   onBack: () => void;
-  showBackButton?: boolean;
 }
 
-export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack, showBackButton = true }) => {
+export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
+    <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-y-auto">
       {/* Radial Color Highlights */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
+      <div className="fixed inset-0 opacity-10 pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `
             radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
@@ -24,22 +23,20 @@ export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack
         </div>
       </div>
 
-      <div className="relative p-6">
+      <div className="relative min-h-full p-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          {showBackButton && (
-            <div className="flex items-center gap-4 mb-8">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onBack}
-                className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Taxonomy
-              </Button>
-            </div>
-          )}
+          <div className="flex items-center gap-4 mb-8">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onBack}
+              className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Taxonomy
+            </Button>
+          </div>
 
           {/* Card Container */}
           <div className="bg-gray-800/50 border-cyan-500/30 backdrop-blur-sm shadow-2xl rounded-lg border mb-6">
