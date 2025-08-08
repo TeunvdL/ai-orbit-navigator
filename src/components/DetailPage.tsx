@@ -12,9 +12,9 @@ interface DetailPageProps {
 
 export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack, showBackButton = true }) => {
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-y-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
       {/* Radial Color Highlights */}
-      <div className="fixed inset-0 opacity-10 pointer-events-none">
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `
             radial-gradient(circle at 25% 25%, rgb(0, 255, 255) 0%, transparent 50%),
@@ -24,7 +24,7 @@ export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack
         </div>
       </div>
 
-      <div className="relative min-h-full p-6">
+      <div className="relative p-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           {showBackButton && (
