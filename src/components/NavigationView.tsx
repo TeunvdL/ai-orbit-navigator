@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Home, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Home } from 'lucide-react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
 import { CircleNode } from './CircleNode';
 import { Tooltip } from './Tooltip';
 import { Breadcrumb } from './Breadcrumb';
-import { DetailCard } from './DetailCard';
 
 interface NavigationViewProps {
   currentNode: TreeNodeData;
@@ -29,15 +28,15 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const [animatingNode, setAnimatingNode] = useState<TreeNodeData | null>(null);
   const [animatingNodePosition, setAnimatingNodePosition] = useState<NodePosition | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showDetailCards, setShowDetailCards] = useState(false);
-  const detailSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateSize = () => {
-      setContainerSize({
+      const newSize = {
         width: window.innerWidth,
         height: window.innerHeight
-      });
+      };
+      console.log('Container size updated:', newSize);
+      setContainerSize(newSize);
     };
 
     updateSize();
@@ -52,20 +51,6 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (detailSectionRef.current) {
-        const rect = detailSectionRef.current.getBoundingClientRect();
-        const isVisible = rect.top <= window.innerHeight * 0.8;
-        setShowDetailCards(isVisible);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const calculateNodePositions = (): { positions: NodePosition[], nodeSize: number } => {
@@ -158,8 +143,16 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const { positions, nodeSize: childNodeSize } = calculateNodePositions();
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
 
+  console.log('Render info:', { 
+    containerSize, 
+    childrenCount: currentNode.children?.length || 0, 
+    positions: positions.length,
+    childNodeSize,
+    parentNodeSize 
+  });
+
   return (
-    <div className="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full">
+    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full">
       {/* Radial Color Highlights */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -249,63 +242,109 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
       {/* Tooltip */}
       <Tooltip node={hoveredNode} position={mousePosition} />
 
-      {/* Detail Cards Section */}
-      <div 
-        ref={detailSectionRef}
-        className="relative z-10 min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800"
-        style={{ marginTop: `${containerSize.height}px` }}
-      >
-        <div className="max-w-6xl mx-auto p-6">
-          {/* Scroll Indicator */}
-          <div className={`text-center mb-8 scroll-reveal ${showDetailCards ? 'revealed' : ''}`}>
-            <div className="inline-flex items-center gap-2 text-cyan-400 text-lg font-medium">
-              <ChevronDown className="w-5 h-5 animate-bounce" />
-              <span>Scroll down to explore detailed information</span>
-              <ChevronDown className="w-5 h-5 animate-bounce" />
-            </div>
-          </div>
-
-          {/* Detail Cards Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {currentNode.children?.map((child, index) => {
-              // Only show cards for nodes that have detailed information
-              const hasDetails = child.overview || child.howItWorks || 
-                (child.applications && child.applications.length > 0) ||
-                (child.advantages && child.advantages.length > 0) ||
-                (child.limitations && child.limitations.length > 0);
-
-              if (!hasDetails) return null;
-
-              return (
-                <div
-                  key={child.id}
-                  className={`scroll-reveal ${showDetailCards ? 'revealed' : ''} scroll-reveal-delay-${(index % 3) + 1}`}
-                >
-                  <DetailCard
-                    node={child}
-                    parentName={currentNode.name}
-                    className="transform transition-all duration-500 hover:scale-105 hover:shadow-cyan-500/20"
-                  />
+      {/* Information Cards Section - Below the viewport */}
+      <div className="relative z-40 mt-[100vh] bg-gradient-to-b from-transparent to-gray-900/80 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <h2 className="text-3xl font-bold text-white text-center mb-12">
+            About {currentNode.name}
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Overview Card */}
+            {currentNode.overview && (
+              <div className="bg-gray-800/60 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                  <h3 className="text-xl font-semibold text-cyan-400">Overview</h3>
                 </div>
-              );
-            })}
-          </div>
+                <p className="text-gray-200 leading-relaxed">{currentNode.overview}</p>
+              </div>
+            )}
 
-          {/* Empty State */}
-          {currentNode.children?.every(child => 
-            !child.overview && !child.howItWorks && 
-            (!child.applications || child.applications.length === 0) &&
-            (!child.advantages || child.advantages.length === 0) &&
-            (!child.limitations || child.limitations.length === 0)
-          ) && (
-            <div className="text-center py-12">
-              <div className="text-gray-400 text-lg">
-                No detailed information available for this level.
-                <br />
-                Click on individual nodes to explore their details.
+            {/* How It Works Card */}
+            {currentNode.howItWorks && (
+              <div className="bg-gray-800/60 border border-purple-500/30 rounded-lg p-6 backdrop-blur-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                  <h3 className="text-xl font-semibold text-purple-400">How It Works</h3>
+                </div>
+                <p className="text-gray-200 leading-relaxed">{currentNode.howItWorks}</p>
+              </div>
+            )}
+
+            {/* Applications Card */}
+            {currentNode.applications && currentNode.applications.length > 0 && (
+              <div className="bg-gray-800/60 border border-green-500/30 rounded-lg p-6 backdrop-blur-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                  <h3 className="text-xl font-semibold text-green-400">Applications</h3>
+                </div>
+                <ul className="space-y-2">
+                  {currentNode.applications.slice(0, 3).map((app, index) => (
+                    <li key={index} className="text-gray-200 flex items-start">
+                      <span className="text-green-400 mr-2">•</span>
+                      {app}
+                    </li>
+                  ))}
+                  {currentNode.applications.length > 3 && (
+                    <li className="text-gray-400 italic">
+                      +{currentNode.applications.length - 3} more...
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {/* Child Categories Card */}
+            {currentNode.children && currentNode.children.length > 0 && (
+              <div className="bg-gray-800/60 border border-yellow-500/30 rounded-lg p-6 backdrop-blur-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
+                  <h3 className="text-xl font-semibold text-yellow-400">Sub-Categories</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {currentNode.children.slice(0, 6).map((child, index) => (
+                    <div key={child.id} className="text-sm text-gray-300 bg-gray-700/40 rounded px-2 py-1">
+                      {child.name}
+                    </div>
+                  ))}
+                  {currentNode.children.length > 6 && (
+                    <div className="text-sm text-gray-400 italic">
+                      +{currentNode.children.length - 6} more
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Statistics Card */}
+            <div className="bg-gray-800/60 border border-blue-500/30 rounded-lg p-6 backdrop-blur-sm">
+              <div className="flex items-center mb-4">
+                <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                <h3 className="text-xl font-semibold text-blue-400">Quick Stats</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-300">Sub-categories:</span>
+                  <span className="text-white font-medium">
+                    {currentNode.children?.length || 0}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-300">Level:</span>
+                  <span className="text-white font-medium">{path.length}</span>
+                </div>
+                {currentNode.applications && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-300">Applications:</span>
+                    <span className="text-white font-medium">
+                      {currentNode.applications.length}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
