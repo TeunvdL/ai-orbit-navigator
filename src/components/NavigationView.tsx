@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Home } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
 import { CircleNode } from './CircleNode';
 import { Tooltip } from './Tooltip';
 import { Breadcrumb } from './Breadcrumb';
+import { DetailCard } from './DetailCard';
 
 interface NavigationViewProps {
   currentNode: TreeNodeData;
@@ -28,6 +29,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const [animatingNode, setAnimatingNode] = useState<TreeNodeData | null>(null);
   const [animatingNodePosition, setAnimatingNodePosition] = useState<NodePosition | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showDetailCards, setShowDetailCards] = useState(false);
+  const detailSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateSize = () => {
@@ -49,6 +52,20 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (detailSectionRef.current) {
+        const rect = detailSectionRef.current.getBoundingClientRect();
+        const isVisible = rect.top <= window.innerHeight * 0.8;
+        setShowDetailCards(isVisible);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const calculateNodePositions = (): { positions: NodePosition[], nodeSize: number } => {
@@ -142,7 +159,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full">
+    <div className="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full">
       {/* Radial Color Highlights */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -231,6 +248,66 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
 
       {/* Tooltip */}
       <Tooltip node={hoveredNode} position={mousePosition} />
+
+      {/* Detail Cards Section */}
+      <div 
+        ref={detailSectionRef}
+        className="relative z-10 min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800"
+        style={{ marginTop: `${containerSize.height}px` }}
+      >
+        <div className="max-w-6xl mx-auto p-6">
+          {/* Scroll Indicator */}
+          <div className={`text-center mb-8 scroll-reveal ${showDetailCards ? 'revealed' : ''}`}>
+            <div className="inline-flex items-center gap-2 text-cyan-400 text-lg font-medium">
+              <ChevronDown className="w-5 h-5 animate-bounce" />
+              <span>Scroll down to explore detailed information</span>
+              <ChevronDown className="w-5 h-5 animate-bounce" />
+            </div>
+          </div>
+
+          {/* Detail Cards Grid */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {currentNode.children?.map((child, index) => {
+              // Only show cards for nodes that have detailed information
+              const hasDetails = child.overview || child.howItWorks || 
+                (child.applications && child.applications.length > 0) ||
+                (child.advantages && child.advantages.length > 0) ||
+                (child.limitations && child.limitations.length > 0);
+
+              if (!hasDetails) return null;
+
+              return (
+                <div
+                  key={child.id}
+                  className={`scroll-reveal ${showDetailCards ? 'revealed' : ''} scroll-reveal-delay-${(index % 3) + 1}`}
+                >
+                  <DetailCard
+                    node={child}
+                    parentName={currentNode.name}
+                    className="transform transition-all duration-500 hover:scale-105 hover:shadow-cyan-500/20"
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Empty State */}
+          {currentNode.children?.every(child => 
+            !child.overview && !child.howItWorks && 
+            (!child.applications || child.applications.length === 0) &&
+            (!child.advantages || child.advantages.length === 0) &&
+            (!child.limitations || child.limitations.length === 0)
+          ) && (
+            <div className="text-center py-12">
+              <div className="text-gray-400 text-lg">
+                No detailed information available for this level.
+                <br />
+                Click on individual nodes to explore their details.
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
