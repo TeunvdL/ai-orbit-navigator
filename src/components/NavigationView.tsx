@@ -142,7 +142,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full h-screen overflow-hidden">
+    <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full">
       {/* Radial Color Highlights */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
