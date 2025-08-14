@@ -215,14 +215,6 @@ export default function SymbolicAIViz() {
               />
             </circle>
           </g>
-
-          {/* Logic symbols overlay */}
-          <g opacity="0.3">
-            <text x="350" y="50" fontSize="20" fill="#9c27b0">∀</text>
-            <text x="50" y="80" fontSize="18" fill="#673ab7">∃</text>
-            <text x="320" y="350" fontSize="16" fill="#3f51b5">→</text>
-            <text x="80" y="380" fontSize="17" fill="#9c27b0">∧</text>
-          </g>
         </svg>
       </div>
     </div>
