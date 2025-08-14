@@ -132,6 +132,18 @@ export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack
               </div>
             </div>
           </div>
+          
+          {/* Debug: Add tall content to test scrolling */}
+          <div className="bg-gray-700/30 rounded-lg p-4 mb-6">
+            <h3 className="text-cyan-400 mb-2">Debug: Scroll Test</h3>
+            <div className="space-y-4">
+              {Array.from({length: 20}, (_, i) => (
+                <p key={i} className="text-gray-300">
+                  Test content line {i + 1} - This content should make the page scrollable to verify the scrolling functionality is working properly.
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
