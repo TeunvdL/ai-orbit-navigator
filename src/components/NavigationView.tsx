@@ -31,10 +31,12 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
 
   useEffect(() => {
     const updateSize = () => {
-      setContainerSize({
+      const newSize = {
         width: window.innerWidth,
         height: window.innerHeight
-      });
+      };
+      console.log('Container size updated:', newSize);
+      setContainerSize(newSize);
     };
 
     updateSize();
@@ -140,6 +142,14 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
 
   const { positions, nodeSize: childNodeSize } = calculateNodePositions();
   const parentNodeSize = Math.min(containerSize.width, containerSize.height) * 0.6;
+
+  console.log('Render info:', { 
+    containerSize, 
+    childrenCount: currentNode.children?.length || 0, 
+    positions: positions.length,
+    childNodeSize,
+    parentNodeSize 
+  });
 
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-black to-gray-800 w-full">
