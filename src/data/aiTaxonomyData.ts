@@ -20,6 +20,11 @@ export const aiTaxonomyData: TreeNodeData = {
       id: 'machine-learning',
       name: 'Machine Learning',
       description: 'Algorithms that improve automatically through experience',
+      overview: 'Machine Learning is a subset of artificial intelligence that enables computers to learn and improve from experience without being explicitly programmed for every task.',
+      howItWorks: 'ML algorithms identify patterns in data to make predictions or decisions, improving their performance over time through training on examples.',
+      applications: ['Predictive analytics', 'Image and speech recognition', 'Recommendation systems', 'Autonomous vehicles', 'Fraud detection'],
+      advantages: ['Automates complex tasks', 'Improves with more data', 'Can handle large-scale problems', 'Discovers hidden patterns'],
+      limitations: ['Requires quality training data', 'Can be biased', 'Black box problem', 'Computationally intensive'],
       children: [
         {
           id: 'supervised-learning',
