@@ -11,7 +11,6 @@ import RegressionViz from './RegressionViz';
 import ClassificationViz from './ClassificationViz';
 import ClusteringViz from './ClusteringViz';
 import FeatureExtractionViz from './FeatureExtractionViz';
-import EnsembleLearningViz from './EnsembleLearningViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -46,7 +45,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   const visualizationNodes = [
     'linear-regression', 'machine-learning', 'neural-networks', 'symbolic-ai',
     'supervised-learning', 'unsupervised-learning', 'reinforcement-learning',
-    'regression', 'classification', 'clustering', 'feature-extraction', 'ensemble-learning'
+    'regression', 'classification', 'clustering', 'feature-extraction'
   ];
 
   if (visualizationNodes.includes(node.id)) {
@@ -63,7 +62,6 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       case 'classification': VizComponent = ClassificationViz; break;
       case 'clustering': VizComponent = ClusteringViz; break;
       case 'feature-extraction': VizComponent = FeatureExtractionViz; break;
-      case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
     }
     return (
       <div
