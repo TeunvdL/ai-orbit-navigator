@@ -3,11 +3,10 @@ import React from 'react';
 export default function EnsembleLearningViz() {
   // Individual models arranged in a circle around the ensemble
   const models = [
-    { x: 200, y: 80, type: 'Decision Tree', color: '#4fc3f7', accuracy: 0.82 },
     { x: 320, y: 160, type: 'Random Forest', color: '#4caf50', accuracy: 0.87 },
     { x: 280, y: 280, type: 'SVM', color: '#ff6b35', accuracy: 0.85 },
     { x: 120, y: 280, type: 'Neural Net', color: '#9c27b0', accuracy: 0.83 },
-    { x: 80, y: 160, type: 'Naive Bayes', color: '#ffc107', accuracy: 0.79 },
+    { x: 80, y: 160, type: 'Naive Bayes', color: '#4fc3f7', accuracy: 0.79 },
   ];
 
   // Central combiner position
@@ -197,7 +196,7 @@ export default function EnsembleLearningViz() {
             {/* Combiner label */}
             <text
               x={combiner.x}
-              y={combiner.y + 35}
+              y={combiner.y - 35}
               textAnchor="middle"
               fontSize="12"
               fill="#ffffff"
@@ -209,7 +208,7 @@ export default function EnsembleLearningViz() {
             {/* Final accuracy */}
             <text
               x={combiner.x}
-              y={combiner.y + 50}
+              y={combiner.y - 20}
               textAnchor="middle"
               fontSize="10"
               fill="#4caf50"
