@@ -100,35 +100,41 @@ export default function EnsembleLearningViz() {
             />
           ))}
 
-          {/* Individual model nodes */}
+          {/* Individual model nodes - using squares */}
           {models.map((model, index) => (
             <g key={`model-${index}`}>
               {/* Outer glow */}
-              <circle
-                cx={model.x}
-                cy={model.y}
-                r="20"
+              <rect
+                x={model.x - 20}
+                y={model.y - 20}
+                width="40"
+                height="40"
                 fill={model.color}
                 opacity="0.2"
                 filter="url(#modelGlow)"
+                rx="4"
               />
-              {/* Main model circle */}
-              <circle
-                cx={model.x}
-                cy={model.y}
-                r="12"
+              {/* Main model square */}
+              <rect
+                x={model.x - 12}
+                y={model.y - 12}
+                width="24"
+                height="24"
                 fill={model.color}
                 stroke="#ffffff"
                 strokeWidth="1"
                 opacity="0.9"
+                rx="2"
               />
               {/* Inner highlight */}
-              <circle
-                cx={model.x - 3}
-                cy={model.y - 3}
-                r="4"
+              <rect
+                x={model.x - 6}
+                y={model.y - 6}
+                width="8"
+                height="8"
                 fill="#ffffff"
                 opacity="0.6"
+                rx="1"
               />
               {/* Accuracy indicator */}
               <text
@@ -233,21 +239,6 @@ export default function EnsembleLearningViz() {
             ))}
           </g>
 
-          {/* Performance improvement indicator */}
-          <g opacity="0.7">
-            <text x="200" y="80" textAnchor="middle" fontSize="14" fill="#4caf50" opacity="0.9">
-              Stronger Together
-            </text>
-            {/* Upward arrow */}
-            <path
-              d="M 190 65 L 200 55 L 210 65 M 200 55 L 200 70"
-              stroke="#4caf50"
-              strokeWidth="2"
-              fill="none"
-              opacity="0.8"
-              filter="url(#connectionGlow)"
-            />
-          </g>
         </svg>
       </div>
     </div>
