@@ -1,17 +1,17 @@
 import React from 'react';
 
 export default function EnsembleLearningViz() {
-  // Individual models in the ensemble
+  // Individual models arranged in a circle around the ensemble
   const models = [
-    { x: 120, y: 140, type: 'Decision Tree', color: '#4fc3f7', accuracy: 0.82 },
-    { x: 200, y: 100, type: 'Random Forest', color: '#4caf50', accuracy: 0.87 },
-    { x: 280, y: 140, type: 'SVM', color: '#ff6b35', accuracy: 0.85 },
-    { x: 160, y: 220, type: 'Neural Net', color: '#9c27b0', accuracy: 0.83 },
-    { x: 240, y: 220, type: 'Naive Bayes', color: '#ffc107', accuracy: 0.79 },
+    { x: 200, y: 80, type: 'Decision Tree', color: '#4fc3f7', accuracy: 0.82 },
+    { x: 320, y: 160, type: 'Random Forest', color: '#4caf50', accuracy: 0.87 },
+    { x: 280, y: 280, type: 'SVM', color: '#ff6b35', accuracy: 0.85 },
+    { x: 120, y: 280, type: 'Neural Net', color: '#9c27b0', accuracy: 0.83 },
+    { x: 80, y: 160, type: 'Naive Bayes', color: '#ffc107', accuracy: 0.79 },
   ];
 
   // Central combiner position
-  const combiner = { x: 200, y: 300 };
+  const combiner = { x: 200, y: 200 };
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -84,21 +84,33 @@ export default function EnsembleLearningViz() {
           {/* Background */}
           <rect width="400" height="400" fill="url(#ensembleBgGradient)" />
 
-          {/* Connections from models to combiner */}
-          {models.map((model, index) => (
-            <line
-              key={`connection-${index}`}
-              x1={model.x}
-              y1={model.y}
-              x2={combiner.x}
-              y2={combiner.y}
-              stroke={model.color}
-              strokeWidth="2"
-              opacity="0.6"
-              filter="url(#connectionGlow)"
-              markerEnd="url(#ensembleArrow)"
-            />
-          ))}
+          {/* Direct connections from each model to combiner */}
+          {models.map((model, index) => {
+            // Calculate arrow start point (edge of model square)
+            const dx = combiner.x - model.x;
+            const dy = combiner.y - model.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const startX = model.x + (dx / distance) * 15;
+            const startY = model.y + (dy / distance) * 15;
+            // Calculate arrow end point (edge of combiner circle)
+            const endX = combiner.x - (dx / distance) * 20;
+            const endY = combiner.y - (dy / distance) * 20;
+            
+            return (
+              <line
+                key={`connection-${index}`}
+                x1={startX}
+                y1={startY}
+                x2={endX}
+                y2={endY}
+                stroke={model.color}
+                strokeWidth="3"
+                opacity="0.8"
+                filter="url(#connectionGlow)"
+                markerEnd="url(#ensembleArrow)"
+              />
+            );
+          })}
 
           {/* Individual model nodes - using squares */}
           {models.map((model, index) => (
