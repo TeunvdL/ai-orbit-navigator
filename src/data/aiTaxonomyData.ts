@@ -19,11 +19,21 @@ export const aiTaxonomyData: TreeNodeData = {
           id: 'supervised-learning',
           name: 'Supervised Learning',
           description: 'Learning with labeled training data',
+          overview: 'Supervised learning uses labeled training data to learn a mapping from inputs to outputs, enabling predictions on new, unseen data.',
+          howItWorks: 'Algorithms learn from input-output pairs in training data to generalize patterns and make accurate predictions on new examples.',
+          applications: ['Email spam detection', 'Medical diagnosis', 'Credit scoring', 'Image recognition', 'Speech recognition'],
+          advantages: ['Clear performance metrics', 'Well-established techniques', 'Direct feedback from labels', 'High accuracy when sufficient data available'],
+          limitations: ['Requires labeled data', 'May not generalize to different distributions', 'Can overfit to training data', 'Limited by quality of labels'],
           children: [
             {
               id: 'regression',
               name: 'Regression',
               description: 'Predicting continuous numerical values',
+              overview: 'Regression analysis models relationships between variables to predict continuous numerical outcomes.',
+              howItWorks: 'Finds mathematical relationships between input features and continuous target variables using various fitting techniques.',
+              applications: ['Stock price prediction', 'Sales forecasting', 'Weather prediction', 'Property valuation', 'Resource planning'],
+              advantages: ['Provides confidence intervals', 'Interpretable relationships', 'Can handle multiple variables', 'Well-understood statistical foundation'],
+              limitations: ['Assumes specific relationships', 'Sensitive to outliers', 'May require feature engineering', 'Performance degrades with noise'],
               children: [
                 { 
                   id: 'polynomial-regression', 
@@ -85,6 +95,11 @@ export const aiTaxonomyData: TreeNodeData = {
               id: 'classification',
               name: 'Classification',
               description: 'Predicting discrete class labels',
+              overview: 'Classification assigns discrete categories or classes to data points based on their features and learned patterns.',
+              howItWorks: 'Analyzes training examples with known class labels to learn decision boundaries that separate different categories.',
+              applications: ['Fraud detection', 'Disease diagnosis', 'Document categorization', 'Quality control', 'Customer segmentation'],
+              advantages: ['Clear discrete outputs', 'Probability estimates available', 'Works with categorical data', 'Wide variety of algorithms'],
+              limitations: ['Class imbalance issues', 'May struggle with new categories', 'Requires sufficient examples per class', 'Decision boundaries may be complex'],
               children: [
                 { 
                   id: 'logistic-regression', 
@@ -144,11 +159,21 @@ export const aiTaxonomyData: TreeNodeData = {
           id: 'unsupervised-learning',
           name: 'Unsupervised Learning',
           description: 'Learning patterns from unlabeled data',
+          overview: 'Unsupervised learning discovers hidden patterns and structures in data without explicit target labels or supervision.',
+          howItWorks: 'Algorithms analyze data distributions, relationships, and structures to identify meaningful patterns, groups, or representations.',
+          applications: ['Market segmentation', 'Anomaly detection', 'Data exploration', 'Dimensionality reduction', 'Pattern discovery'],
+          advantages: ['No need for labeled data', 'Discovers unknown patterns', 'Exploratory analysis', 'Can work with any data'],
+          limitations: ['Difficult to evaluate results', 'May find spurious patterns', 'Requires domain knowledge for interpretation', 'Less predictable outcomes'],
           children: [
             {
               id: 'clustering',
               name: 'Clustering',
               description: 'Grouping similar data points together',
+              overview: 'Clustering partitions data into groups where similar items are grouped together and dissimilar items are separated.',
+              howItWorks: 'Uses distance metrics and similarity measures to identify natural groupings in data without predefined categories.',
+              applications: ['Customer segmentation', 'Gene sequencing', 'Image segmentation', 'Social network analysis', 'Data organization'],
+              advantages: ['Reveals data structure', 'No prior knowledge needed', 'Scalable to large datasets', 'Multiple algorithms available'],
+              limitations: ['Subjective cluster definitions', 'Sensitive to initialization', 'Difficulty choosing optimal number of clusters', 'May not work with all data types'],
               children: [
                 { 
                   id: 'k-means', 
@@ -186,6 +211,11 @@ export const aiTaxonomyData: TreeNodeData = {
               id: 'feature-extraction',
               name: 'Feature Extraction',
               description: 'Reducing dimensionality while preserving important information',
+              overview: 'Feature extraction transforms high-dimensional data into lower-dimensional representations while retaining essential information.',
+              howItWorks: 'Applies mathematical transformations to identify and extract the most important features or patterns from complex data.',
+              applications: ['Data visualization', 'Noise reduction', 'Data compression', 'Preprocessing for ML', 'Pattern recognition'],
+              advantages: ['Reduces computational complexity', 'Eliminates noise', 'Enables visualization', 'Improves algorithm performance'],
+              limitations: ['May lose important information', 'Requires choosing number of dimensions', 'Interpretation challenges', 'Method selection complexity'],
               children: [
                 { 
                   id: 'pca', 
@@ -215,6 +245,11 @@ export const aiTaxonomyData: TreeNodeData = {
           id: 'reinforcement-learning',
           name: 'Reinforcement Learning',
           description: 'Learning through interaction with environment via rewards and penalties',
+          overview: 'Reinforcement learning enables agents to learn optimal behavior through trial-and-error interactions with an environment.',
+          howItWorks: 'Agent takes actions in an environment, receives rewards or penalties, and learns to maximize cumulative reward over time.',
+          applications: ['Game playing (Chess, Go)', 'Robotics control', 'Autonomous vehicles', 'Trading algorithms', 'Resource allocation'],
+          advantages: ['Learns without supervision', 'Adapts to dynamic environments', 'Optimizes long-term objectives', 'Handles sequential decisions'],
+          limitations: ['Requires extensive exploration', 'Sample inefficient', 'Difficult reward design', 'May converge to local optima'],
           children: [
             { 
               id: 'q-learning', 
@@ -252,6 +287,11 @@ export const aiTaxonomyData: TreeNodeData = {
           id: 'neural-networks',
           name: 'Neural Networks',
           description: 'Computing systems inspired by biological neural networks',
+          overview: 'Neural networks are computational models inspired by biological brain networks, capable of learning complex patterns through interconnected nodes.',
+          howItWorks: 'Networks of artificial neurons process information through weighted connections, using activation functions and backpropagation for learning.',
+          applications: ['Image recognition', 'Natural language processing', 'Speech recognition', 'Medical diagnosis', 'Autonomous systems'],
+          advantages: ['Universal function approximation', 'Automatic feature learning', 'Handles non-linear relationships', 'Scalable to large problems'],
+          limitations: ['Black box nature', 'Requires large datasets', 'Computationally intensive', 'Many hyperparameters to tune'],
           children: [
             { 
               id: 'mlp', 
@@ -341,11 +381,21 @@ export const aiTaxonomyData: TreeNodeData = {
           id: 'ensemble-learning',
           name: 'Ensemble Learning',
           description: 'Combining multiple models to improve performance and robustness',
+          overview: 'Ensemble learning combines predictions from multiple models to achieve better performance than any individual model alone.',
+          howItWorks: 'Trains multiple diverse models and combines their predictions using various strategies like voting, averaging, or stacking.',
+          applications: ['Kaggle competitions', 'Financial modeling', 'Medical diagnosis', 'Computer vision', 'Natural language processing'],
+          advantages: ['Improved accuracy', 'Reduced overfitting', 'Increased robustness', 'Better generalization'],
+          limitations: ['Increased complexity', 'Higher computational cost', 'More difficult to interpret', 'Requires model diversity'],
           children: [
             {
               id: 'bagging',
               name: 'Bagging',
               description: 'Bootstrap aggregation to reduce variance',
+              overview: 'Bagging trains multiple models on different bootstrap samples of training data and averages their predictions.',
+              howItWorks: 'Creates multiple datasets by sampling with replacement, trains separate models, and combines predictions to reduce variance.',
+              applications: ['Random Forest', 'Extra Trees', 'Parallel ensemble learning', 'Reducing model variance'],
+              advantages: ['Reduces overfitting', 'Parallel training', 'Works with any base model', 'Provides uncertainty estimates'],
+              limitations: ['May not reduce bias', 'Computationally expensive', 'Less effective with stable models', 'Requires diverse samples'],
               children: [
                 { 
                   id: 'random-forest', 
@@ -363,6 +413,11 @@ export const aiTaxonomyData: TreeNodeData = {
               id: 'boosting',
               name: 'Boosting',
               description: 'Sequentially combining weak learners to reduce bias',
+              overview: 'Boosting sequentially trains weak learners, with each subsequent model focusing on correcting errors of previous models.',
+              howItWorks: 'Iteratively trains models on weighted datasets, emphasizing misclassified examples to create strong ensemble classifier.',
+              applications: ['AdaBoost', 'Gradient Boosting', 'XGBoost', 'Competitive machine learning', 'High-stakes prediction'],
+              advantages: ['Reduces bias and variance', 'High predictive accuracy', 'Automatic feature selection', 'Works with weak learners'],
+              limitations: ['Sequential training', 'Sensitive to noise', 'Prone to overfitting', 'Computationally intensive'],
               children: [
                 { 
                   id: 'gradient-boosting', 
