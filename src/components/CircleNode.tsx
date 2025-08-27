@@ -18,6 +18,7 @@ interface CircleNodeProps {
   position: NodePosition;
   size: number;
   isRoot?: boolean;
+  isBusinessMode?: boolean; // Added prop for business mode
   onClick?: () => void;
   onHover?: (node: TreeNodeData | null) => void;
   className?: string;
@@ -29,6 +30,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   position,
   size,
   isRoot = false,
+  isBusinessMode = false, // Default to false
   onClick,
   onHover,
   className = '',
@@ -51,20 +53,31 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
 
   if (visualizationNodes.includes(node.id)) {
     let VizComponent;
-    switch (node.id) {
-      case 'linear-regression': VizComponent = LinearRegressionViz; break;
-      case 'machine-learning': VizComponent = MachineLearningViz; break;
-      case 'neural-networks': VizComponent = NeuralNetworksViz; break;
-      case 'symbolic-ai': VizComponent = SymbolicAIViz; break;
-      case 'supervised-learning': VizComponent = SupervisedLearningViz; break;
-      case 'unsupervised-learning': VizComponent = UnsupervisedLearningViz; break;
-      case 'reinforcement-learning': VizComponent = ReinforcementLearningViz; break;
-      case 'regression': VizComponent = RegressionViz; break;
-      case 'classification': VizComponent = ClassificationViz; break;
-      case 'clustering': VizComponent = ClusteringViz; break;
-      case 'feature-extraction': VizComponent = FeatureExtractionViz; break;
-      case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
+    if (isBusinessMode) {
+      // Render placeholder visualization in business mode
+      VizComponent = () => (
+        <div className="flex items-center justify-center h-full w-full bg-gray-300 text-gray-700">
+          Placeholder
+        </div>
+      );
+    } else {
+      // Render actual visualization in technical mode
+      switch (node.id) {
+        case 'linear-regression': VizComponent = LinearRegressionViz; break;
+        case 'machine-learning': VizComponent = MachineLearningViz; break;
+        case 'neural-networks': VizComponent = NeuralNetworksViz; break;
+        case 'symbolic-ai': VizComponent = SymbolicAIViz; break;
+        case 'supervised-learning': VizComponent = SupervisedLearningViz; break;
+        case 'unsupervised-learning': VizComponent = UnsupervisedLearningViz; break;
+        case 'reinforcement-learning': VizComponent = ReinforcementLearningViz; break;
+        case 'regression': VizComponent = RegressionViz; break;
+        case 'classification': VizComponent = ClassificationViz; break;
+        case 'clustering': VizComponent = ClusteringViz; break;
+        case 'feature-extraction': VizComponent = FeatureExtractionViz; break;
+        case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
+      }
     }
+
     return (
       <div
         className={`cosmic-node absolute flex items-center justify-center text-white font-semibold select-none ${
