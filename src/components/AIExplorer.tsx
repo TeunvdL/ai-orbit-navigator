@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TreeNodeData } from '../types/treeTypes';
 import { aiTaxonomyData } from '../data/aiTaxonomyData';
 import { Homepage } from './Homepage';
 import { NavigationView } from './NavigationView';
 import { DetailPage } from './DetailPage';
+import { Switch } from './ui/switch';
+import { Label } from './ui/label';
 
 type ViewMode = 'homepage' | 'navigation' | 'detail';
 
@@ -11,8 +13,26 @@ export const AIExplorer: React.FC = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('homepage');
   const [currentPath, setCurrentPath] = useState<TreeNodeData[]>([aiTaxonomyData]);
   const [detailNode, setDetailNode] = useState<TreeNodeData | null>(null);
+  const [isBusinessMode, setIsBusinessMode] = useState<boolean>(false);
+
+  // Load business mode from localStorage on mount
+  useEffect(() => {
+    const savedBusinessMode = localStorage.getItem('businessMode');
+    if (savedBusinessMode !== null) {
+      setIsBusinessMode(JSON.parse(savedBusinessMode));
+    }
+  }, []);
+
+  // Save business mode to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('businessMode', JSON.stringify(isBusinessMode));
+  }, [isBusinessMode]);
 
   const currentNode = currentPath[currentPath.length - 1];
+
+  const handleBusinessModeToggle = (checked: boolean) => {
+    setIsBusinessMode(checked);
+  };
 
   const handleEnterTaxonomy = () => {
     setViewMode('navigation');
@@ -65,31 +85,82 @@ export const AIExplorer: React.FC = () => {
   switch (viewMode) {
     case 'homepage':
       return (
-        <Homepage
-          rootNode={aiTaxonomyData}
-          onEnterTaxonomy={handleEnterTaxonomy}
-        />
+        <div className="relative min-h-screen">
+          {/* Business Mode Toggle */}
+          <div className="fixed top-6 right-6 z-50 flex items-center gap-3 bg-background/80 backdrop-blur-sm rounded-lg p-3 border">
+            <Label htmlFor="business-mode" className="text-sm font-medium">
+              Technical View
+            </Label>
+            <Switch
+              id="business-mode"
+              checked={isBusinessMode}
+              onCheckedChange={handleBusinessModeToggle}
+            />
+            <Label htmlFor="business-mode" className="text-sm font-medium">
+              Business View
+            </Label>
+          </div>
+          
+          <Homepage
+            rootNode={aiTaxonomyData}
+            onEnterTaxonomy={handleEnterTaxonomy}
+          />
+        </div>
       );
 
     case 'navigation':
       return (
-        <NavigationView
-          currentNode={currentNode}
-          path={currentPath}
-          onNodeClick={handleNodeClick}
-          onNavigate={handleNavigate}
-          onBack={handleBack}
-          onHome={handleHome}
-        />
+        <div className="relative min-h-screen">
+          {/* Business Mode Toggle */}
+          <div className="fixed top-6 right-6 z-50 flex items-center gap-3 bg-background/80 backdrop-blur-sm rounded-lg p-3 border">
+            <Label htmlFor="business-mode" className="text-sm font-medium">
+              Technical View
+            </Label>
+            <Switch
+              id="business-mode"
+              checked={isBusinessMode}
+              onCheckedChange={handleBusinessModeToggle}
+            />
+            <Label htmlFor="business-mode" className="text-sm font-medium">
+              Business View
+            </Label>
+          </div>
+          
+          <NavigationView
+            currentNode={currentNode}
+            path={currentPath}
+            onNodeClick={handleNodeClick}
+            onNavigate={handleNavigate}
+            onBack={handleBack}
+            onHome={handleHome}
+          />
+        </div>
       );
 
     case 'detail':
       return detailNode ? (
-        <DetailPage
-          node={detailNode}
-          parentName={getParentName(detailNode)}
-          onBack={handleBackToTaxonomy}
-        />
+        <div className="relative min-h-screen">
+          {/* Business Mode Toggle */}
+          <div className="fixed top-6 right-6 z-50 flex items-center gap-3 bg-background/80 backdrop-blur-sm rounded-lg p-3 border">
+            <Label htmlFor="business-mode" className="text-sm font-medium">
+              Technical View
+            </Label>
+            <Switch
+              id="business-mode"
+              checked={isBusinessMode}
+              onCheckedChange={handleBusinessModeToggle}
+            />
+            <Label htmlFor="business-mode" className="text-sm font-medium">
+              Business View
+            </Label>
+          </div>
+          
+          <DetailPage
+            node={detailNode}
+            parentName={getParentName(detailNode)}
+            onBack={handleBackToTaxonomy}
+          />
+        </div>
       ) : null;
 
     default:
