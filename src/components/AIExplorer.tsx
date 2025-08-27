@@ -5,7 +5,7 @@ import { Homepage } from './Homepage';
 import { NavigationView } from './NavigationView';
 import { DetailPage } from './DetailPage';
 import { Switch } from './ui/switch';
-import { Label } from './ui/label';
+import { Code, Briefcase } from 'lucide-react';
 
 type ViewMode = 'homepage' | 'navigation' | 'detail';
 
@@ -87,18 +87,14 @@ export const AIExplorer: React.FC = () => {
       return (
         <div className="relative min-h-screen">
           {/* Business Mode Toggle */}
-          <div className="fixed top-6 right-6 z-50 flex items-center gap-3 bg-background/80 backdrop-blur-sm rounded-lg p-3 border">
-            <Label htmlFor="business-mode" className="text-sm font-medium">
-              Technical View
-            </Label>
+          <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
+            <Code className="w-4 h-4 text-muted-foreground" />
             <Switch
               id="business-mode"
               checked={isBusinessMode}
               onCheckedChange={handleBusinessModeToggle}
             />
-            <Label htmlFor="business-mode" className="text-sm font-medium">
-              Business View
-            </Label>
+            <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
           
           <Homepage
@@ -112,18 +108,14 @@ export const AIExplorer: React.FC = () => {
       return (
         <div className="relative min-h-screen">
           {/* Business Mode Toggle */}
-          <div className="fixed top-6 right-6 z-50 flex items-center gap-3 bg-background/80 backdrop-blur-sm rounded-lg p-3 border">
-            <Label htmlFor="business-mode" className="text-sm font-medium">
-              Technical View
-            </Label>
+          <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
+            <Code className="w-4 h-4 text-muted-foreground" />
             <Switch
               id="business-mode"
               checked={isBusinessMode}
               onCheckedChange={handleBusinessModeToggle}
             />
-            <Label htmlFor="business-mode" className="text-sm font-medium">
-              Business View
-            </Label>
+            <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
           
           <NavigationView
@@ -141,18 +133,14 @@ export const AIExplorer: React.FC = () => {
       return detailNode ? (
         <div className="relative min-h-screen">
           {/* Business Mode Toggle */}
-          <div className="fixed top-6 right-6 z-50 flex items-center gap-3 bg-background/80 backdrop-blur-sm rounded-lg p-3 border">
-            <Label htmlFor="business-mode" className="text-sm font-medium">
-              Technical View
-            </Label>
+          <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
+            <Code className="w-4 h-4 text-muted-foreground" />
             <Switch
               id="business-mode"
               checked={isBusinessMode}
               onCheckedChange={handleBusinessModeToggle}
             />
-            <Label htmlFor="business-mode" className="text-sm font-medium">
-              Business View
-            </Label>
+            <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
           
           <DetailPage
