@@ -24,10 +24,8 @@ export default function MachineLearningViz() {
 
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="w-80 h-80 relative">
+      <div className="w-full h-full relative">
         <svg
-          width="320"
-          height="320"
           viewBox="0 0 400 400"
           className="w-full h-full"
         >

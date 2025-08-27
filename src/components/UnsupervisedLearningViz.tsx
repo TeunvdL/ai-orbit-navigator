@@ -22,8 +22,8 @@ export default function UnsupervisedLearningViz() {
 
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="w-80 h-80 relative">
-        <svg width="320" height="320" viewBox="0 0 400 400" className="w-full h-full">
+      <div className="w-full h-full relative">
+        <svg viewBox="0 0 400 400" className="w-full h-full">
           <defs>
             <radialGradient id="unsupervisedBg" cx="50%" cy="50%" r="70%">
               <stop offset="0%" stopColor="#1a1a2e" />
