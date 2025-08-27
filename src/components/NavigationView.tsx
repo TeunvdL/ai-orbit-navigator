@@ -22,7 +22,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   onNodeClick,
   onNavigate,
   onBack,
-  onHome
+  onHome,
+  isBusinessMode // Destructure isBusinessMode prop
 }) => {
   const [hoveredNode, setHoveredNode] = useState<TreeNodeData | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -221,6 +222,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
             size={parentNodeSize}
             isRoot={path.length === 1}
             className="opacity-0"
+            isBusinessMode={isBusinessMode} // Added this line
           />
         </div>
 
@@ -240,6 +242,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
                 size={childNodeSize}
                 onClick={() => handleNodeClick(child, positions[index])}
                 onHover={setHoveredNode}
+                isBusinessMode={isBusinessMode} // Added this line
               />
             );
           })}
@@ -261,6 +264,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
                 '--center-x': `${containerSize.width / 2}px`,
                 '--center-y': `${containerSize.height / 2}px`
               } as React.CSSProperties}
+              isBusinessMode={isBusinessMode} // Added this line
             />
           </div>
         )}
