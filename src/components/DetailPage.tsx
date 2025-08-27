@@ -8,6 +8,7 @@ interface DetailPageProps {
   node: TreeNodeData;
   parentName?: string;
   onBack: () => void;
+  getParentName?: (node: TreeNodeData) => string | undefined;
 }
 
 export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack }) => {

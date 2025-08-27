@@ -96,11 +96,18 @@ export const AIExplorer: React.FC = () => {
             />
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
-          
-          <Homepage
-            rootNode={aiTaxonomyData}
-            onEnterTaxonomy={handleEnterTaxonomy}
-          />
+
+          {isBusinessMode ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <h1 className="text-2xl font-bold">Business Mode</h1>
+              <p className="text-gray-600">Placeholder content for business mode.</p>
+            </div>
+          ) : (
+            <Homepage
+              rootNode={aiTaxonomyData}
+              onEnterTaxonomy={handleEnterTaxonomy}
+            />
+          )}
         </div>
       );
 
@@ -117,15 +124,22 @@ export const AIExplorer: React.FC = () => {
             />
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
-          
-          <NavigationView
-            currentNode={currentNode}
-            path={currentPath}
-            onNodeClick={handleNodeClick}
-            onNavigate={handleNavigate}
-            onBack={handleBack}
-            onHome={handleHome}
-          />
+
+          {isBusinessMode ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <h1 className="text-2xl font-bold">Business Mode</h1>
+              <p className="text-gray-600">Placeholder content for business mode.</p>
+            </div>
+          ) : (
+            <NavigationView
+              currentNode={currentNode}
+              path={currentPath}
+              onNodeClick={handleNodeClick}
+              onNavigate={handleNavigate}
+              onBack={handleBack}
+              onHome={handleHome}
+            />
+          )}
         </div>
       );
 
@@ -142,12 +156,19 @@ export const AIExplorer: React.FC = () => {
             />
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
-          
-          <DetailPage
-            node={detailNode}
-            parentName={getParentName(detailNode)}
-            onBack={handleBackToTaxonomy}
-          />
+
+          {isBusinessMode ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <h1 className="text-2xl font-bold">Business Mode</h1>
+              <p className="text-gray-600">Placeholder content for business mode.</p>
+            </div>
+          ) : (
+            <DetailPage
+              node={detailNode}
+              getParentName={getParentName}
+              onBack={handleBackToTaxonomy}
+            />
+          )}
         </div>
       ) : null;
 
