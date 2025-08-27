@@ -97,17 +97,10 @@ export const AIExplorer: React.FC = () => {
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
 
-          {isBusinessMode ? (
-            <div className="flex flex-col items-center justify-center h-full">
-              <h1 className="text-2xl font-bold">Business Mode</h1>
-              <p className="text-gray-600">Placeholder content for business mode.</p>
-            </div>
-          ) : (
-            <Homepage
-              rootNode={aiTaxonomyData}
-              onEnterTaxonomy={handleEnterTaxonomy}
-            />
-          )}
+          <Homepage
+            rootNode={aiTaxonomyData}
+            onEnterTaxonomy={handleEnterTaxonomy}
+          />
         </div>
       );
 
@@ -125,21 +118,14 @@ export const AIExplorer: React.FC = () => {
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
 
-          {isBusinessMode ? (
-            <div className="flex flex-col items-center justify-center h-full">
-              <h1 className="text-2xl font-bold">Business Mode</h1>
-              <p className="text-gray-600">Placeholder content for business mode.</p>
-            </div>
-          ) : (
-            <NavigationView
-              currentNode={currentNode}
-              path={currentPath}
-              onNodeClick={handleNodeClick}
-              onNavigate={handleNavigate}
-              onBack={handleBack}
-              onHome={handleHome}
-            />
-          )}
+          <NavigationView
+            currentNode={currentNode}
+            path={currentPath}
+            onNodeClick={handleNodeClick}
+            onNavigate={handleNavigate}
+            onBack={handleBack}
+            onHome={handleHome}
+          />
         </div>
       );
 
@@ -157,18 +143,11 @@ export const AIExplorer: React.FC = () => {
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
 
-          {isBusinessMode ? (
-            <div className="flex flex-col items-center justify-center h-full">
-              <h1 className="text-2xl font-bold">Business Mode</h1>
-              <p className="text-gray-600">Placeholder content for business mode.</p>
-            </div>
-          ) : (
-            <DetailPage
-              node={detailNode}
-              getParentName={getParentName}
-              onBack={handleBackToTaxonomy}
-            />
-          )}
+          <DetailPage
+            node={detailNode}
+            getParentName={getParentName}
+            onBack={handleBackToTaxonomy}
+          />
         </div>
       ) : null;
 
