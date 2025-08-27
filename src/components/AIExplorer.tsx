@@ -100,6 +100,7 @@ export const AIExplorer: React.FC = () => {
           <Homepage
             rootNode={aiTaxonomyData}
             onEnterTaxonomy={handleEnterTaxonomy}
+            isBusinessMode={isBusinessMode} // Pass the state to Homepage
           />
         </div>
       );
@@ -125,6 +126,7 @@ export const AIExplorer: React.FC = () => {
             onNavigate={handleNavigate}
             onBack={handleBack}
             onHome={handleHome}
+            isBusinessMode={isBusinessMode} // Pass the state to NavigationView
           />
         </div>
       );
@@ -147,6 +149,7 @@ export const AIExplorer: React.FC = () => {
             node={detailNode}
             getParentName={getParentName}
             onBack={handleBackToTaxonomy}
+            isBusinessMode={isBusinessMode} // Pass the state to DetailPage
           />
         </div>
       ) : null;

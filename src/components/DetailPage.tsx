@@ -9,6 +9,7 @@ interface DetailPageProps {
   parentName?: string;
   onBack: () => void;
   getParentName?: (node: TreeNodeData) => string | undefined;
+  isBusinessMode?: boolean; // Added prop for business mode
 }
 
 export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack }) => {

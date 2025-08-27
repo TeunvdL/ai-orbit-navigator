@@ -13,6 +13,7 @@ interface NavigationViewProps {
   onNavigate: (index: number) => void;
   onBack: () => void;
   onHome?: () => void;
+  isBusinessMode?: boolean; // Added prop for business mode
 }
 
 export const NavigationView: React.FC<NavigationViewProps> = ({

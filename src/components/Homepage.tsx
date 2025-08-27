@@ -5,6 +5,7 @@ import { CircleNode } from './CircleNode';
 interface HomepageProps {
   rootNode: TreeNodeData;
   onEnterTaxonomy: () => void;
+  isBusinessMode?: boolean; // Added prop for business mode
 }
 
 export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy }) => {
