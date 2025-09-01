@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/ai-orbit-navigator/', // Added for GitHub Pages
+  base: '/', // Let React Router handle the base path dynamically
   server: {
     host: "::",
     port: 8080,
