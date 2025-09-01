@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/ai-orbit-navigator/' : '/', // GitHub Pages base path only in production
+  base: '/', // Let React Router handle the base path dynamically
   server: {
     host: "::",
     port: 8080,
