@@ -4,6 +4,11 @@ export const aiTaxonomyData: TreeNodeData = {
   id: 'root',
   name: 'AI',
   description: 'Artificial Intelligence - The simulation of human intelligence in machines',
+  overview: 'Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn. It encompasses a wide range of technologies and techniques aimed at enabling machines to perform tasks that typically require human intelligence.',
+  howItWorks: 'AI systems use algorithms and models to process data, recognize patterns, and make decisions. These systems can be rule-based, data-driven, or a combination of both, and they improve over time through learning and adaptation.',
+  applications: ['Natural language processing (e.g., chatbots)', 'Computer vision (e.g., facial recognition)', 'Autonomous vehicles', 'Predictive analytics', 'Healthcare diagnostics'],
+  advantages: ['Automates repetitive tasks', 'Enhances decision-making', 'Processes large datasets efficiently', 'Enables innovative applications'],
+  limitations: ['Ethical concerns', 'Bias in data', 'High computational costs', 'Lack of transparency in decision-making'],
   children: [
     {
       id: 'machine-learning',
