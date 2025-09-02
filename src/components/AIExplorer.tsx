@@ -14,6 +14,7 @@ export const AIExplorer: React.FC = () => {
   const [currentPath, setCurrentPath] = useState<TreeNodeData[]>([aiTaxonomyData]);
   const [detailNode, setDetailNode] = useState<TreeNodeData | null>(null);
   const [isBusinessMode, setIsBusinessMode] = useState<boolean>(false);
+  const [businessFocus, setBusinessFocus] = useState<'care' | 'industry'>('care'); // New state for business focus
 
   // Load business mode from localStorage on mount
   useEffect(() => {
@@ -28,10 +29,27 @@ export const AIExplorer: React.FC = () => {
     localStorage.setItem('businessMode', JSON.stringify(isBusinessMode));
   }, [isBusinessMode]);
 
+  // Load business focus from localStorage on mount
+  useEffect(() => {
+    const savedBusinessFocus = localStorage.getItem('businessFocus');
+    if (savedBusinessFocus !== null) {
+      setBusinessFocus(savedBusinessFocus as 'care' | 'industry');
+    }
+  }, []);
+
+  // Save business focus to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('businessFocus', businessFocus);
+  }, [businessFocus]);
+
   const currentNode = currentPath[currentPath.length - 1];
 
   const handleBusinessModeToggle = (checked: boolean) => {
     setIsBusinessMode(checked);
+  };
+
+  const handleBusinessFocusToggle = (focus: 'care' | 'industry') => {
+    setBusinessFocus(focus);
   };
 
   const handleEnterTaxonomy = () => {
@@ -97,6 +115,19 @@ export const AIExplorer: React.FC = () => {
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
 
+          {/* Business Focus Toggle */}
+          {isBusinessMode && (
+            <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
+              <span className="text-muted-foreground text-sm">Care</span>
+              <Switch
+                id="business-focus"
+                checked={businessFocus === 'industry'}
+                onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
+              />
+              <span className="text-muted-foreground text-sm">Industry</span>
+            </div>
+          )}
+
           <Homepage
             rootNode={aiTaxonomyData}
             onEnterTaxonomy={handleEnterTaxonomy}
@@ -118,6 +149,19 @@ export const AIExplorer: React.FC = () => {
             />
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
+
+          {/* Business Focus Toggle */}
+          {isBusinessMode && (
+            <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
+              <span className="text-muted-foreground text-sm">Care</span>
+              <Switch
+                id="business-focus"
+                checked={businessFocus === 'industry'}
+                onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
+              />
+              <span className="text-muted-foreground text-sm">Industry</span>
+            </div>
+          )}
 
           <NavigationView
             currentNode={currentNode}
@@ -144,6 +188,19 @@ export const AIExplorer: React.FC = () => {
             />
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
+
+          {/* Business Focus Toggle */}
+          {isBusinessMode && (
+            <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
+              <span className="text-muted-foreground text-sm">Care</span>
+              <Switch
+                id="business-focus"
+                checked={businessFocus === 'industry'}
+                onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
+              />
+              <span className="text-muted-foreground text-sm">Industry</span>
+            </div>
+          )}
 
           <DetailPage
             node={detailNode}
