@@ -12,6 +12,10 @@ import ClassificationViz from './ClassificationViz';
 import ClusteringViz from './ClusteringViz';
 import FeatureExtractionViz from './FeatureExtractionViz';
 import EnsembleLearningViz from './EnsembleLearningViz';
+import MachineLearningCareViz from './MachineLearningCareViz';
+import MachineLearningIndustryViz from './MachineLearningIndustryViz';
+import SymbolicAICareViz from './SymbolicAICareViz';
+import SymbolicAIIndustryViz from './SymbolicAIIndustryViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -19,6 +23,7 @@ interface CircleNodeProps {
   size: number;
   isRoot?: boolean;
   isBusinessMode?: boolean; // Added prop for business mode
+  businessFocus?: 'care' | 'industry'; // Added prop for business focus
   onClick?: () => void;
   onHover?: (node: TreeNodeData | null) => void;
   className?: string;
@@ -31,6 +36,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   size,
   isRoot = false,
   isBusinessMode = false, // Default to false
+  businessFocus, // Get businessFocus prop
   onClick,
   onHover,
   className = '',
@@ -44,6 +50,8 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     onHover?.(null);
   };
 
+  console.log('CircleNode businessFocus:', businessFocus); // Debug log for businessFocus
+
   // Check for special visualization nodes
   const visualizationNodes = [
     'linear-regression', 'machine-learning', 'neural-networks', 'symbolic-ai',
@@ -54,12 +62,19 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   if (visualizationNodes.includes(node.id)) {
     let VizComponent;
     if (isBusinessMode) {
-      // Render placeholder visualization in business mode
-      VizComponent = () => (
-        <div className="flex items-center justify-center h-full w-full bg-gray-300 text-gray-700">
-          Placeholder
-        </div>
-      );
+      // Render care or industry visualizations based on businessFocus
+      if (node.id === 'machine-learning') {
+        VizComponent = businessFocus === 'care' ? MachineLearningCareViz : MachineLearningIndustryViz;
+      } else if (node.id === 'symbolic-ai') {
+        VizComponent = businessFocus === 'care' ? SymbolicAICareViz : SymbolicAIIndustryViz;
+      } else {
+        // Default placeholder for other nodes
+        VizComponent = () => (
+          <div className={`flex items-center justify-center h-full w-full ${businessFocus === 'care' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
+            <p>{businessFocus === 'care' ? 'Care-focused Placeholder' : 'Industry-focused Placeholder'}</p>
+          </div>
+        );
+      }
     } else {
       // Render actual visualization in technical mode
       switch (node.id) {
@@ -105,7 +120,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
             clipPath: 'circle(50%)'
           }}
         >
-          <VizComponent />
+          {VizComponent && <VizComponent businessFocus={businessFocus} />} {/* Render VizComponent correctly */}
         </div>
         
         {/* Node label */}

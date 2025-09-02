@@ -170,7 +170,8 @@ export const AIExplorer: React.FC = () => {
             onNavigate={handleNavigate}
             onBack={handleBack}
             onHome={handleHome}
-            isBusinessMode={isBusinessMode} // Pass the state to NavigationView
+            isBusinessMode={isBusinessMode} // Pass isBusinessMode
+            businessFocus={businessFocus} // Pass businessFocus
           />
         </div>
       );

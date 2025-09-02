@@ -14,6 +14,7 @@ interface NavigationViewProps {
   onBack: () => void;
   onHome?: () => void;
   isBusinessMode?: boolean; // Added prop for business mode
+  businessFocus?: 'care' | 'industry'; // Added prop for business focus
 }
 
 export const NavigationView: React.FC<NavigationViewProps> = ({
@@ -23,7 +24,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   onNavigate,
   onBack,
   onHome,
-  isBusinessMode // Destructure isBusinessMode prop
+  isBusinessMode,
+  businessFocus // Add businessFocus prop
 }) => {
   const [hoveredNode, setHoveredNode] = useState<TreeNodeData | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -222,7 +224,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
             size={parentNodeSize}
             isRoot={path.length === 1}
             className="opacity-0"
-            isBusinessMode={isBusinessMode} // Added this line
+            isBusinessMode={isBusinessMode}
+            businessFocus={businessFocus} // Pass businessFocus prop
           />
         </div>
 
@@ -233,7 +236,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
             if (animatingNode && child.id === animatingNode.id) {
               return null;
             }
-            
+
             return (
               <CircleNode
                 key={child.id}
@@ -242,7 +245,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
                 size={childNodeSize}
                 onClick={() => handleNodeClick(child, positions[index])}
                 onHover={setHoveredNode}
-                isBusinessMode={isBusinessMode} // Added this line
+                isBusinessMode={isBusinessMode}
+                businessFocus={businessFocus} // Pass businessFocus prop
               />
             );
           })}
@@ -264,36 +268,37 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
                 '--center-x': `${containerSize.width / 2}px`,
                 '--center-y': `${containerSize.height / 2}px`
               } as React.CSSProperties}
-              isBusinessMode={isBusinessMode} // Added this line
+              isBusinessMode={isBusinessMode}
+              businessFocus={businessFocus} // Pass businessFocus prop
             />
           </div>
         )}
 
-                 {/* Tooltip */}
-         <Tooltip node={hoveredNode} position={mousePosition} />
+        {/* Tooltip */}
+        <Tooltip node={hoveredNode} position={mousePosition} />
 
-         {/* Scroll Indicator - Positioned at bottom of node visualization */}
-         {currentNode.children && currentNode.children.length > 0 && (
-           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-             <div className="inline-flex items-center gap-2 text-cyan-400 text-lg font-medium">
-               <ChevronDown className="w-5 h-5 animate-bounce" />
-               <span>Scroll down to explore detailed information</span>
-               <ChevronDown className="w-5 h-5 animate-bounce" />
-             </div>
-           </div>
-         )}
-       </div>
+        {/* Scroll Indicator - Positioned at bottom of node visualization */}
+        {currentNode.children && currentNode.children.length > 0 && (
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+            <div className="inline-flex items-center gap-2 text-cyan-400 text-lg font-medium">
+              <ChevronDown className="w-5 h-5 animate-bounce" />
+              <span>Scroll down to explore detailed information</span>
+              <ChevronDown className="w-5 h-5 animate-bounce" />
+            </div>
+          </div>
+        )}
+      </div>
 
-             {/* Detail Cards Section - Only for non-leaf nodes */}
-       {currentNode.children && currentNode.children.length > 0 && (
-         <div 
-           ref={detailSectionRef}
-           className="relative z-10 min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800"
-           style={{ 
-             width: '100%'
-           }}
-         >
-           <div className="max-w-6xl mx-auto p-6">
+      {/* Detail Cards Section - Only for non-leaf nodes */}
+      {currentNode.children && currentNode.children.length > 0 && (
+        <div 
+          ref={detailSectionRef}
+          className="relative z-10 min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800"
+          style={{ 
+            width: '100%'
+          }}
+        >
+          <div className="max-w-6xl mx-auto p-6">
 
             {/* Detail Card for Current Node */}
             <div className="max-w-4xl mx-auto">
