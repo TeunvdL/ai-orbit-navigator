@@ -5,7 +5,7 @@ import { Homepage } from './Homepage';
 import { NavigationView } from './NavigationView';
 import { DetailPage } from './DetailPage';
 import { Switch } from './ui/switch';
-import { Code, Briefcase } from 'lucide-react';
+import { Code, Briefcase, Heart, Factory } from 'lucide-react';
 
 type ViewMode = 'homepage' | 'navigation' | 'detail';
 
@@ -115,16 +115,16 @@ export const AIExplorer: React.FC = () => {
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
 
-          {/* Business Focus Toggle */}
+          {/* Business Focus Toggle with Icons */}
           {isBusinessMode && (
             <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <span className="text-muted-foreground text-sm">Care</span>
+              <Heart className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
               <Switch
                 id="business-focus"
                 checked={businessFocus === 'industry'}
                 onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
               />
-              <span className="text-muted-foreground text-sm">Industry</span>
+              <Factory className="w-4 h-4 text-muted-foreground" /> {/* Industry Icon */}
             </div>
           )}
 
@@ -150,16 +150,16 @@ export const AIExplorer: React.FC = () => {
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
 
-          {/* Business Focus Toggle */}
+          {/* Business Focus Toggle with Icons */}
           {isBusinessMode && (
             <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <span className="text-muted-foreground text-sm">Care</span>
+              <Heart className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
               <Switch
                 id="business-focus"
                 checked={businessFocus === 'industry'}
                 onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
               />
-              <span className="text-muted-foreground text-sm">Industry</span>
+              <Factory className="w-4 h-4 text-muted-foreground" /> {/* Industry Icon */}
             </div>
           )}
 
@@ -189,16 +189,16 @@ export const AIExplorer: React.FC = () => {
             <Briefcase className="w-4 h-4 text-muted-foreground" />
           </div>
 
-          {/* Business Focus Toggle */}
+          {/* Business Focus Toggle with Icons */}
           {isBusinessMode && (
             <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <span className="text-muted-foreground text-sm">Care</span>
+              <Heart className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
               <Switch
                 id="business-focus"
                 checked={businessFocus === 'industry'}
                 onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
               />
-              <span className="text-muted-foreground text-sm">Industry</span>
+              <Factory className="w-4 h-4 text-muted-foreground" /> {/* Industry Icon */}
             </div>
           )}
 
