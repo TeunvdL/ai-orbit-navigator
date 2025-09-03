@@ -1,21 +1,17 @@
 import React from 'react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
-import LinearRegressionViz from './LinearRegressionViz';
-import MachineLearningViz from './MachineLearningViz';
-import NeuralNetworksViz from './NeuralNetworksViz';
-import SymbolicAIViz from './SymbolicAIViz';
-import SupervisedLearningViz from './SupervisedLearningViz';
-import UnsupervisedLearningViz from './UnsupervisedLearningViz';
-import ReinforcementLearningViz from './ReinforcementLearningViz';
-import RegressionViz from './RegressionViz';
-import ClassificationViz from './ClassificationViz';
-import ClusteringViz from './ClusteringViz';
-import FeatureExtractionViz from './FeatureExtractionViz';
-import EnsembleLearningViz from './EnsembleLearningViz';
-import MachineLearningCareViz from './MachineLearningCareViz';
-import MachineLearningIndustryViz from './MachineLearningIndustryViz';
-import SymbolicAICareViz from './SymbolicAICareViz';
-import SymbolicAIIndustryViz from './SymbolicAIIndustryViz';
+import LinearRegressionViz from './Visualizations/technical/LinearRegressionViz';
+import MachineLearningViz from './Visualizations/technical/MachineLearningViz';
+import NeuralNetworksViz from './Visualizations/technical/NeuralNetworksViz';
+import SymbolicAIViz from './Visualizations/technical/SymbolicAIViz';
+import SupervisedLearningViz from './Visualizations/technical/SupervisedLearningViz';
+import UnsupervisedLearningViz from './Visualizations/technical/UnsupervisedLearningViz';
+import ReinforcementLearningViz from './Visualizations/technical/ReinforcementLearningViz';
+import RegressionViz from './Visualizations/technical/RegressionViz';
+import ClassificationViz from './Visualizations/technical/ClassificationViz';
+import ClusteringViz from './Visualizations/technical/ClusteringViz';
+import FeatureExtractionViz from './Visualizations/technical/FeatureExtractionViz';
+import EnsembleLearningViz from './Visualizations/technical/EnsembleLearningViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -61,36 +57,19 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
 
   if (visualizationNodes.includes(node.id)) {
     let VizComponent;
-    if (isBusinessMode) {
-      // Render care or industry visualizations based on businessFocus
-      if (node.id === 'machine-learning') {
-        VizComponent = businessFocus === 'care' ? MachineLearningCareViz : MachineLearningIndustryViz;
-      } else if (node.id === 'symbolic-ai') {
-        VizComponent = businessFocus === 'care' ? SymbolicAICareViz : SymbolicAIIndustryViz;
-      } else {
-        // Default placeholder for other nodes
-        VizComponent = () => (
-          <div className={`flex items-center justify-center h-full w-full ${businessFocus === 'care' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
-            <p>{businessFocus === 'care' ? 'Care-focused Placeholder' : 'Industry-focused Placeholder'}</p>
-          </div>
-        );
-      }
-    } else {
-      // Render actual visualization in technical mode
-      switch (node.id) {
-        case 'linear-regression': VizComponent = LinearRegressionViz; break;
-        case 'machine-learning': VizComponent = MachineLearningViz; break;
-        case 'neural-networks': VizComponent = NeuralNetworksViz; break;
-        case 'symbolic-ai': VizComponent = SymbolicAIViz; break;
-        case 'supervised-learning': VizComponent = SupervisedLearningViz; break;
-        case 'unsupervised-learning': VizComponent = UnsupervisedLearningViz; break;
-        case 'reinforcement-learning': VizComponent = ReinforcementLearningViz; break;
-        case 'regression': VizComponent = RegressionViz; break;
-        case 'classification': VizComponent = ClassificationViz; break;
-        case 'clustering': VizComponent = ClusteringViz; break;
-        case 'feature-extraction': VizComponent = FeatureExtractionViz; break;
-        case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
-      }
+    switch (node.id) {
+      case 'linear-regression': VizComponent = LinearRegressionViz; break;
+      case 'machine-learning': VizComponent = MachineLearningViz; break;
+      case 'neural-networks': VizComponent = NeuralNetworksViz; break;
+      case 'symbolic-ai': VizComponent = SymbolicAIViz; break;
+      case 'supervised-learning': VizComponent = SupervisedLearningViz; break;
+      case 'unsupervised-learning': VizComponent = UnsupervisedLearningViz; break;
+      case 'reinforcement-learning': VizComponent = ReinforcementLearningViz; break;
+      case 'regression': VizComponent = RegressionViz; break;
+      case 'classification': VizComponent = ClassificationViz; break;
+      case 'clustering': VizComponent = ClusteringViz; break;
+      case 'feature-extraction': VizComponent = FeatureExtractionViz; break;
+      case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
     }
 
     return (
