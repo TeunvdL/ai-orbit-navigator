@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TreeNodeData } from '../types/treeTypes';
 import { aiTaxonomyData } from '../data/aiTaxonomyData';
+import { aiTaxonomyDataBusiness } from '../data/aiTaxonomyDataBusiness';
 import { Homepage } from './Homepage';
 import { NavigationView } from './NavigationView';
 import { DetailPage } from './DetailPage';
@@ -46,6 +47,8 @@ export const AIExplorer: React.FC = () => {
 
   const handleBusinessModeToggle = (checked: boolean) => {
     setIsBusinessMode(checked);
+    setViewMode('homepage'); // Redirect to homepage on mode switch
+    setCurrentPath([checked ? aiTaxonomyDataBusiness : aiTaxonomyData]); // Set the correct tree structure
   };
 
   const handleBusinessFocusToggle = (focus: 'care' | 'industry') => {
@@ -81,12 +84,13 @@ export const AIExplorer: React.FC = () => {
 
   const handleHome = () => {
     setViewMode('homepage');
-    setCurrentPath([aiTaxonomyData]);
+    setCurrentPath([isBusinessMode ? aiTaxonomyDataBusiness : aiTaxonomyData]);
   };
 
   const handleBackToTaxonomy = () => {
     setViewMode('navigation');
     setDetailNode(null);
+    setCurrentPath([isBusinessMode ? aiTaxonomyDataBusiness : aiTaxonomyData]);
   };
 
   const getParentName = (node: TreeNodeData): string | undefined => {
@@ -129,7 +133,7 @@ export const AIExplorer: React.FC = () => {
           )}
 
           <Homepage
-            rootNode={aiTaxonomyData}
+            rootNode={isBusinessMode ? aiTaxonomyDataBusiness : aiTaxonomyData}
             onEnterTaxonomy={handleEnterTaxonomy}
             isBusinessMode={isBusinessMode} // Pass the state to Homepage
           />
