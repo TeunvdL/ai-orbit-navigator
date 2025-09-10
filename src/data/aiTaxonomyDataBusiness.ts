@@ -16,104 +16,74 @@ export const aiTaxonomyDataBusiness: TreeNodeData = {
       description: 'AI that learns from structured data to make predictions and decisions.',
       children: [
         {
-          id: 'prediction-forecasting',
-          name: 'Prediction & Forecasting',
-          description: 'Use historical data to predict future outcomes or recommend actions.',
+          id: 'predicting-planning',
+          name: 'Predicting & Planning',
+          description: 'Techniques for forecasting and planning.',
           children: [
-            {
-              id: 'forecasting',
-              name: 'Forecasting',
-              description: 'Predict future values (e.g., sales, demand)',
-              children: []
-            },
-            {
-              id: 'recommendation-systems',
-              name: 'Recommendation Systems',
-              description: 'Suggest relevant items or actions (e.g., products, content)',
-              children: []
-            }
+            { id: 'forecasting', name: 'Forecasting', description: 'Predict future values (e.g., sales, demand)', children: [] },
+            { id: 'predictive-maintenance', name: 'Predictive Maintenance', description: 'Anticipate equipment failures.', children: [] },
+            { id: 'digital-twin', name: 'Digital Twin', description: 'Create virtual replicas of physical systems.', children: [] }
           ]
         },
         {
-          id: 'detection-monitoring',
-          name: 'Detection & Monitoring',
-          description: 'Identify patterns, anomalies, or groupings in data.',
+          id: 'decision-automation',
+          name: 'Decision Automation',
+          description: 'Automate decisions and prioritize tasks.',
           children: [
-            {
-              id: 'anomaly-detection',
-              name: 'Anomaly Detection',
-              description: 'Spot unusual patterns (e.g., fraud, equipment failure)',
-              children: []
-            },
-            {
-              id: 'segmentation',
-              name: 'Segmentation',
-              description: 'Group similar items (e.g., customer segmentation)',
-              children: []
-            }
+            { id: 'decision-automation', name: 'Decision Automation', description: 'Automate rule-based decisions.', children: [] },
+            { id: 'scoring-prioritization', name: 'Scoring & Prioritization', description: 'Assign scores or priorities.', children: [] },
+            { id: 'anomaly-detection', name: 'Anomaly Detection', description: 'Spot unusual patterns.', children: [] },
+            { id: 'segmentation', name: 'Segmentation', description: 'Group similar items.', children: [] },
+            { id: 'recommendation-systems', name: 'Recommendation Systems', description: 'Suggest relevant items.', children: [] }
           ]
         },
         {
-          id: 'decision-support-automation',
-          name: 'Decision Support & Automation',
-          description: 'Automate or assist decision-making based on learned patterns.',
+          id: 'operations-optimization',
+          name: 'Operations Optimization',
+          description: 'Optimize resources and processes.',
           children: [
-            {
-              id: 'scoring-prioritization',
-              name: 'Scoring & Prioritization',
-              description: 'Assign scores or priorities (e.g., lead scoring, risk scoring)',
-              children: []
-            },
-            {
-              id: 'decision-automation',
-              name: 'Decision Automation',
-              description: 'Automate rule-based decisions (e.g., loan approvals, expense claims)',
-              children: []
-            },
-            {
-              id: 'optimization',
-              name: 'Optimization',
-              description: 'Optimize resources or processes (e.g., scheduling, route planning)',
-              children: []
-            }
+            { id: 'engineering-optimization', name: 'Engineering Optimization', description: 'Optimize engineering designs.', children: [] },
+            { id: 'planning-optimization', name: 'Planning Optimization', description: 'Optimize planning processes.', children: [] },
+            { id: 'process-mining', name: 'Process Mining', description: 'Analyze and optimize workflows.', children: [] }
           ]
+        },
+        {
+          id: 'image-recognition',
+          name: 'Image Recognition',
+          description: 'Analyze and interpret images.',
+          children: []
         }
       ]
     },
     {
-      id: 'ai-agent',
+      id: 'ai-agents',
       name: 'AI Agents',
       description: 'AI that understands and generates human language.',
       children: [
         {
-          id: 'document-search-drafting',
-          name: 'Document Search & Drafting',
-          description: 'Generate or retrieve documents (e.g., policies, contracts)',
-          children: []
+          id: 'information-retrieval',
+          name: 'Information Retrieval',
+          description: 'Retrieve and generate information.',
+          children: [
+            { id: 'document-search-drafting', name: 'Document Search & Drafting', description: 'Generate or retrieve documents.', children: [] },
+            { id: 'knowledge-retrieval', name: 'Knowledge Retrieval', description: 'Answer questions using knowledge bases.', children: [] }
+          ]
         },
         {
           id: 'conversational-agents',
           name: 'Conversational Agents',
-          description: 'Chatbots and virtual assistants for customer or internal support',
+          description: 'Chatbots and virtual assistants.',
           children: []
         },
         {
-          id: 'knowledge-retrieval',
-          name: 'Knowledge Retrieval',
-          description: 'Answer questions using internal knowledge bases (e.g., Copilot-style search)',
-          children: []
-        },
-        {
-          id: 'text-classification',
-          name: 'Text Classification',
-          description: 'Categorize text (e.g., spam detection, sentiment analysis)',
-          children: []
-        },
-        {
-          id: 'summarization-extraction',
-          name: 'Summarization & Extraction',
-          description: 'Extract key points or summaries from documents or conversations',
-          children: []
+          id: 'text-analysis',
+          name: 'Text Analysis',
+          description: 'Analyze and process text.',
+          children: [
+            { id: 'summarization-extraction', name: 'Summarization & Extraction', description: 'Extract key points or summaries.', children: [] },
+            { id: 'sentiment-analysis', name: 'Sentiment Analysis', description: 'Analyze sentiment in text.', children: [] },
+            { id: 'text-classification', name: 'Text Classification', description: 'Categorize text.', children: [] }
+          ]
         }
       ]
     }
