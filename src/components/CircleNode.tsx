@@ -95,26 +95,26 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
 
     return (
       <div className="relative">
-        {/* Business Guidance Text Box */}
-        {guidanceText && (
-          <div 
-            className="absolute z-30 bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-lg shadow-lg border border-white/20"
-            style={{
-              top: `${position.y - size / 2 - 60}px`,
-              left: `${position.x}px`,
-              width: `${Math.max(280, size * 1.8)}px`,
-              transform: 'translateX(-50%)'
-            }}
-          >
-            <div className="text-center font-medium leading-tight">
-              {guidanceText}
-            </div>
-            {/* Arrow pointing down */}
-            <div 
-              className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-blue-600/90"
-            />
+      {/* Business Guidance Text Box */}
+      {guidanceText && (
+        <div 
+          className="absolute z-30 bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-lg shadow-lg border border-white/20"
+          style={{
+            top: `${position.y - size / 2 - 60}px`,
+            left: `${position.x}px`,
+            width: `${size * 1.1}px`,
+            transform: 'translateX(-50%)'
+          }}
+        >
+          <div className="text-center font-medium leading-tight">
+            {guidanceText}
           </div>
-        )}
+          {/* Arrow pointing down */}
+          <div 
+            className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-blue-600/90"
+          />
+        </div>
+      )}
         
         <div
           className={`cosmic-node absolute flex items-center justify-center text-white font-semibold select-none ${
