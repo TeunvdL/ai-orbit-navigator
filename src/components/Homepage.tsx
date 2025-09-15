@@ -5,9 +5,10 @@ import { CircleNode } from './CircleNode';
 interface HomepageProps {
   rootNode: TreeNodeData;
   onEnterTaxonomy: () => void;
+  isBusinessMode?: boolean; // Added prop for business mode
 }
 
-export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy }) => {
+export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy, isBusinessMode }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleEnterTaxonomy = () => {
@@ -51,6 +52,7 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy })
             isRoot={true}
             onClick={handleEnterTaxonomy}
             className={isAnimating ? 'animate-zoom-homepage' : ''}
+            isBusinessMode={isBusinessMode} // Added this line
           />
         </div>
       </div>

@@ -1,23 +1,25 @@
 import React from 'react';
 import { TreeNodeData, NodePosition } from '../types/treeTypes';
-import LinearRegressionViz from './LinearRegressionViz';
-import MachineLearningViz from './MachineLearningViz';
-import NeuralNetworksViz from './NeuralNetworksViz';
-import SymbolicAIViz from './SymbolicAIViz';
-import SupervisedLearningViz from './SupervisedLearningViz';
-import UnsupervisedLearningViz from './UnsupervisedLearningViz';
-import ReinforcementLearningViz from './ReinforcementLearningViz';
-import RegressionViz from './RegressionViz';
-import ClassificationViz from './ClassificationViz';
-import ClusteringViz from './ClusteringViz';
-import FeatureExtractionViz from './FeatureExtractionViz';
-import EnsembleLearningViz from './EnsembleLearningViz';
+import LinearRegressionViz from './Visualizations/technical/LinearRegressionViz';
+import MachineLearningViz from './Visualizations/technical/MachineLearningViz';
+import NeuralNetworksViz from './Visualizations/technical/NeuralNetworksViz';
+import SymbolicAIViz from './Visualizations/technical/SymbolicAIViz';
+import SupervisedLearningViz from './Visualizations/technical/SupervisedLearningViz';
+import UnsupervisedLearningViz from './Visualizations/technical/UnsupervisedLearningViz';
+import ReinforcementLearningViz from './Visualizations/technical/ReinforcementLearningViz';
+import RegressionViz from './Visualizations/technical/RegressionViz';
+import ClassificationViz from './Visualizations/technical/ClassificationViz';
+import ClusteringViz from './Visualizations/technical/ClusteringViz';
+import FeatureExtractionViz from './Visualizations/technical/FeatureExtractionViz';
+import EnsembleLearningViz from './Visualizations/technical/EnsembleLearningViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
   position: NodePosition;
   size: number;
   isRoot?: boolean;
+  isBusinessMode?: boolean; // Added prop for business mode
+  businessFocus?: 'care' | 'industry'; // Added prop for business focus
   onClick?: () => void;
   onHover?: (node: TreeNodeData | null) => void;
   className?: string;
@@ -29,6 +31,8 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   position,
   size,
   isRoot = false,
+  isBusinessMode = false, // Default to false
+  businessFocus, // Get businessFocus prop
   onClick,
   onHover,
   className = '',
@@ -41,6 +45,8 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   const handleMouseLeave = () => {
     onHover?.(null);
   };
+
+  console.log('CircleNode businessFocus:', businessFocus); // Debug log for businessFocus
 
   // Check for special visualization nodes
   const visualizationNodes = [
@@ -65,6 +71,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       case 'feature-extraction': VizComponent = FeatureExtractionViz; break;
       case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
     }
+
     return (
       <div
         className={`cosmic-node absolute flex items-center justify-center text-white font-semibold select-none ${
@@ -92,7 +99,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
             clipPath: 'circle(50%)'
           }}
         >
-          <VizComponent />
+          {VizComponent && <VizComponent businessFocus={businessFocus} />} {/* Render VizComponent correctly */}
         </div>
         
         {/* Node label */}
