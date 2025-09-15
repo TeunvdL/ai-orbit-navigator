@@ -12,6 +12,16 @@ import ClassificationViz from './Visualizations/technical/ClassificationViz';
 import ClusteringViz from './Visualizations/technical/ClusteringViz';
 import FeatureExtractionViz from './Visualizations/technical/FeatureExtractionViz';
 import EnsembleLearningViz from './Visualizations/technical/EnsembleLearningViz';
+// Business visualizations
+import MachineLearningBusinessViz from './Visualizations/business/MachineLearningBusinessViz';
+import AIAgentsViz from './Visualizations/business/AIAgentsViz';
+import PredictPlanViz from './Visualizations/business/PredictPlanViz';
+import DecisionMakingViz from './Visualizations/business/DecisionMakingViz';
+import OptimizeViz from './Visualizations/business/OptimizeViz';
+import ImageRecognitionViz from './Visualizations/business/ImageRecognitionViz';
+import InformationRetrievalViz from './Visualizations/business/InformationRetrievalViz';
+import SmartAssistantsViz from './Visualizations/business/SmartAssistantsViz';
+import TextAnalysisViz from './Visualizations/business/TextAnalysisViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -73,12 +83,16 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   const visualizationNodes = [
     'linear-regression', 'machine-learning', 'neural-networks', 'symbolic-ai',
     'supervised-learning', 'unsupervised-learning', 'reinforcement-learning',
-    'regression', 'classification', 'clustering', 'feature-extraction', 'ensemble-learning'
+    'regression', 'classification', 'clustering', 'feature-extraction', 'ensemble-learning',
+    // Business visualization nodes
+    'machine-learning-business', 'AI-agents', 'predict-plan', 'decision-making',
+    'optimize', 'image-recognition', 'information-retrieval', 'smart-assistants', 'text-analysis'
   ];
 
   if (visualizationNodes.includes(node.id)) {
     let VizComponent;
     switch (node.id) {
+      // Technical visualizations
       case 'linear-regression': VizComponent = LinearRegressionViz; break;
       case 'machine-learning': VizComponent = MachineLearningViz; break;
       case 'neural-networks': VizComponent = NeuralNetworksViz; break;
@@ -91,6 +105,16 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       case 'clustering': VizComponent = ClusteringViz; break;
       case 'feature-extraction': VizComponent = FeatureExtractionViz; break;
       case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
+      // Business visualizations
+      case 'machine-learning-business': VizComponent = MachineLearningBusinessViz; break;
+      case 'AI-agents': VizComponent = AIAgentsViz; break;
+      case 'predict-plan': VizComponent = PredictPlanViz; break;
+      case 'decision-making': VizComponent = DecisionMakingViz; break;
+      case 'optimize': VizComponent = OptimizeViz; break;
+      case 'image-recognition': VizComponent = ImageRecognitionViz; break;
+      case 'information-retrieval': VizComponent = InformationRetrievalViz; break;
+      case 'smart-assistants': VizComponent = SmartAssistantsViz; break;
+      case 'text-analysis': VizComponent = TextAnalysisViz; break;
     }
 
     return (
