@@ -4,8 +4,8 @@ export const aiTaxonomyDataBusiness = {
   "description": "Artificial Intelligence - Technologies that enable machines to simulate human intelligence.",
   "children": [
     {
-      "id": "Machine Learning",
-      "name": "machine-learning",
+      "id": "machine-learning",
+      "name": "Machine Learning",
       "description": "AI technologies that work with structured data to predict, decide, and optimize.",
       "children": [
         {
@@ -35,8 +35,8 @@ export const aiTaxonomyDataBusiness = {
       ]
     },
     {
-      "id": "AI Agents",
-      "name": "AI-agents",
+      "id": "AI-agents",
+      "name": "AI Agents",
       "description": "AI technologies that process and understand textual information.",
       "children": [
         {
