@@ -224,8 +224,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
             size={parentNodeSize}
             isRoot={path.length === 1}
             className="opacity-0"
-            isBusinessMode={isBusinessMode}
-            businessFocus={businessFocus} // Pass businessFocus prop
+            isBusinessMode={false} // Disable business mode for parent node to hide guidance
+            businessFocus={businessFocus}
           />
         </div>
 
