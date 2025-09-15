@@ -102,7 +102,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
           style={{
             top: `${position.y - size / 2 - 60}px`,
             left: `${position.x}px`,
-            width: `${size * 1.1}px`,
+            maxWidth: `${size}px`,
             transform: 'translateX(-50%)'
           }}
         >
@@ -163,7 +163,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
           style={{
             top: `${position.y - size / 2 - 60}px`,
             left: `${position.x}px`,
-            width: `${Math.max(280, size * 1.8)}px`,
+            maxWidth: `${size}px`,
             transform: 'translateX(-50%)'
           }}
         >
