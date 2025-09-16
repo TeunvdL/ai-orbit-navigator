@@ -17,11 +17,13 @@ export const AIExplorer: React.FC = () => {
   const [isBusinessMode, setIsBusinessMode] = useState<boolean>(false);
   const [businessFocus, setBusinessFocus] = useState<'care' | 'industry'>('care'); // New state for business focus
 
-  // Load business mode from localStorage on mount
+  // Load business mode from localStorage on mount and sync path
   useEffect(() => {
     const savedBusinessMode = localStorage.getItem('businessMode');
     if (savedBusinessMode !== null) {
-      setIsBusinessMode(JSON.parse(savedBusinessMode));
+      const businessMode = JSON.parse(savedBusinessMode);
+      setIsBusinessMode(businessMode);
+      setCurrentPath([businessMode ? aiTaxonomyDataBusiness : aiTaxonomyData]);
     }
   }, []);
 
@@ -49,6 +51,7 @@ export const AIExplorer: React.FC = () => {
     setIsBusinessMode(checked);
     setViewMode('homepage'); // Redirect to homepage on mode switch
     setCurrentPath([checked ? aiTaxonomyDataBusiness : aiTaxonomyData]); // Set the correct tree structure
+    setDetailNode(null); // Clear any detail node
   };
 
   const handleBusinessFocusToggle = (focus: 'care' | 'industry') => {
