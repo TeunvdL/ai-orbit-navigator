@@ -93,7 +93,7 @@ export const AIExplorer: React.FC = () => {
   const handleBackToTaxonomy = () => {
     setViewMode('navigation');
     setDetailNode(null);
-    setCurrentPath([isBusinessMode ? aiTaxonomyDataBusiness : aiTaxonomyData]);
+    // Keep current path to return to the same navigation level
   };
 
   const getParentName = (node: TreeNodeData): string | undefined => {
