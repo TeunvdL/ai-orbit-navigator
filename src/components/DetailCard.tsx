@@ -1,14 +1,18 @@
 import React from 'react';
-import { Lightbulb, Cog, Target, TrendingUp, AlertTriangle, Check, AlertCircle } from 'lucide-react';
+import { Lightbulb, Cog, Target, TrendingUp, AlertTriangle, Check, AlertCircle, Building2 } from 'lucide-react';
 import { TreeNodeData } from '../types/treeTypes';
+import { getUseCasesForNode } from '../utils/useCases';
 
 interface DetailCardProps {
   node: TreeNodeData;
   parentName?: string;
   className?: string;
+  isBusinessMode?: boolean;
 }
 
-export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '' }) => {
+export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false }) => {
+  const useCases = isBusinessMode ? getUseCasesForNode(node.name) : [];
+  const isLeafNode = !node.children || node.children.length === 0;
   return (
     <div className={`bg-gray-800/50 border-cyan-500/30 backdrop-blur-sm shadow-2xl rounded-lg border ${className}`}>
       {/* Card Header */}
@@ -98,6 +102,40 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {/* Use Cases - only shown in business mode for leaf nodes */}
+          {isBusinessMode && isLeafNode && useCases.length > 0 && (
+            <div>
+              <h3 className="text-lg font-semibold mb-3 flex items-center text-cyan-400">
+                <Building2 className="w-4 h-4 mr-2" />
+                Real-World Use Cases
+              </h3>
+              <div className="space-y-6">
+                {useCases.map((useCase, index) => (
+                  <div key={useCase.metadata.id} className="border border-gray-600/30 rounded-lg p-4 bg-gray-800/30">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h4 className="text-base font-semibold text-white">{useCase.metadata.title}</h4>
+                      <span className="text-sm text-gray-400">— {useCase.metadata.company}</span>
+                    </div>
+                    <div className="text-sm text-gray-300 prose prose-sm prose-invert max-w-none">
+                      <div 
+                        dangerouslySetInnerHTML={{ 
+                          __html: useCase.content
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            .replace(/^## (.*$)/gm, '<h3 class="text-cyan-400 font-semibold mt-4 mb-2">$1</h3>')
+                            .replace(/^# (.*$)/gm, '<h2 class="text-white font-bold text-lg mb-3">$1</h2>')
+                            .replace(/^- (.*$)/gm, '<li class="ml-4">$1</li>')
+                            .replace(/\n\n/g, '</p><p class="mb-2">')
+                            .replace(/^(.+)$/gm, '<p class="mb-2">$1</p>')
+                        }} 
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
