@@ -122,12 +122,12 @@ const PROCESSED_USE_CASES: UseCase[] = USE_CASES.map(useCase => ({
 
 // Mapping from node names to tag equivalents
 const NODE_TAG_MAPPING: Record<string, string> = {
-  'Information Retrieval': 'knowledge-retrieval',
+  'Information Retrieval': 'information-retrieval',
   'Smart Assistants': 'smart-assistants',
   'Text Analysis': 'text-analysis',
-  'Predict & Plan': 'prediction',
+  'Predict & Plan': 'predict-plan',
   'Decision Making': 'decision-making',
-  'Optimize': 'optimization',
+  'Optimize': 'optimize',
   'Image Recognition': 'image-recognition'
 };
 
