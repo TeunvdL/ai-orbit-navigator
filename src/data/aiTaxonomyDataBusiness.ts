@@ -35,8 +35,8 @@ export const aiTaxonomyDataBusiness = {
       ]
     },
     {
-      "id": "AI-agents",
-      "name": "AI Agents",
+      "id": "NLP-business",
+      "name": "Natural Language Processing",
       "description": "AI technologies that process and understand textual information.",
       "children": [
         {
