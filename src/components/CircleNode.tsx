@@ -14,7 +14,7 @@ import FeatureExtractionViz from './Visualizations/technical/FeatureExtractionVi
 import EnsembleLearningViz from './Visualizations/technical/EnsembleLearningViz';
 // Business visualizations
 import MachineLearningBusinessViz from './Visualizations/business/MachineLearningBusinessViz';
-import AIAgentsViz from './Visualizations/business/AIAgentsViz';
+import NLPBusinessViz from './Visualizations/business/NLPBusinessViz';
 import PredictPlanViz from './Visualizations/business/PredictPlanViz';
 import DecisionMakingViz from './Visualizations/business/DecisionMakingViz';
 import OptimizeViz from './Visualizations/business/OptimizeViz';
@@ -107,7 +107,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       case 'ensemble-learning': VizComponent = EnsembleLearningViz; break;
       // Business visualizations
       case 'machine-learning-business': VizComponent = MachineLearningBusinessViz; break;
-      case 'AI-agents': VizComponent = AIAgentsViz; break;
+      case 'NLP-business': VizComponent = NLPBusinessViz; break;
       case 'predict-plan': VizComponent = PredictPlanViz; break;
       case 'decision-making': VizComponent = DecisionMakingViz; break;
       case 'optimize': VizComponent = OptimizeViz; break;
