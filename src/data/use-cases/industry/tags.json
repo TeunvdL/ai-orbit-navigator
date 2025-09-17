@@ -1,0 +1,14 @@
+{
+  "knowledge-retrieval": ["knowledge-retrieval", "information-retrieval", "NLP", "AI"],
+  "document-search-drafting": ["document-search-drafting", "information-retrieval", "NLP", "AI"],
+  "smart-assistants": ["smart-assistants", "NLP", "AI"],
+  "text-analysis": ["text-analysis", "NLP", "AI"],
+  "summarization-extraction": ["summarization-extraction", "text-analysis", "NLP", "AI"],
+  "text-classification": ["text-classification", "text-analysis", "NLP", "AI"],
+  "sentiment-analysis": ["sentiment-analysis", "text-analysis", "NLP", "AI"],
+  "prediction": ["prediction", "predict-plan", "machine-learning", "AI"],
+  "decision-making": ["decision-making", "machine-learning", "AI"],
+  "optimization": ["optimization", "optimize", "machine-learning", "AI"],
+  "engineering-optimization": ["engineering-optimization", "optimize", "machine-learning", "AI"],
+  "image-recognition": ["image-recognition", "machine-learning", "AI"]
+}

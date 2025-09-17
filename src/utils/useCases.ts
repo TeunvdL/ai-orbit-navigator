@@ -11,6 +11,38 @@ export interface UseCase {
   content: string;
 }
 
+// Import tag hierarchy
+import tagHierarchy from '../data/use-cases/industry/tags.json';
+
+// Function to expand tags based on hierarchy
+function expandTags(tags: string[]): string[] {
+  const expandedSet = new Set<string>();
+  
+  for (const tag of tags) {
+    if (tagHierarchy[tag as keyof typeof tagHierarchy]) {
+      const hierarchy = tagHierarchy[tag as keyof typeof tagHierarchy];
+      hierarchy.forEach(hierarchyTag => expandedSet.add(hierarchyTag));
+    } else {
+      // If tag not in hierarchy, add it as-is
+      expandedSet.add(tag);
+    }
+  }
+  
+  return Array.from(expandedSet);
+}
+
+// Function to remove lowest-level tags, keeping only higher-level ones
+function removeLowestLevelTags(expandedTags: string[]): string[] {
+  const lowestLevelTags = Object.keys(tagHierarchy);
+  return expandedTags.filter(tag => !lowestLevelTags.includes(tag));
+}
+
+// Function to process use case tags
+function processUseCaseTags(tags: string[]): string[] {
+  const expanded = expandTags(tags);
+  return removeLowestLevelTags(expanded);
+}
+
 // Static use cases data - in a real app this would be loaded dynamically
 const USE_CASES: UseCase[] = [
   {
@@ -79,6 +111,15 @@ Self‑service rate, p95 answer latency, citation coverage %, deflection vs. ser
   }
 ];
 
+// Process use case tags to expand and filter them  
+const PROCESSED_USE_CASES: UseCase[] = USE_CASES.map(useCase => ({
+  ...useCase,
+  metadata: {
+    ...useCase.metadata,
+    tags: processUseCaseTags(useCase.metadata.tags)
+  }
+}));
+
 // Mapping from node names to tag equivalents
 const NODE_TAG_MAPPING: Record<string, string> = {
   'Information Retrieval': 'knowledge-retrieval',
@@ -94,11 +135,11 @@ export function getUseCasesForNode(nodeName: string): UseCase[] {
   const tag = NODE_TAG_MAPPING[nodeName];
   if (!tag) return [];
   
-  return USE_CASES.filter(useCase => 
+  return PROCESSED_USE_CASES.filter(useCase => 
     useCase.metadata.tags.includes(tag)
   );
 }
 
 export function getAllUseCases(): UseCase[] {
-  return USE_CASES;
+  return PROCESSED_USE_CASES;
 }
