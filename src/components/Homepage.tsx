@@ -37,9 +37,6 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy, i
         <h2 className="text-2xl font-light text-foreground/90 tracking-wide">
           Navigate the frontier of artificial intelligence
         </h2>
-        <p className="text-muted-foreground max-w-md mx-auto leading-relaxed mt-4">
-          Explore AI techniques and guide clients to the right solutions through an interactive taxonomy
-        </p>
       </div>
 
       {/* Main AI circle in center */}
