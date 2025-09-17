@@ -3,5 +3,5 @@
   "title": "Smart RAG Search for the Metaalunie Website",
   "company": "Metaalunie",
   "sector": "Industry",
-  "tags": ["knowledge-retrieval", "document-search-drafting", "summarization-extraction", "text-classification"]
+  "tags": ["knowledge-retrieval", "document-search-drafting", "summarization-extraction", "text-classification", "anomaly-detection"]
 }
