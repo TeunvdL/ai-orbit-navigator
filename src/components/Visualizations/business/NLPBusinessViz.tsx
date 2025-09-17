@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AIAgentsViz() {
+export default function NLPBusinessViz() {
   // Chat bubbles representing agent interactions
   const chatBubbles = [
     { x: 100, y: 150, width: 80, height: 30, isAgent: true },

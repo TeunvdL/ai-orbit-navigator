@@ -64,7 +64,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     
     const guidanceMap: { [key: string]: string } = {
       'machine-learning-business': 'Do you work with structured data like spreadsheets, databases, or need predictions?',
-      'AI-agents': 'Do you work with text, documents, or need conversational interfaces?',
+      'NLP-business': 'Do you work with text, documents, or need conversational interfaces?',
       'predict-plan': 'Need forecasting, demand planning, or risk assessment?',
       'decision-making': 'Want to automate decisions or personalize recommendations?', 
       'optimize': 'Looking to improve efficiency, reduce costs, or enhance performance?',
@@ -85,7 +85,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     'supervised-learning', 'unsupervised-learning', 'reinforcement-learning',
     'regression', 'classification', 'clustering', 'feature-extraction', 'ensemble-learning',
     // Business visualization nodes
-    'machine-learning-business', 'AI-agents', 'predict-plan', 'decision-making',
+    'machine-learning-business', 'NLP-business', 'predict-plan', 'decision-making',
     'optimize', 'image-recognition', 'information-retrieval', 'smart-assistants', 'text-analysis'
   ];
 
