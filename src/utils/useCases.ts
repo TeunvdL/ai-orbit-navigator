@@ -43,6 +43,17 @@ function processUseCaseTags(tags: string[]): string[] {
   return removeLowestLevelTags(expanded);
 }
 
+// Dynamically load use cases (metadata + markdown) from the repository
+const metaModules = import.meta.glob('../data/use-cases/**/metadata.json', { eager: true, import: 'default' }) as Record<string, UseCaseMetadata>;
+const contentModules = import.meta.glob('../data/use-cases/**/use-case.md', { eager: true, as: 'raw' }) as Record<string, string>;
+
+const LOADED_USE_CASES: UseCase[] = Object.entries(metaModules).map(([path, metadata]) => {
+  const dir = path.replace(/\/metadata\.json$/, '');
+  const contentPath = `${dir}/use-case.md`;
+  const content = contentModules[contentPath] ?? '';
+  return { metadata, content };
+});
+
 // Static use cases data - in a real app this would be loaded dynamically
 const USE_CASES: UseCase[] = [
   {
@@ -112,7 +123,9 @@ Self‑service rate, p95 answer latency, citation coverage %, deflection vs. ser
 ];
 
 // Process use case tags to expand and filter them  
-const PROCESSED_USE_CASES: UseCase[] = USE_CASES.map(useCase => ({
+const SOURCE_USE_CASES = LOADED_USE_CASES.length ? LOADED_USE_CASES : USE_CASES;
+
+const PROCESSED_USE_CASES: UseCase[] = SOURCE_USE_CASES.map(useCase => ({
   ...useCase,
   metadata: {
     ...useCase.metadata,
