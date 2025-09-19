@@ -214,7 +214,8 @@ export const AIExplorer: React.FC = () => {
             node={detailNode}
             getParentName={getParentName}
             onBack={handleBackToTaxonomy}
-            isBusinessMode={isBusinessMode} // Pass the state to DetailPage
+            isBusinessMode={isBusinessMode}
+            businessFocus={businessFocus}
           />
         </div>
       ) : null;

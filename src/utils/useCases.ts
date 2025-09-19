@@ -51,7 +51,19 @@ const LOADED_USE_CASES: UseCase[] = Object.entries(metaModules).map(([path, meta
   const dir = path.replace(/\/metadata\.json$/, '');
   const contentPath = `${dir}/use-case.md`;
   const content = contentModules[contentPath] ?? '';
-  return { metadata, content };
+  
+  // Extract sector from folder path
+  const pathParts = path.split('/');
+  const sectorIndex = pathParts.findIndex(part => part === 'use-cases') + 1;
+  const sector = pathParts[sectorIndex] || 'unknown';
+  
+  return { 
+    metadata: {
+      ...metadata,
+      sector: sector
+    }, 
+    content 
+  };
 });
 
 // Static use cases data - in a real app this would be loaded dynamically
@@ -144,13 +156,20 @@ const NODE_TAG_MAPPING: Record<string, string> = {
   'Image Recognition': 'image-recognition'
 };
 
-export function getUseCasesForNode(nodeName: string): UseCase[] {
+export function getUseCasesForNode(nodeName: string, businessFocus?: 'care' | 'industry'): UseCase[] {
   const tag = NODE_TAG_MAPPING[nodeName];
   if (!tag) return [];
   
-  return PROCESSED_USE_CASES.filter(useCase => 
-    useCase.metadata.tags.includes(tag)
-  );
+  return PROCESSED_USE_CASES.filter(useCase => {
+    const hasTag = useCase.metadata.tags.includes(tag);
+    
+    // If businessFocus is specified, filter by sector
+    if (businessFocus) {
+      return hasTag && useCase.metadata.sector === businessFocus;
+    }
+    
+    return hasTag;
+  });
 }
 
 export function getAllUseCases(): UseCase[] {

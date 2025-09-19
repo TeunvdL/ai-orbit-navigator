@@ -8,10 +8,11 @@ interface DetailCardProps {
   parentName?: string;
   className?: string;
   isBusinessMode?: boolean;
+  businessFocus?: 'care' | 'industry';
 }
 
-export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false }) => {
-  const useCases = isBusinessMode ? getUseCasesForNode(node.name) : [];
+export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
+  const useCases = isBusinessMode ? getUseCasesForNode(node.name, businessFocus) : [];
   const isLeafNode = !node.children || node.children.length === 0;
   return (
     <div className={`bg-gray-800/50 border-cyan-500/30 backdrop-blur-sm shadow-2xl rounded-lg border ${className}`}>

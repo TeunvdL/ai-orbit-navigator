@@ -9,10 +9,11 @@ interface DetailPageProps {
   parentName?: string;
   onBack: () => void;
   getParentName?: (node: TreeNodeData) => string | undefined;
-  isBusinessMode?: boolean; // Added prop for business mode
+  isBusinessMode?: boolean;
+  businessFocus?: 'care' | 'industry';
 }
 
-export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack, isBusinessMode = false }) => {
+export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack, isBusinessMode = false, businessFocus }) => {
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-y-auto">
       {/* Radial Color Highlights */}
@@ -42,7 +43,7 @@ export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack
           </div>
 
           {/* Card Container */}
-          <DetailCard node={node} parentName={parentName} className="mb-6" isBusinessMode={isBusinessMode} />
+          <DetailCard node={node} parentName={parentName} className="mb-6" isBusinessMode={isBusinessMode} businessFocus={businessFocus} />
         </div>
       </div>
     </div>
