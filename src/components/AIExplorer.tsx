@@ -6,7 +6,7 @@ import { Homepage } from './Homepage';
 import { NavigationView } from './NavigationView';
 import { DetailPage } from './DetailPage';
 import { Switch } from './ui/switch';
-import { Code, Briefcase, Heart, Factory } from 'lucide-react';
+import { Code, Briefcase, Stethoscope, Factory } from 'lucide-react';
 
 type ViewMode = 'homepage' | 'navigation' | 'detail';
 
@@ -125,7 +125,7 @@ export const AIExplorer: React.FC = () => {
           {/* Business Focus Toggle with Icons */}
           {isBusinessMode && (
             <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <Heart className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
+              <Stethoscope className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
               <Switch
                 id="business-focus"
                 checked={businessFocus === 'industry'}
@@ -160,7 +160,7 @@ export const AIExplorer: React.FC = () => {
           {/* Business Focus Toggle with Icons */}
           {isBusinessMode && (
             <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <Heart className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
+              <Stethoscope className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
               <Switch
                 id="business-focus"
                 checked={businessFocus === 'industry'}
@@ -200,7 +200,7 @@ export const AIExplorer: React.FC = () => {
           {/* Business Focus Toggle with Icons */}
           {isBusinessMode && (
             <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <Heart className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
+              <Stethoscope className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
               <Switch
                 id="business-focus"
                 checked={businessFocus === 'industry'}
