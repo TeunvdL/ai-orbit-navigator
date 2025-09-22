@@ -6,7 +6,9 @@ import { Homepage } from './Homepage';
 import { NavigationView } from './NavigationView';
 import { DetailPage } from './DetailPage';
 import { Switch } from './ui/switch';
-import { Code, Briefcase, Stethoscope, Factory } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Button } from './ui/button';
+import { Code, Briefcase, Stethoscope, Factory, Languages } from 'lucide-react';
 
 type ViewMode = 'homepage' | 'navigation' | 'detail';
 
@@ -16,6 +18,7 @@ export const AIExplorer: React.FC = () => {
   const [detailNode, setDetailNode] = useState<TreeNodeData | null>(null);
   const [isBusinessMode, setIsBusinessMode] = useState<boolean>(false);
   const [businessFocus, setBusinessFocus] = useState<'care' | 'industry'>('care'); // New state for business focus
+  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'nl'>('en'); // New state for language
 
   // Load business mode from localStorage on mount and sync path
   useEffect(() => {
@@ -44,6 +47,19 @@ export const AIExplorer: React.FC = () => {
   useEffect(() => {
     localStorage.setItem('businessFocus', businessFocus);
   }, [businessFocus]);
+
+  // Load current language from localStorage on mount
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('currentLanguage');
+    if (savedLanguage !== null) {
+      setCurrentLanguage(savedLanguage as 'en' | 'nl');
+    }
+  }, []);
+
+  // Save current language to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('currentLanguage', currentLanguage);
+  }, [currentLanguage]);
 
   const currentNode = currentPath[currentPath.length - 1];
 
@@ -111,6 +127,38 @@ export const AIExplorer: React.FC = () => {
     case 'homepage':
       return (
         <div className="relative min-h-screen">
+          {/* Language Switcher */}
+          <div className="fixed top-6 left-6 z-50">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
+                  <Languages className="w-4 h-4 mr-2" />
+                  {currentLanguage === 'en' ? 'English' : 'Nederlands'}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-40 p-2">
+                <div className="space-y-1">
+                  <Button
+                    variant={currentLanguage === 'en' ? 'default' : 'ghost'}
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={() => setCurrentLanguage('en')}
+                  >
+                    English
+                  </Button>
+                  <Button
+                    variant={currentLanguage === 'nl' ? 'default' : 'ghost'}
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={() => setCurrentLanguage('nl')}
+                  >
+                    Nederlands
+                  </Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+
           {/* Business Mode Toggle */}
           <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
             <Code className="w-4 h-4 text-muted-foreground" />
@@ -146,6 +194,38 @@ export const AIExplorer: React.FC = () => {
     case 'navigation':
       return (
         <div className="relative min-h-screen">
+          {/* Language Switcher */}
+          <div className="fixed top-6 left-6 z-50">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
+                  <Languages className="w-4 h-4 mr-2" />
+                  {currentLanguage === 'en' ? 'English' : 'Nederlands'}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-40 p-2">
+                <div className="space-y-1">
+                  <Button
+                    variant={currentLanguage === 'en' ? 'default' : 'ghost'}
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={() => setCurrentLanguage('en')}
+                  >
+                    English
+                  </Button>
+                  <Button
+                    variant={currentLanguage === 'nl' ? 'default' : 'ghost'}
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={() => setCurrentLanguage('nl')}
+                  >
+                    Nederlands
+                  </Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+
           {/* Business Mode Toggle */}
           <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
             <Code className="w-4 h-4 text-muted-foreground" />
@@ -186,6 +266,38 @@ export const AIExplorer: React.FC = () => {
     case 'detail':
       return detailNode ? (
         <div className="relative min-h-screen">
+          {/* Language Switcher */}
+          <div className="fixed top-6 left-6 z-50">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
+                  <Languages className="w-4 h-4 mr-2" />
+                  {currentLanguage === 'en' ? 'English' : 'Nederlands'}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-40 p-2">
+                <div className="space-y-1">
+                  <Button
+                    variant={currentLanguage === 'en' ? 'default' : 'ghost'}
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={() => setCurrentLanguage('en')}
+                  >
+                    English
+                  </Button>
+                  <Button
+                    variant={currentLanguage === 'nl' ? 'default' : 'ghost'}
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={() => setCurrentLanguage('nl')}
+                  >
+                    Nederlands
+                  </Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+
           {/* Business Mode Toggle */}
           <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
             <Code className="w-4 h-4 text-muted-foreground" />
