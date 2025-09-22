@@ -168,7 +168,6 @@ export const AIExplorer: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Code className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-sm">Technical</span>
                       </div>
                       <Switch
                         id="business-mode"
@@ -176,7 +175,6 @@ export const AIExplorer: React.FC = () => {
                         onCheckedChange={handleBusinessModeToggle}
                       />
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">Business</span>
                         <Briefcase className="w-4 h-4 text-muted-foreground" />
                       </div>
                     </div>
@@ -189,7 +187,6 @@ export const AIExplorer: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Stethoscope className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-sm">Care</span>
                         </div>
                         <Switch
                           id="business-focus"
@@ -197,7 +194,6 @@ export const AIExplorer: React.FC = () => {
                           onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
                         />
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">Industry</span>
                           <Factory className="w-4 h-4 text-muted-foreground" />
                         </div>
                       </div>
@@ -260,7 +256,6 @@ export const AIExplorer: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Code className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-sm">Technical</span>
                       </div>
                       <Switch
                         id="business-mode"
@@ -268,7 +263,6 @@ export const AIExplorer: React.FC = () => {
                         onCheckedChange={handleBusinessModeToggle}
                       />
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">Business</span>
                         <Briefcase className="w-4 h-4 text-muted-foreground" />
                       </div>
                     </div>
@@ -281,7 +275,6 @@ export const AIExplorer: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Stethoscope className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-sm">Care</span>
                         </div>
                         <Switch
                           id="business-focus"
@@ -289,7 +282,6 @@ export const AIExplorer: React.FC = () => {
                           onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
                         />
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">Industry</span>
                           <Factory className="w-4 h-4 text-muted-foreground" />
                         </div>
                       </div>
@@ -357,7 +349,6 @@ export const AIExplorer: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Code className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-sm">Technical</span>
                       </div>
                       <Switch
                         id="business-mode"
@@ -365,7 +356,6 @@ export const AIExplorer: React.FC = () => {
                         onCheckedChange={handleBusinessModeToggle}
                       />
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">Business</span>
                         <Briefcase className="w-4 h-4 text-muted-foreground" />
                       </div>
                     </div>
@@ -378,7 +368,6 @@ export const AIExplorer: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Stethoscope className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-sm">Care</span>
                         </div>
                         <Switch
                           id="business-focus"
@@ -386,7 +375,6 @@ export const AIExplorer: React.FC = () => {
                           onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
                         />
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">Industry</span>
                           <Factory className="w-4 h-4 text-muted-foreground" />
                         </div>
                       </div>
