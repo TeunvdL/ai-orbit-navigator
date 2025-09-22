@@ -8,7 +8,7 @@ import { DetailPage } from './DetailPage';
 import { Switch } from './ui/switch';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Button } from './ui/button';
-import { Code, Briefcase, Stethoscope, Factory, Languages } from 'lucide-react';
+import { Code, Briefcase, Stethoscope, Factory, Languages, Menu } from 'lucide-react';
 
 type ViewMode = 'homepage' | 'navigation' | 'detail';
 
@@ -127,61 +127,86 @@ export const AIExplorer: React.FC = () => {
     case 'homepage':
       return (
         <div className="relative min-h-screen">
-          {/* Language Switcher */}
-          <div className="fixed top-6 left-6 z-50">
+          {/* Settings Menu */}
+          <div className="fixed top-6 right-6 z-50">
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
-                  <Languages className="w-4 h-4 mr-2" />
-                  {currentLanguage === 'en' ? 'English' : 'Nederlands'}
+                  <Menu className="w-4 h-4" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-40 p-2">
-                <div className="space-y-1">
-                  <Button
-                    variant={currentLanguage === 'en' ? 'default' : 'ghost'}
-                    size="sm"
-                    className="w-full justify-start"
-                    onClick={() => setCurrentLanguage('en')}
-                  >
-                    English
-                  </Button>
-                  <Button
-                    variant={currentLanguage === 'nl' ? 'default' : 'ghost'}
-                    size="sm"
-                    className="w-full justify-start"
-                    onClick={() => setCurrentLanguage('nl')}
-                  >
-                    Nederlands
-                  </Button>
+              <PopoverContent className="w-64 p-4">
+                <div className="space-y-4">
+                  {/* Language Switcher */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Language</label>
+                    <div className="flex gap-2">
+                      <Button
+                        variant={currentLanguage === 'en' ? 'default' : 'outline'}
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => setCurrentLanguage('en')}
+                      >
+                        <Languages className="w-4 h-4 mr-2" />
+                        English
+                      </Button>
+                      <Button
+                        variant={currentLanguage === 'nl' ? 'default' : 'outline'}
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => setCurrentLanguage('nl')}
+                      >
+                        <Languages className="w-4 h-4 mr-2" />
+                        Nederlands
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Technical/Business Mode Toggle */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">View Mode</label>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Code className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm">Technical</span>
+                      </div>
+                      <Switch
+                        id="business-mode"
+                        checked={isBusinessMode}
+                        onCheckedChange={handleBusinessModeToggle}
+                      />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">Business</span>
+                        <Briefcase className="w-4 h-4 text-muted-foreground" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Care/Industry Toggle */}
+                  {isBusinessMode && (
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Business Focus</label>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Stethoscope className="w-4 h-4 text-muted-foreground" />
+                          <span className="text-sm">Care</span>
+                        </div>
+                        <Switch
+                          id="business-focus"
+                          checked={businessFocus === 'industry'}
+                          onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
+                        />
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">Industry</span>
+                          <Factory className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
           </div>
-
-          {/* Business Mode Toggle */}
-          <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-            <Code className="w-4 h-4 text-muted-foreground" />
-            <Switch
-              id="business-mode"
-              checked={isBusinessMode}
-              onCheckedChange={handleBusinessModeToggle}
-            />
-            <Briefcase className="w-4 h-4 text-muted-foreground" />
-          </div>
-
-          {/* Business Focus Toggle with Icons */}
-          {isBusinessMode && (
-            <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <Stethoscope className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
-              <Switch
-                id="business-focus"
-                checked={businessFocus === 'industry'}
-                onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
-              />
-              <Factory className="w-4 h-4 text-muted-foreground" /> {/* Industry Icon */}
-            </div>
-          )}
 
           <Homepage
             rootNode={isBusinessMode ? aiTaxonomyDataBusiness : aiTaxonomyData}
@@ -194,61 +219,86 @@ export const AIExplorer: React.FC = () => {
     case 'navigation':
       return (
         <div className="relative min-h-screen">
-          {/* Language Switcher */}
-          <div className="fixed top-6 left-6 z-50">
+          {/* Settings Menu */}
+          <div className="fixed top-6 right-6 z-50">
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
-                  <Languages className="w-4 h-4 mr-2" />
-                  {currentLanguage === 'en' ? 'English' : 'Nederlands'}
+                  <Menu className="w-4 h-4" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-40 p-2">
-                <div className="space-y-1">
-                  <Button
-                    variant={currentLanguage === 'en' ? 'default' : 'ghost'}
-                    size="sm"
-                    className="w-full justify-start"
-                    onClick={() => setCurrentLanguage('en')}
-                  >
-                    English
-                  </Button>
-                  <Button
-                    variant={currentLanguage === 'nl' ? 'default' : 'ghost'}
-                    size="sm"
-                    className="w-full justify-start"
-                    onClick={() => setCurrentLanguage('nl')}
-                  >
-                    Nederlands
-                  </Button>
+              <PopoverContent className="w-64 p-4">
+                <div className="space-y-4">
+                  {/* Language Switcher */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Language</label>
+                    <div className="flex gap-2">
+                      <Button
+                        variant={currentLanguage === 'en' ? 'default' : 'outline'}
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => setCurrentLanguage('en')}
+                      >
+                        <Languages className="w-4 h-4 mr-2" />
+                        English
+                      </Button>
+                      <Button
+                        variant={currentLanguage === 'nl' ? 'default' : 'outline'}
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => setCurrentLanguage('nl')}
+                      >
+                        <Languages className="w-4 h-4 mr-2" />
+                        Nederlands
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Technical/Business Mode Toggle */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">View Mode</label>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Code className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm">Technical</span>
+                      </div>
+                      <Switch
+                        id="business-mode"
+                        checked={isBusinessMode}
+                        onCheckedChange={handleBusinessModeToggle}
+                      />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">Business</span>
+                        <Briefcase className="w-4 h-4 text-muted-foreground" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Care/Industry Toggle */}
+                  {isBusinessMode && (
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Business Focus</label>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Stethoscope className="w-4 h-4 text-muted-foreground" />
+                          <span className="text-sm">Care</span>
+                        </div>
+                        <Switch
+                          id="business-focus"
+                          checked={businessFocus === 'industry'}
+                          onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
+                        />
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">Industry</span>
+                          <Factory className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
           </div>
-
-          {/* Business Mode Toggle */}
-          <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-            <Code className="w-4 h-4 text-muted-foreground" />
-            <Switch
-              id="business-mode"
-              checked={isBusinessMode}
-              onCheckedChange={handleBusinessModeToggle}
-            />
-            <Briefcase className="w-4 h-4 text-muted-foreground" />
-          </div>
-
-          {/* Business Focus Toggle with Icons */}
-          {isBusinessMode && (
-            <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <Stethoscope className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
-              <Switch
-                id="business-focus"
-                checked={businessFocus === 'industry'}
-                onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
-              />
-              <Factory className="w-4 h-4 text-muted-foreground" /> {/* Industry Icon */}
-            </div>
-          )}
 
           <NavigationView
             currentNode={currentNode}
@@ -266,61 +316,86 @@ export const AIExplorer: React.FC = () => {
     case 'detail':
       return detailNode ? (
         <div className="relative min-h-screen">
-          {/* Language Switcher */}
-          <div className="fixed top-6 left-6 z-50">
+          {/* Settings Menu */}
+          <div className="fixed top-6 right-6 z-50">
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
-                  <Languages className="w-4 h-4 mr-2" />
-                  {currentLanguage === 'en' ? 'English' : 'Nederlands'}
+                  <Menu className="w-4 h-4" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-40 p-2">
-                <div className="space-y-1">
-                  <Button
-                    variant={currentLanguage === 'en' ? 'default' : 'ghost'}
-                    size="sm"
-                    className="w-full justify-start"
-                    onClick={() => setCurrentLanguage('en')}
-                  >
-                    English
-                  </Button>
-                  <Button
-                    variant={currentLanguage === 'nl' ? 'default' : 'ghost'}
-                    size="sm"
-                    className="w-full justify-start"
-                    onClick={() => setCurrentLanguage('nl')}
-                  >
-                    Nederlands
-                  </Button>
+              <PopoverContent className="w-64 p-4">
+                <div className="space-y-4">
+                  {/* Language Switcher */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Language</label>
+                    <div className="flex gap-2">
+                      <Button
+                        variant={currentLanguage === 'en' ? 'default' : 'outline'}
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => setCurrentLanguage('en')}
+                      >
+                        <Languages className="w-4 h-4 mr-2" />
+                        English
+                      </Button>
+                      <Button
+                        variant={currentLanguage === 'nl' ? 'default' : 'outline'}
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => setCurrentLanguage('nl')}
+                      >
+                        <Languages className="w-4 h-4 mr-2" />
+                        Nederlands
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Technical/Business Mode Toggle */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">View Mode</label>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Code className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm">Technical</span>
+                      </div>
+                      <Switch
+                        id="business-mode"
+                        checked={isBusinessMode}
+                        onCheckedChange={handleBusinessModeToggle}
+                      />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">Business</span>
+                        <Briefcase className="w-4 h-4 text-muted-foreground" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Care/Industry Toggle */}
+                  {isBusinessMode && (
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Business Focus</label>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Stethoscope className="w-4 h-4 text-muted-foreground" />
+                          <span className="text-sm">Care</span>
+                        </div>
+                        <Switch
+                          id="business-focus"
+                          checked={businessFocus === 'industry'}
+                          onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
+                        />
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">Industry</span>
+                          <Factory className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
           </div>
-
-          {/* Business Mode Toggle */}
-          <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-            <Code className="w-4 h-4 text-muted-foreground" />
-            <Switch
-              id="business-mode"
-              checked={isBusinessMode}
-              onCheckedChange={handleBusinessModeToggle}
-            />
-            <Briefcase className="w-4 h-4 text-muted-foreground" />
-          </div>
-
-          {/* Business Focus Toggle with Icons */}
-          {isBusinessMode && (
-            <div className="fixed top-16 right-6 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 border">
-              <Stethoscope className="w-4 h-4 text-muted-foreground" /> {/* Care Icon */}
-              <Switch
-                id="business-focus"
-                checked={businessFocus === 'industry'}
-                onCheckedChange={(checked) => handleBusinessFocusToggle(checked ? 'industry' : 'care')}
-              />
-              <Factory className="w-4 h-4 text-muted-foreground" /> {/* Industry Icon */}
-            </div>
-          )}
 
           <DetailPage
             node={detailNode}
