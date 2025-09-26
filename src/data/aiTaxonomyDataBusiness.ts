@@ -9,27 +9,21 @@ export const aiTaxonomyDataBusiness = {
       "description": "AI technologies that work with structured data to predict, decide, and optimize.",
       "children": [
         {
-          "id": "predict-plan",
-          "name": "Predict & Plan",
-          "description": "Use AI to forecast future outcomes and plan ahead.",
+          "id": "detect",
+          "name": "Detect",
+          "description": "Techniques used to identify patterns, anomalies, or specific features in data. This includes tasks like anomaly detection, image segmentation, and classification, which help in recognizing and categorizing data effectively.",
           "children": []
         },
         {
-          "id": "decision-making",
-          "name": "Decision Making",
-          "description": "Automate decisions and personalize actions based on data.",
+          "id": "predict",
+          "name": "Predict",
+          "description": "Methods that forecast future trends or behaviors based on historical data. Applications include predictive maintenance, forecasting demand, and creating digital twins to simulate real-world systems.",
           "children": []
         },
         {
           "id": "optimize",
           "name": "Optimize",
-          "description": "Improve efficiency and performance of operations and processes.",
-          "children": []
-        },
-        {
-          "id": "image-recognition",
-          "name": "Image Recognition",
-          "description": "Detect and interpret visual patterns in images or video.",
+          "description": "Approaches aimed at improving processes, systems, or decisions. This involves tasks like planning optimization, process mining, and recommendation systems to enhance efficiency and decision-making.",
           "children": []
         }
       ]
