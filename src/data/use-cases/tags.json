@@ -1,0 +1,27 @@
+{
+  "anomaly-detection": ["anomaly-detection", "detect", "machine-learning"],
+  "segmentation": ["segmentation", "detect", "machine-learning"],
+  "image-recognition": ["image-recognition", "detect", "machine-learning"],
+  "classification": ["classification", "detect", "machine-learning"],
+  "scoring": ["scoring", "detect", "machine-learning"],
+
+  "forecasting": ["forecasting", "predict", "machine-learning"],
+  "predictive-maintenance": ["predictive-maintenance", "predict", "machine-learning"],
+  "digital-twin": ["digital-twin", "predict", "machine-learning"],
+
+  "engineering-optimization": ["engineering-optimization", "optimize", "machine-learning"],
+  "planning-optimization": ["planning-optimization", "optimize", "machine-learning"],
+  "process-mining": ["process-mining", "optimize", "machine-learning"],
+  "prioritization": ["prioritization", "optimize", "machine-learning"],
+  "recommendation-systems": ["recommendation-systems", "optimize", "machine-learning"],
+  "decision-automation": ["decision-automation", "optimize", "machine-learning"],
+
+  "document-search-drafting": ["document-search-drafting", "information-retrieval", "natural-language-processing"],
+  "knowledge-retrieval": ["knowledge-retrieval", "information-retrieval", "natural-language-processing"],
+
+  "summarization-extraction": ["summarization-extraction", "text-analysis", "natural-language-processing"],
+  "sentiment-analysis": ["sentiment-analysis", "text-analysis", "natural-language-processing"],
+  "text-classification": ["text-classification", "text-analysis", "natural-language-processing"],
+
+  "smart-assistants": ["smart-assistants", "natural-language-processing"]
+}

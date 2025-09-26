@@ -12,7 +12,7 @@ export interface UseCase {
 }
 
 // Import tag hierarchy
-import tagHierarchy from '../data/use-cases/industry/tags.json';
+import tagHierarchy from '../data/use-cases/tags.json';
 
 // Function to expand tags based on hierarchy
 function expandTags(tags: string[]): string[] {
@@ -141,19 +141,22 @@ const PROCESSED_USE_CASES: UseCase[] = SOURCE_USE_CASES.map(useCase => ({
   ...useCase,
   metadata: {
     ...useCase.metadata,
-    tags: processUseCaseTags(useCase.metadata.tags)
+    tags: processUseCaseTags(useCase.metadata.tags),
+    sector: (useCase.metadata.sector || '').toLowerCase() // normalize sector to lowercase
   }
 }));
 
 // Mapping from node names to tag equivalents
 const NODE_TAG_MAPPING: Record<string, string> = {
   'Information Retrieval': 'information-retrieval',
-  'Smart Assistants': 'smart-assistants',
+  'Smart Assistants': 'natural-language-processing', // use parent-level tag to match processed tags
   'Text Analysis': 'text-analysis',
   'Predict & Plan': 'predict-plan',
+  'Predict': 'predict', // Added mapping for new node name
   'Decision Making': 'decision-making',
   'Optimize': 'optimize',
-  'Image Recognition': 'image-recognition'
+  'Image Recognition': 'image-recognition',
+  'Detect': 'detect' // Added mapping for Detect node
 };
 
 export function getUseCasesForNode(nodeName: string, businessFocus?: 'care' | 'industry'): UseCase[] {
@@ -163,9 +166,9 @@ export function getUseCasesForNode(nodeName: string, businessFocus?: 'care' | 'i
   return PROCESSED_USE_CASES.filter(useCase => {
     const hasTag = useCase.metadata.tags.includes(tag);
     
-    // If businessFocus is specified, filter by sector
+    // If businessFocus is specified, filter by sector (both lowercase)
     if (businessFocus) {
-      return hasTag && useCase.metadata.sector === businessFocus;
+      return hasTag && (useCase.metadata.sector === businessFocus);
     }
     
     return hasTag;

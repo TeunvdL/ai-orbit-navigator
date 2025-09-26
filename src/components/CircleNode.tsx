@@ -13,15 +13,15 @@ import ClusteringViz from './Visualizations/technical/ClusteringViz';
 import FeatureExtractionViz from './Visualizations/technical/FeatureExtractionViz';
 import EnsembleLearningViz from './Visualizations/technical/EnsembleLearningViz';
 // Business visualizations
-import MachineLearningBusinessViz from './Visualizations/business/MachineLearningBusinessViz';
-import NLPBusinessViz from './Visualizations/business/NLPBusinessViz';
-import PredictPlanViz from './Visualizations/business/PredictPlanViz';
-import DecisionMakingViz from './Visualizations/business/DecisionMakingViz';
-import OptimizeViz from './Visualizations/business/OptimizeViz';
-import ImageRecognitionViz from './Visualizations/business/ImageRecognitionViz';
-import InformationRetrievalViz from './Visualizations/business/InformationRetrievalViz';
-import SmartAssistantsViz from './Visualizations/business/SmartAssistantsViz';
-import TextAnalysisViz from './Visualizations/business/TextAnalysisViz';
+import MachineLearningBusinessViz from './Visualizations/Business/MachineLearningBusinessViz';
+import NLPBusinessViz from './Visualizations/Business/NLPBusinessViz';
+import PredictViz from './Visualizations/Business/PredictViz';
+import DecisionMakingViz from './Visualizations/Business/DecisionMakingViz';
+import OptimizeViz from './Visualizations/Business/OptimizeViz';
+import ImageRecognitionViz from './Visualizations/Business/ImageRecognitionViz';
+import InformationRetrievalViz from './Visualizations/Business/InformationRetrievalViz';
+import SmartAssistantsViz from './Visualizations/Business/SmartAssistantsViz';
+import TextAnalysisViz from './Visualizations/Business/TextAnalysisViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -65,13 +65,12 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     const guidanceMap: { [key: string]: string } = {
       'machine-learning-business': 'Do you work with structured data like spreadsheets, databases, or need predictions?',
       'NLP-business': 'Do you work with text, documents, or need conversational interfaces?',
-      'predict-plan': 'Need forecasting, demand planning, or risk assessment?',
-      'decision-making': 'Want to automate decisions or personalize recommendations?', 
+      'predict': 'Need forecasting, demand planning, or risk assessment?',
       'optimize': 'Looking to improve efficiency, reduce costs, or enhance performance?',
-      'image-recognition': 'Work with visual content, photos, or video analysis?',
       'information-retrieval': 'Need to search through documents or knowledge bases?',
       'smart-assistants': 'Want chatbots, virtual assistants, or customer service automation?',
-      'text-analysis': 'Need to analyze feedback, extract insights, or summarize content?'
+      'text-analysis': 'Need to analyze feedback, extract insights, or summarize content?',
+      'detect': 'Need to identify patterns, anomalies, or specific features in your data?',
     };
     
     return guidanceMap[nodeId] || null;
@@ -85,7 +84,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     'supervised-learning', 'unsupervised-learning', 'reinforcement-learning',
     'regression', 'classification', 'clustering', 'feature-extraction', 'ensemble-learning',
     // Business visualization nodes
-    'machine-learning-business', 'NLP-business', 'predict-plan', 'decision-making',
+    'machine-learning-business', 'NLP-business', 'predict-plan', 'predict', 'decision-making',
     'optimize', 'image-recognition', 'information-retrieval', 'smart-assistants', 'text-analysis'
   ];
 
@@ -108,7 +107,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       // Business visualizations
       case 'machine-learning-business': VizComponent = MachineLearningBusinessViz; break;
       case 'NLP-business': VizComponent = NLPBusinessViz; break;
-      case 'predict-plan': VizComponent = PredictPlanViz; break;
+      case 'predict': VizComponent = PredictViz; break;
       case 'decision-making': VizComponent = DecisionMakingViz; break;
       case 'optimize': VizComponent = OptimizeViz; break;
       case 'image-recognition': VizComponent = ImageRecognitionViz; break;
