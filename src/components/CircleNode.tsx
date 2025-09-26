@@ -13,15 +13,15 @@ import ClusteringViz from './Visualizations/technical/ClusteringViz';
 import FeatureExtractionViz from './Visualizations/technical/FeatureExtractionViz';
 import EnsembleLearningViz from './Visualizations/technical/EnsembleLearningViz';
 // Business visualizations
-import MachineLearningBusinessViz from './Visualizations/Business/MachineLearningBusinessViz';
-import NLPBusinessViz from './Visualizations/Business/NLPBusinessViz';
-import PredictViz from './Visualizations/Business/PredictViz';
-import DecisionMakingViz from './Visualizations/Business/DecisionMakingViz';
-import OptimizeViz from './Visualizations/Business/OptimizeViz';
-import ImageRecognitionViz from './Visualizations/Business/ImageRecognitionViz';
-import InformationRetrievalViz from './Visualizations/Business/InformationRetrievalViz';
-import SmartAssistantsViz from './Visualizations/Business/SmartAssistantsViz';
-import TextAnalysisViz from './Visualizations/Business/TextAnalysisViz';
+import MachineLearningBusinessViz from './Visualizations/business/MachineLearningBusinessViz';
+import NLPBusinessViz from './Visualizations/business/NLPBusinessViz';
+import PredictViz from './Visualizations/business/PredictViz';
+import DecisionMakingViz from './Visualizations/business/DecisionMakingViz';
+import OptimizeViz from './Visualizations/business/OptimizeViz';
+import ImageRecognitionViz from './Visualizations/business/ImageRecognitionViz';
+import InformationRetrievalViz from './Visualizations/business/InformationRetrievalViz';
+import SmartAssistantsViz from './Visualizations/business/SmartAssistantsViz';
+import TextAnalysisViz from './Visualizations/business/TextAnalysisViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
