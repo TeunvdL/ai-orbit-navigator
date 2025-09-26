@@ -191,20 +191,6 @@ export default function DetectViz() {
             );
           })}
 
-          {/* AI Detection Engine */}
-          <g opacity="0.8">
-            <circle 
-              cx="350" 
-              cy="120" 
-              r="12" 
-              fill="url(#patternZoneGradient)" 
-              filter="url(#detectGlow)"
-            >
-              <animate attributeName="r" values="10;13;10" dur="5s" repeatCount="indefinite" />
-            </circle>
-            <text x="350" y="125" textAnchor="middle" fontSize="8" fill="#ffffff">AI</text>
-          </g>
-
           {/* Detection grid overlay */}
           <g opacity="0.1">
             {[0, 1, 2, 3, 4].map(i => (
