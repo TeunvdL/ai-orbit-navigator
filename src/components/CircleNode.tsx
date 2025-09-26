@@ -22,6 +22,7 @@ import ImageRecognitionViz from './Visualizations/business/ImageRecognitionViz';
 import InformationRetrievalViz from './Visualizations/business/InformationRetrievalViz';
 import SmartAssistantsViz from './Visualizations/business/SmartAssistantsViz';
 import TextAnalysisViz from './Visualizations/business/TextAnalysisViz';
+import DetectViz from './Visualizations/business/DetectViz';
 
 interface CircleNodeProps {
   node: TreeNodeData;
@@ -85,7 +86,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
     'regression', 'classification', 'clustering', 'feature-extraction', 'ensemble-learning',
     // Business visualization nodes
     'machine-learning-business', 'NLP-business', 'predict-plan', 'predict', 'decision-making',
-    'optimize', 'image-recognition', 'information-retrieval', 'smart-assistants', 'text-analysis'
+    'optimize', 'detect', 'image-recognition', 'information-retrieval', 'smart-assistants', 'text-analysis'
   ];
 
   if (visualizationNodes.includes(node.id)) {
@@ -110,6 +111,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       case 'predict': VizComponent = PredictViz; break;
       case 'decision-making': VizComponent = DecisionMakingViz; break;
       case 'optimize': VizComponent = OptimizeViz; break;
+      case 'detect': VizComponent = DetectViz; break;
       case 'image-recognition': VizComponent = ImageRecognitionViz; break;
       case 'information-retrieval': VizComponent = InformationRetrievalViz; break;
       case 'smart-assistants': VizComponent = SmartAssistantsViz; break;
