@@ -12,7 +12,7 @@ export interface UseCase {
 }
 
 // Import tag hierarchy
-import tagHierarchy from '../data/use-cases/industry/tags.json';
+import tagHierarchy from '../data/use-cases/tags.json';
 
 // Function to expand tags based on hierarchy
 function expandTags(tags: string[]): string[] {
