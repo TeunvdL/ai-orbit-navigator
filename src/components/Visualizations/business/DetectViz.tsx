@@ -108,17 +108,6 @@ export default function DetectViz() {
             </g>
           ))}
 
-          {/* Scanning pulse */}
-          <circle
-            cx="200"
-            cy="200"
-            r="50"
-            fill="url(#scanPulseGradient)"
-            filter="url(#scannerBlur)"
-          >
-            <animate attributeName="r" values="20;80;20" dur="3s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;0.2;0.8" dur="3s" repeatCount="indefinite" />
-          </circle>
 
           {/* Data points */}
           {dataPoints.map((point, index) => {
@@ -139,8 +128,8 @@ export default function DetectViz() {
                 >
                   <animate 
                     attributeName="r" 
-                    values="4;8;4" 
-                    dur="2s" 
+                    values="4;7;4" 
+                    dur="4s" 
                     begin={pulseDelay}
                     repeatCount="indefinite" 
                   />
@@ -158,15 +147,15 @@ export default function DetectViz() {
                 >
                   <animate 
                     attributeName="r" 
-                    values="8;16;8" 
-                    dur="2s" 
+                    values="8;14;8" 
+                    dur="4s" 
                     begin={pulseDelay}
                     repeatCount="indefinite" 
                   />
                   <animate 
                     attributeName="opacity" 
-                    values="0.6;0.2;0.6" 
-                    dur="2s" 
+                    values="0.6;0.3;0.6" 
+                    dur="4s" 
                     begin={pulseDelay}
                     repeatCount="indefinite" 
                   />
@@ -211,7 +200,7 @@ export default function DetectViz() {
               fill="url(#patternZoneGradient)" 
               filter="url(#detectGlow)"
             >
-              <animate attributeName="r" values="10;14;10" dur="2s" repeatCount="indefinite" />
+              <animate attributeName="r" values="10;13;10" dur="5s" repeatCount="indefinite" />
             </circle>
             <text x="350" y="125" textAnchor="middle" fontSize="8" fill="#ffffff">AI</text>
           </g>
