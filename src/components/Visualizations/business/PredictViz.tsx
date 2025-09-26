@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function PredictPlanViz() {
+export default function PredictViz() {
   // Forecast data points
   const forecastData = [
     { x: 80, y: 300, type: 'historical' },
