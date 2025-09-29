@@ -1,6 +1,6 @@
 {
-  "title": "Dossier Agent (RAG over Protocols & Records)",
+  "title": "Smart Search Agent",
   "id": "care-dossier-agent-rag",
   "sector": "Care",
-  "tags": ["information-retrieval", "text-analysis"]
+  "tags": ["information-retrieval"]
 }
