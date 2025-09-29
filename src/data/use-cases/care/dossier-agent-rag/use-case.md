@@ -1,7 +1,7 @@
 # Dossier Agent (RAG over Protocols & Records)
 
 **Short description**  
-A retrieval‑augmented assistant that helps care professionals **find, understand, and draft** content grounded in official protocols, guidelines, and (authorized) case data. The agent retrieves the most relevant passages, shows **source citations**, and generates structured **drafts** (handover notes, incident summaries, transfer reports) that a human can review and finalize.
+A retrieval‑augmented assistant that combines **information retrieval** (to quickly locate and cite the most relevant protocol sections and case data) with **text analysis** (to extract key details and structure them into clear, actionable drafts). It helps care professionals **find, interpret, and summarize** content, then generates structured outputs (handover notes, incident summaries, transfer reports) for human review and approval.
 
 ---
 
