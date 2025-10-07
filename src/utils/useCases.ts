@@ -149,14 +149,14 @@ const PROCESSED_USE_CASES: UseCase[] = SOURCE_USE_CASES.map(useCase => ({
 // Mapping from node names to tag equivalents
 const NODE_TAG_MAPPING: Record<string, string> = {
   'Information Retrieval': 'information-retrieval',
-  'Smart Assistants': 'smart-assistants',
+  'Smart Assistants': 'natural-language-processing', // use parent-level tag to match processed tags
   'Text Analysis': 'text-analysis',
   'Predict & Plan': 'predict-plan',
-  'Predict': 'predict',
+  'Predict': 'predict', // Added mapping for new node name
   'Decision Making': 'decision-making',
   'Optimize': 'optimize',
   'Image Recognition': 'image-recognition',
-  'Detect': 'detect'
+  'Detect': 'detect' // Added mapping for Detect node
 };
 
 export function getUseCasesForNode(nodeName: string, businessFocus?: 'care' | 'industry'): UseCase[] {
