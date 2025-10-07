@@ -8,6 +8,8 @@ export interface TreeNodeData {
   applications?: string[];
   advantages?: string[];
   limitations?: string[];
+  gettingStarted?: string[];
+  pitfalls?: string[];
 }
 
 export interface NodePosition {
