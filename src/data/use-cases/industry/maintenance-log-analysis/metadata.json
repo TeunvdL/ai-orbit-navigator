@@ -2,5 +2,5 @@
   "id": "maintenance-log-analysis",
   "title": "Maintenance Log Analysis & Root-Cause Extraction",
   "sector": "Industry",
-  "tags": ["text-analysis"]
+  "tags": ["text-classification", "summarization-extraction"]
 }
