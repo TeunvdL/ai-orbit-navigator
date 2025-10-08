@@ -1,4 +1,4 @@
-## Automated Quality Inspection
+# Automated Quality Inspection
 
 —**Short description**
 Leverage computer vision to detect defects on production lines, including surface scratches, dents, or assembly deviations. Real-time anomaly detection ensures product quality, reduces manual inspection effort, and enhances throughput.
