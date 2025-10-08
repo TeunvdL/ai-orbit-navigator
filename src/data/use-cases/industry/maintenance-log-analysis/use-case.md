@@ -1,6 +1,6 @@
 # Maintenance Log Analysis & Root-Cause Extraction
 
-Unstructured maintenance logs and operator notes often hide **recurring failure patterns**, **slowing preventive maintenance planning**. **Maintenance Log Analysis** uses NLP to **extract actionable insights** and **identify root causes automatically**.  
+Unstructured maintenance logs and operator notes often hide **recurring failure patterns**, **slowing preventive maintenance planning**. **Maintenance Log Analysis** uses **NLP** to **extract actionable insights** and **identify root causes automatically**.  
 ---
 
 ## Business outcomes & KPIs 
