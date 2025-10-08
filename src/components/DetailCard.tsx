@@ -10,6 +10,7 @@ import knowledgeAgent from'../assets/use-cases/knowledge-agent.png';
 import maintenanceLogAnalytics from'../assets/use-cases/maintenance-log-analytics.jpg';
 import ovenTemperatureOptimization from'../assets/use-cases/oven-temperature-optimization.jpg';
 import predictiveMaintenance from'../assets/use-cases/predictive-maintenance.png';
+import productionProcessAutomation from'../assets/use-cases/production-process-automation.jpg';
 
 interface DetailCardProps {
   node: TreeNodeData;
@@ -26,6 +27,7 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'maintenance-log-analysis': maintenanceLogAnalytics,
   'oven-temperature-optimization': ovenTemperatureOptimization,
   'predictive-maintenance': predictiveMaintenance,
+  'production-process-automation': productionProcessAutomation,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
