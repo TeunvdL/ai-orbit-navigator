@@ -1,89 +1,32 @@
 # Automated Quality Inspection
 
-**Short description**
-Leverage computer vision to detect defects on production lines, including surface scratches, dents, or assembly deviations. Real-time anomaly detection ensures product quality, reduces manual inspection effort, and enhances throughput.
+Manual inspection on production lines is **slow**, **error-prone,** and **costly**. **Automated Quality Inspection** leverages computer vision to detect defects in **real time**, ensuring **consistent product quality** and **reducing manual inspection efforts**.  
 
 ---
 
-## Business outcomes & KPIs
-Improved defect detection coverage and product quality consistency.
-Reduced rework, scrap, and associated costs.
-Higher production efficiency and reliability.
+## Business outcomes & KPIs 
+- **Improve defect detection coverage** → catch more errors before products leave the line.  
+- **Reduce rework and scrap** → lower material and labor costs.  
+- **Increase throughput** → maintain high production efficiency.  
+- **Enable actionable insights** → real-time alerts allow operators to intervene immediately.  
 
 ---
 
-## Example KPIs
-Defect detection rate (%), false positive/negative rates, yield %, scrap %, throughput, inspection coverage.
+## Details
 
----
+Automated Quality Inspection captures production images and sensor metadata to detect surface defects, dents, or assembly deviations. Using computer vision models, the system identifies anomalies in real time and triggers alerts or automated sorting to prevent defective products from continuing downstream.  
 
-## Beneficiaries
-Quality control teams (inspection & intervention)
-Production managers (line efficiency & throughput)
-Operations/Engineering teams (process improvement)
-Customers (consistent product quality)
+### Key aspects: 
+- **Data-driven inspection**: combines image/video streams, sensor data, and production logs.  
+- **Advanced AI**: CNN-based models for defect classification, unsupervised detection for rare anomalies.  
+- **Practical output**: dashboards and operator alerts for immediate action.  
+- **Seamless integration**: connects to production control systems for automated sorting or rejection.  
+- **Controlled and safe**: human-in-the-loop review for edge cases ensures reliable operation.  
 
----
+**What this means for your organization:**  
+- Consistent product quality and reduced scrap.  
+- Faster production lines with fewer stoppages.  
+- Enhanced efficiency and operational reliability.  
+- Empowered quality teams with actionable insights.  
 
-## Typical data & systems (examples)
-Image/video streams from production line cameras.
-Sensor metadata: temperature, speed, torque, assembly measurements.
-Production logs: batch numbers, operator actions, machine parameters.
-Contextual data: lighting, environment, production schedules.
 
----
-
-## Process (from data to action)
-Capture and preprocess production images.
-Label historical defect data for supervised learning.
-Train computer vision models (CNNs) to detect and classify defects.
-Apply anomaly detection for rare or unexpected defects.
-Trigger alerts or automated sorting on the line.
-Aggregate metrics for dashboards to monitor trends and continuous improvement.
-
----
-
-## Modeling options
-CNN-based image classification.
-Unsupervised anomaly detection for rare defects.
-Evaluation: accuracy, precision, recall, F1-score, coverage.
-Start with high-volume defect types, then expand to all defect categories.
-
----
-
-## Decision & action integration
-Dashboards displaying real-time defect analytics.
-Operator alerts on defective units for immediate action.
-Integration with production control systems for automated sorting/rejection.
-
----
-
-## Governance, privacy & risk
-Access control for image and production data.
-Version control and model retraining for new products or design changes.
-Human-in-the-loop for edge cases to prevent incorrect rejection.
-
----
-
-## Success criteria
-High detection accuracy, reduced scrap/rework, improved OEE, and positive quality team feedback.
-
----
-
-## Demo/POC outline
-Sample defective vs. non-defective images for pilot.
-Dashboard showing defect classification and detection metrics.
-Simulation of operator alerts and production line integration.
-
----
-
-## Variants & extensions
-Extend to multiple product lines or defect types.
-Combine with root-cause analysis for production process optimization.
-Integrate with predictive maintenance for holistic quality + uptime improvement.
-
----
-
-## AI Explorer taxonomy mapping
-Primary category: Detect
-Tags: computer-vision, quality-control, machine-learning, anomaly-detection
