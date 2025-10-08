@@ -27,7 +27,7 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'maintenance-log-analysis': maintenanceLogAnalytics,
   'oven-temperature-optimization': ovenTemperatureOptimization,
   'predictive-maintenance': predictiveMaintenance,
-  'production-process-automation': productionProcessAutomation,
+  'production-process-optimization': productionProcessAutomation,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
