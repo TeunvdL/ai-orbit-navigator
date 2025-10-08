@@ -21,7 +21,5 @@
 
   "summarization-extraction": ["summarization-extraction", "text-analysis", "natural-language-processing"],
   "sentiment-analysis": ["sentiment-analysis", "text-analysis", "natural-language-processing"],
-  "text-classification": ["text-classification", "text-analysis", "natural-language-processing"],
-
-  "smart-assistants": ["smart-assistants", "natural-language-processing"]
+  "text-classification": ["text-classification", "text-analysis", "natural-language-processing"]
 }
