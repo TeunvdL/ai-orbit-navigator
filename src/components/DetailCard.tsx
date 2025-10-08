@@ -21,7 +21,7 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'automated-quality-inspection': qualityInspectionImage,
   'demand-forecasting': demandForcastingImage,
   'internal-knowledge-agent': knowledgeAgent,
-  'maintenance-log-analytics': maintenanceLogAnalytics,
+  'maintenance-log-analysis': maintenanceLogAnalytics,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
