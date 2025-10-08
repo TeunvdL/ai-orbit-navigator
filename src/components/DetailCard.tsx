@@ -1,7 +1,10 @@
-import React from 'react';
-import { Lightbulb, Cog, Target, TrendingUp, AlertTriangle, Check, AlertCircle, Building2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Lightbulb, Cog, Target, TrendingUp, AlertTriangle, Check, AlertCircle, Building2, Rocket, ShieldAlert } from 'lucide-react';
 import { TreeNodeData } from '../types/treeTypes';
 import { getUseCasesForNode } from '../utils/useCases';
+import { UseCaseCard } from './UseCaseCard';
+import { UseCaseModal } from './UseCaseModal';
+import qualityInspectionImage from '../assets/use-cases/automated-quality-inspection.jpg';
 
 interface DetailCardProps {
   node: TreeNodeData;
@@ -11,9 +14,99 @@ interface DetailCardProps {
   businessFocus?: 'care' | 'industry';
 }
 
+const USE_CASE_IMAGES: Record<string, string> = {
+  'automated-quality-inspection': qualityInspectionImage,
+};
+
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
   const useCases = isBusinessMode ? getUseCasesForNode(node.name, businessFocus) : [];
   const isLeafNode = !node.children || node.children.length === 0;
+  const [selectedUseCase, setSelectedUseCase] = useState<typeof useCases[0] | null>(null);
+  // Business mode with use cases - new layout
+  if (isBusinessMode && isLeafNode && useCases.length > 0) {
+    return (
+      <>
+        <div className={className}>
+          {/* Descriptive Introduction */}
+          <div className="mb-12">
+            <h1 className="text-4xl font-bold text-white mb-6">{node.name}</h1>
+            <p className="text-xl text-gray-300 leading-relaxed">
+              {node.overview}
+            </p>
+          </div>
+
+          {/* Use Cases Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold text-cyan-400 mb-6 flex items-center">
+              <Building2 className="w-6 h-6 mr-3" />
+              Real-World Applications
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {useCases.map((useCase) => (
+                <UseCaseCard
+                  key={useCase.metadata.id}
+                  useCase={useCase}
+                  imageSrc={USE_CASE_IMAGES[useCase.metadata.id] || qualityInspectionImage}
+                  onClick={() => setSelectedUseCase(useCase)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Getting Started Section */}
+          {node.gettingStarted && (
+            <div className="mb-12">
+              <h2 className="text-2xl font-semibold text-cyan-400 mb-6 flex items-center">
+                <Rocket className="w-6 h-6 mr-3" />
+                Getting Started
+              </h2>
+              <div className="bg-gray-800/50 border border-cyan-500/30 rounded-lg p-6">
+                <ul className="space-y-3">
+                  {node.gettingStarted.map((item, index) => (
+                    <li key={index} className="flex items-start space-x-3">
+                      <Check className="text-green-400 mt-1 w-5 h-5 flex-shrink-0" />
+                      <span className="text-gray-100 leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Common Pitfalls Section */}
+          {node.pitfalls && (
+            <div className="mb-12">
+              <h2 className="text-2xl font-semibold text-cyan-400 mb-6 flex items-center">
+                <ShieldAlert className="w-6 h-6 mr-3" />
+                Common Pitfalls & How to Avoid Them
+              </h2>
+              <div className="bg-gray-800/50 border border-yellow-500/30 rounded-lg p-6">
+                <ul className="space-y-3">
+                  {node.pitfalls.map((item, index) => (
+                    <li key={index} className="flex items-start space-x-3">
+                      <AlertTriangle className="text-yellow-400 mt-1 w-5 h-5 flex-shrink-0" />
+                      <span className="text-gray-100 leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Use Case Modal */}
+        {selectedUseCase && (
+          <UseCaseModal
+            useCase={selectedUseCase}
+            imageSrc={USE_CASE_IMAGES[selectedUseCase.metadata.id] || qualityInspectionImage}
+            onClose={() => setSelectedUseCase(null)}
+          />
+        )}
+      </>
+    );
+  }
+
+  // Technical mode or non-leaf nodes - original layout
   return (
     <div className={`bg-gray-800/50 border-cyan-500/30 backdrop-blur-sm shadow-2xl rounded-lg border ${className}`}>
       {/* Card Header */}
@@ -103,40 +196,6 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
                   </li>
                 ))}
               </ul>
-            </div>
-          )}
-
-          {/* Use Cases - only shown in business mode for leaf nodes */}
-          {isBusinessMode && isLeafNode && useCases.length > 0 && (
-            <div>
-              <h3 className="text-lg font-semibold mb-3 flex items-center text-cyan-400">
-                <Building2 className="w-4 h-4 mr-2" />
-                Real-World Use Cases
-              </h3>
-              <div className="space-y-6">
-                {useCases.map((useCase, index) => (
-                  <div key={useCase.metadata.id} className="border border-gray-600/30 rounded-lg p-4 bg-gray-800/30">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h4 className="text-base font-semibold text-white">{useCase.metadata.title}</h4>
-                      <span className="text-sm text-gray-400">— {useCase.metadata.company}</span>
-                    </div>
-                    <div className="text-sm text-gray-300 prose prose-sm prose-invert max-w-none">
-                      <div 
-                        dangerouslySetInnerHTML={{ 
-                          __html: useCase.content
-                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                            .replace(/^## (.*$)/gm, '<h3 class="text-cyan-400 font-semibold mt-4 mb-2">$1</h3>')
-                            .replace(/^# (.*$)/gm, '<h2 class="text-white font-bold text-lg mb-3">$1</h2>')
-                            .replace(/^- (.*$)/gm, '<li class="ml-4">$1</li>')
-                            .replace(/\n\n/g, '</p><p class="mb-2">')
-                            .replace(/^(.+)$/gm, '<p class="mb-2">$1</p>')
-                        }} 
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           )}
         </div>

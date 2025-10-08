@@ -98,7 +98,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "detect",
           "name": "Detect",
           "description": "Techniques used to identify patterns, anomalies, or specific features in data. This includes tasks like anomaly detection, image segmentation, and classification, which help in recognizing and categorizing data effectively.",
-          "overview": "Detection focuses on recognizing items of interest or unusual patterns in data streams or records to trigger alerts or downstream actions.",
+          "overview": "Detection technologies enable businesses to automatically identify quality issues, anomalies, security threats, and other patterns of interest across visual data, sensor streams, and transactional records. From manufacturing defect detection to fraud monitoring, these AI-powered systems provide real-time insights that help prevent problems before they escalate.",
           "howItWorks": "Uses supervised classification, unsupervised anomaly detection, clustering and image analysis techniques. Approaches include thresholding, isolation forests, autoencoders and convolutional neural networks for visual data.",
           "applications": [
             "Fraud and abuse detection",
@@ -115,6 +115,22 @@ export const aiTaxonomyDataBusiness = {
             "Can produce false positives and negatives",
             "Requires labeled data for many approaches",
             "Performance may degrade as patterns evolve"
+          ],
+          "gettingStarted": [
+            "Identify your detection use case: quality control, anomaly detection, fraud monitoring, or pattern recognition",
+            "Collect and label representative examples of normal and anomalous cases from your operations",
+            "Start with a focused pilot on high-impact detection scenarios where manual inspection is costly or error-prone",
+            "Establish baseline performance metrics and define acceptable false positive/negative rates for your business context",
+            "Build integration points for real-time alerts and automated responses to detected issues",
+            "Plan for continuous model retraining as new patterns emerge and your processes evolve"
+          ],
+          "pitfalls": [
+            "Insufficient training data diversity leads to models that miss edge cases - ensure your dataset represents the full range of real-world conditions",
+            "Setting detection thresholds too sensitively creates alert fatigue from false positives - calibrate based on actual business impact",
+            "Failing to account for data drift as processes change - implement monitoring to detect when model performance degrades",
+            "Neglecting the human-in-the-loop workflow - design clear escalation paths for ambiguous detections",
+            "Underestimating integration complexity with existing systems - plan for how detected issues flow into your current workflows",
+            "Not establishing clear ROI metrics upfront - define success criteria beyond technical accuracy (cost savings, quality improvements, etc.)"
           ],
           "tags": ["anomaly-detection", "segmentation", "image-recognition", "classification", "scoring", "detect", "machine-learning"],
           "children": []

@@ -43,7 +43,7 @@ export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack
           </div>
 
           {/* Card Container */}
-          <DetailCard node={node} parentName={parentName} className="mb-6" isBusinessMode={isBusinessMode} businessFocus={businessFocus} />
+          <DetailCard node={node} parentName={parentName} className={isBusinessMode ? "" : "mb-6"} isBusinessMode={isBusinessMode} businessFocus={businessFocus} />
         </div>
       </div>
     </div>
