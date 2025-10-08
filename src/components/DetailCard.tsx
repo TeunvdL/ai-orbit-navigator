@@ -5,7 +5,7 @@ import { getUseCasesForNode } from '../utils/useCases';
 import { UseCaseCard } from './UseCaseCard';
 import { UseCaseModal } from './UseCaseModal';
 import qualityInspectionImage from '../assets/use-cases/automated-quality-inspection.jpg';
-import demandForcastingImage from '../assets/use-cases/demand-forecasting.jpg';
+import demandForcastingImage from '../assets/use-cases/demand-forecasting.png';
 
 interface DetailCardProps {
   node: TreeNodeData;
