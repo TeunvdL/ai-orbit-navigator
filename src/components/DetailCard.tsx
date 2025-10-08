@@ -16,6 +16,7 @@ interface DetailCardProps {
 
 const USE_CASE_IMAGES: Record<string, string> = {
   'automated-quality-inspection': qualityInspectionImage,
+  'demand-forecasting',
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
