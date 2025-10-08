@@ -1,4 +1,5 @@
 # Automated Quality Inspection
+# Automated Quality Inspection
 
 Manual inspection on production lines is **slow**, **error-prone,** and **costly**. **Automated Quality Inspection** leverages computer vision to detect defects in **real time**, ensuring **consistent product quality** and **reducing manual inspection efforts**.  
 
