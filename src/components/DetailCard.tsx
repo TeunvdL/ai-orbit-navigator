@@ -19,7 +19,7 @@ interface DetailCardProps {
 const USE_CASE_IMAGES: Record<string, string> = {
   'automated-quality-inspection': qualityInspectionImage,
   'demand-forecasting': demandForcastingImage,
-  'knowledge-agent': knowledgeAgent,
+  'internal-knowledge-agent': knowledgeAgent,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
