@@ -6,6 +6,7 @@ import { UseCaseCard } from './UseCaseCard';
 import { UseCaseModal } from './UseCaseModal';
 import qualityInspectionImage from '../assets/use-cases/automated-quality-inspection.jpg';
 import demandForcastingImage from '../assets/use-cases/demand-forecasting.png';
+import knowledgeAgent from'../assets/use-cases/knowledge-agent.png';
 
 interface DetailCardProps {
   node: TreeNodeData;
@@ -18,6 +19,7 @@ interface DetailCardProps {
 const USE_CASE_IMAGES: Record<string, string> = {
   'automated-quality-inspection': qualityInspectionImage,
   'demand-forecasting': demandForcastingImage,
+  'knowledge-agent': knowledgeAgent,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
