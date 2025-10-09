@@ -66,6 +66,22 @@ export const aiTaxonomyDataBusiness = {
             "Performance degrades under sudden regime changes",
             "Requires representative historical data"
           ],
+          "gettingStarted": [
+            "Define your prediction target clearly: what specific outcome are you forecasting (equipment failure, demand levels, customer churn)?",
+            "Gather historical data with sufficient temporal coverage - typically 2-3 years for seasonal patterns, longer for trend analysis",
+            "Start with a simple baseline model (moving average, last-year-same-period) to establish benchmark performance",
+            "Identify and engineer relevant leading indicators - external factors that influence your target before it changes",
+            "Implement continuous validation using out-of-sample testing and monitor prediction accuracy in production",
+            "Build feedback loops to capture actual outcomes and systematically retrain models as new data becomes available"
+          ],
+          "pitfalls": [
+            "Overfitting to historical patterns that won't repeat - validate models on truly held-out data from different time periods",
+            "Ignoring domain knowledge in favor of purely statistical approaches - subject matter experts often know crucial seasonal or business factors",
+            "Treating predictions as certainties rather than probabilities - always communicate confidence intervals and prediction uncertainty",
+            "Failing to account for regime changes (market shifts, new competitors, regulatory changes) - implement drift detection and human review triggers",
+            "Not planning for actionability - ensure predictions arrive with enough lead time for business teams to act on them",
+            "Underestimating data quality requirements - missing values, delayed reporting, and measurement errors significantly degrade forecast accuracy"
+          ],
           "tags": ["forecasting", "predictive-maintenance", "digital-twin", "predict", "machine-learning"],
           "children": []
         },
@@ -90,6 +106,22 @@ export const aiTaxonomyDataBusiness = {
             "May require heavy compute for large problems",
             "Solutions can be sensitive to modeling assumptions",
             "Real-world constraints may be difficult to capture fully"
+          ],
+          "gettingStarted": [
+            "Clearly define your optimization objective: cost reduction, time savings, resource utilization, or a combination with weighted priorities",
+            "Map all real-world constraints systematically - capacity limits, business rules, regulatory requirements, and operational dependencies",
+            "Establish a baseline using your current manual or rule-based approach to quantify potential improvement opportunities",
+            "Start with a simplified problem scope to prove value quickly, then gradually add complexity and constraints",
+            "Build stakeholder trust by making optimization recommendations transparent and allow overrides when business judgment requires it",
+            "Plan for continuous refinement as business conditions change - optimization models need regular updates to constraint definitions and objectives"
+          ],
+          "pitfalls": [
+            "Over-constraining the problem eliminates all improvement opportunities - work with business teams to identify which constraints are truly hard vs. preferred",
+            "Optimizing for a single metric creates unintended consequences elsewhere - use multi-objective optimization or add penalty terms for side effects",
+            "Ignoring practical implementation challenges - ensure optimized plans are actionable within your operational systems and processes",
+            "Treating optimization as a one-time project - markets change, resources shift, and models must adapt or become obsolete",
+            "Not investing in solution quality when heuristics suffice - sometimes 'good enough' solutions found quickly outperform perfect solutions that arrive too late",
+            "Underestimating the change management required - optimized plans often differ significantly from historical practices and require explanation and training"
           ],
           "tags": ["engineering-optimization", "planning-optimization", "process-mining", "prioritization", "recommendation-systems", "decision-automation", "optimize", "machine-learning"],
           "children": []
@@ -182,6 +214,22 @@ export const aiTaxonomyDataBusiness = {
             "Semantic search requires well-tuned embeddings",
             "May miss niche or poorly documented knowledge"
           ],
+          "gettingStarted": [
+            "Audit your organization's knowledge landscape: identify high-value document repositories, FAQs, wikis, and tribal knowledge currently trapped in email",
+            "Start with a focused collection of critical documents (product manuals, policies, procedures) rather than trying to index everything at once",
+            "Implement robust document preprocessing: clean PDFs, extract structured data from tables, maintain document metadata and version history",
+            "Choose between keyword-based, semantic, or hybrid search depending on query complexity and whether users know exact terminology",
+            "Establish content governance processes - assign ownership for keeping information current and removing outdated documents",
+            "Monitor search analytics to identify gaps: queries with poor results reveal missing documentation or areas needing better indexing"
+          ],
+          "pitfalls": [
+            "Indexing everything without curation creates information overload - prioritize high-quality, authoritative sources over volume",
+            "Neglecting document freshness - implement automated alerts when indexed content becomes outdated or contradictory",
+            "Poor chunking strategies for semantic search lead to fragmented answers - test chunk sizes and overlap to preserve context",
+            "Ignoring access control and security - ensure retrieval systems respect existing document permissions and data sensitivity",
+            "Not testing with real user queries - what works for structured keyword searches often fails for conversational, exploratory questions",
+            "Treating search as purely technical - engage information architects and content owners to structure knowledge for discoverability"
+          ],
           "tags": ["document-search-drafting", "knowledge-retrieval", "information-retrieval", "natural-language-processing"],
           "children": []
         },
@@ -207,6 +255,22 @@ export const aiTaxonomyDataBusiness = {
             "Requires careful integration for transactional workflows",
             "Needs guardrails to avoid unsafe or incorrect responses"
           ],
+          "gettingStarted": [
+            "Define the assistant's scope narrowly at first: focus on the top 10-20 most common user requests or questions",
+            "Design conversation flows with clear fallback paths - when the assistant doesn't understand, gracefully hand off to humans with context",
+            "Ground responses in verified knowledge sources or structured data - use retrieval-augmented generation to prevent hallucinations",
+            "Build comprehensive intent recognition using real user queries - analyze support tickets and chat logs to capture actual language patterns",
+            "Implement robust testing with diverse phrasing, edge cases, and adversarial inputs before production launch",
+            "Plan monitoring for conversation quality: track resolution rates, escalation frequency, user satisfaction, and identify gaps in coverage"
+          ],
+          "pitfalls": [
+            "Trying to handle too many use cases at launch - start narrow, nail the core experience, then expand based on usage patterns",
+            "Overconfident responses when uncertain - design assistants to explicitly indicate confidence levels and offer alternatives",
+            "Poor handoff experiences when escalating to humans - preserve conversation context and explain why escalation occurred",
+            "Ignoring multi-turn conversation complexity - users change topics mid-conversation and reference prior exchanges implicitly",
+            "Not maintaining dialog state properly leads to repetitive questions - remember user preferences, previous answers, and context",
+            "Insufficient guardrails for sensitive topics - implement content filters, bias detection, and policy-compliant overrule responses"
+          ],
           "tags": ["smart-assistants", "natural-language-processing"],
           "children": []
         },
@@ -231,6 +295,22 @@ export const aiTaxonomyDataBusiness = {
             "Struggles with sarcasm, figurative language and domain jargon",
             "Model performance needs domain-specific tuning",
             "Privacy considerations when analyzing sensitive text"
+          ],
+          "gettingStarted": [
+            "Identify your text analysis goals: sentiment tracking, topic extraction, automated categorization, or information extraction",
+            "Collect representative text samples covering different sources, time periods, and edge cases (short messages, technical language, multilingual content)",
+            "Establish ground truth by having domain experts label a sample dataset - this guides model selection and validates accuracy",
+            "Choose analysis techniques appropriate to your data: rule-based approaches for well-defined patterns, ML models for complex nuanced language",
+            "Build human review workflows for ambiguous cases and to continuously improve model performance with corrected examples",
+            "Connect insights to action - ensure analysis results integrate with dashboards, alerting systems, or operational workflows"
+          ],
+          "pitfalls": [
+            "Applying sentiment analysis without domain context - 'sick' means negative in healthcare but positive in youth slang",
+            "Over-relying on out-of-the-box models for specialized domains - general-purpose models struggle with industry jargon and acronyms",
+            "Ignoring class imbalance in training data - rare but critical categories (compliance violations, safety issues) get missed",
+            "Not accounting for evolving language - slang, new terminology, and shifting sentiment cues require periodic retraining",
+            "Summarization that loses critical details - validate that automated summaries preserve key facts, numbers, and qualifications",
+            "Privacy risks when processing user-generated or employee text - implement PII redaction, access controls, and retention policies"
           ],
           "tags": ["summarization-extraction", "sentiment-analysis", "text-classification", "text-analysis", "natural-language-processing"],
           "children": []
