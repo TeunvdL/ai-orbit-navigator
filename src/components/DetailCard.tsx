@@ -48,9 +48,10 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
           {/* Descriptive Introduction */}
           <div className="mb-12">
             <h1 className="text-4xl font-bold text-white mb-6">{node.name}</h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              {node.overview}
-            </p>
+            <p 
+              className="text-xl text-gray-300 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: node.overview }}
+            />
           </div>
 
           {/* Use Cases Section */}

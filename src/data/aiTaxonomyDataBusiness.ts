@@ -48,7 +48,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "predict",
           "name": "Predict",
           "description": "Methods that forecast future trends or behaviors based on historical data. Applications include predictive maintenance, forecasting demand, and creating digital twins to simulate real-world systems.",
-          "overview": "Predictive technologies empower organizations to anticipate future events, from equipment failures to demand fluctuations, by analyzing historical patterns and current conditions. From preventing costly downtime through predictive maintenance to optimizing inventory with accurate demand forecasts, these AI systems transform reactive operations into proactive, data-driven strategies that improve efficiency and reduce risk.",
+          "overview": "Predictive technologies empower organizations to anticipate future events, from <span class='text-cyan-400 font-semibold'>equipment failures</span> to <span class='text-cyan-400 font-semibold'>demand fluctuations</span>, by analyzing historical patterns and current conditions. From preventing costly downtime through <span class='text-cyan-400 font-semibold'>predictive maintenance</span> to optimizing inventory with accurate <span class='text-cyan-400 font-semibold'>demand forecasts</span>, these AI systems transform reactive operations into proactive, data-driven strategies that improve efficiency and reduce risk.",
           "howItWorks": "Typically uses supervised learning (regression, time-series models) or probabilistic models. Techniques include ARIMA, exponential smoothing, gradient boosting, and recurrent/transformer models for sequential data.",
           "applications": [
             "Demand and sales forecasting",
@@ -89,7 +89,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "optimize",
           "name": "Optimize",
           "description": "Approaches aimed at improving processes, systems, or decisions. This involves tasks like planning optimization, process mining, and recommendation systems to enhance efficiency and decision-making.",
-          "overview": "Optimization technologies help organizations make better decisions about resource allocation, scheduling, routing, and process configuration by systematically exploring solution spaces to find the most efficient approaches. From optimizing delivery routes to reduce fuel costs to scheduling production lines for maximum throughput, these AI-powered systems uncover improvements that would be impossible to identify manually, delivering measurable cost savings and operational gains.",
+          "overview": "Optimization technologies help organizations make better decisions about <span class='text-cyan-400 font-semibold'>resource allocation</span>, <span class='text-cyan-400 font-semibold'>scheduling</span>, <span class='text-cyan-400 font-semibold'>routing</span>, and <span class='text-cyan-400 font-semibold'>process configuration</span> by systematically exploring solution spaces to find the most efficient approaches. From optimizing delivery routes to reduce fuel costs to scheduling production lines for maximum throughput, these AI-powered systems uncover improvements that would be impossible to identify manually, delivering measurable cost savings and operational gains.",
           "howItWorks": "Combines operations research (linear/integer programming), heuristics, metaheuristics and sometimes reinforcement learning. Models encode objectives, constraints and use solvers or learned policies to propose optimal or near-optimal actions.",
           "applications": [
             "Route and fleet optimization",
@@ -130,7 +130,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "detect",
           "name": "Detect",
           "description": "Techniques used to identify patterns, anomalies, or specific features in data. This includes tasks like anomaly detection, image segmentation, and classification, which help in recognizing and categorizing data effectively.",
-          "overview": "Detection technologies enable businesses to automatically identify quality issues, anomalies, security threats, and other patterns of interest across visual data, sensor streams, and transactional records. From manufacturing defect detection to fraud monitoring, these AI-powered systems provide real-time insights that help prevent problems before they escalate.",
+          "overview": "Detection technologies enable businesses to automatically identify <span class='text-cyan-400 font-semibold'>quality issues</span>, <span class='text-cyan-400 font-semibold'>anomalies</span>, <span class='text-cyan-400 font-semibold'>security threats</span>, and other patterns of interest across visual data, sensor streams, and transactional records. From <span class='text-cyan-400 font-semibold'>manufacturing defect detection</span> to <span class='text-cyan-400 font-semibold'>fraud monitoring</span>, these AI-powered systems provide real-time insights that help prevent problems before they escalate.",
           "howItWorks": "Uses supervised classification, unsupervised anomaly detection, clustering and image analysis techniques. Approaches include thresholding, isolation forests, autoencoders and convolutional neural networks for visual data.",
           "applications": [
             "Fraud and abuse detection",
@@ -196,7 +196,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "information-retrieval",
           "name": "Information Retrieval",
           "description": "Search and retrieve relevant documents or knowledge from text sources.",
-          "overview": "Information retrieval technologies enable organizations to unlock knowledge trapped in vast document repositories, making critical information instantly accessible when decisions need to be made. From enterprise search systems that surface relevant policies and procedures to knowledge bases that empower customer support agents, these AI-powered solutions dramatically reduce time spent hunting for information and ensure teams work from accurate, up-to-date sources.",
+          "overview": "Information retrieval technologies enable organizations to unlock knowledge trapped in vast <span class='text-cyan-400 font-semibold'>document repositories</span>, making critical information instantly accessible when decisions need to be made. From <span class='text-cyan-400 font-semibold'>enterprise search</span> systems that surface relevant policies and procedures to <span class='text-cyan-400 font-semibold'>knowledge bases</span> that empower customer support agents, these AI-powered solutions dramatically reduce time spent hunting for information and ensure teams work from accurate, up-to-date sources.",
           "howItWorks": "Combines full-text indexing, inverted indices and, increasingly, vector-based semantic search using embeddings and nearest-neighbor search. Ranking layers re-order results using BM25 or learned rankers.",
           "applications": [
             "Enterprise document search",
@@ -237,7 +237,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "smart-assistants",
           "name": "Smart Assistants",
           "description": "Conversational agents that interact with users in natural language.",
-          "overview": "Smart assistant technologies create conversational interfaces that understand natural language, maintain context across interactions, and provide helpful responses to user questions and requests. From customer service chatbots that handle routine inquiries 24/7 to internal virtual agents that guide employees through complex processes, these AI-powered assistants scale support capabilities while maintaining quality and reducing response times.",
+          "overview": "Smart assistant technologies create <span class='text-cyan-400 font-semibold'>conversational interfaces</span> that understand natural language, maintain context across interactions, and provide helpful responses to user questions and requests. From <span class='text-cyan-400 font-semibold'>customer service chatbots</span> that handle routine inquiries 24/7 to internal <span class='text-cyan-400 font-semibold'>virtual agents</span> that guide employees through complex processes, these AI-powered assistants scale support capabilities while maintaining quality and reducing response times.",
           "howItWorks": "Built using intent recognition, dialog management, slot filling, and response generation. Modern assistants often use large language models combined with retrieval or knowledge bases to ground responses.",
           "applications": [
             "Customer service chatbots",
@@ -278,7 +278,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "text-analysis",
           "name": "Text Analysis",
           "description": "Summarization & Extraction, Sentiment Analysis, Text Classification.",
-          "overview": "Text analysis technologies transform unstructured text into actionable insights by extracting key information, detecting sentiment, categorizing content, and generating concise summaries. From analyzing customer feedback to track satisfaction trends to automatically routing support tickets based on content, these AI systems process volumes of text that would overwhelm manual review, revealing patterns and insights that drive better business decisions.",
+          "overview": "Text analysis technologies transform unstructured text into actionable insights by extracting key information, detecting <span class='text-cyan-400 font-semibold'>sentiment</span>, <span class='text-cyan-400 font-semibold'>categorizing content</span>, and generating concise <span class='text-cyan-400 font-semibold'>summaries</span>. From analyzing <span class='text-cyan-400 font-semibold'>customer feedback</span> to track satisfaction trends to automatically routing <span class='text-cyan-400 font-semibold'>support tickets</span> based on content, these AI systems process volumes of text that would overwhelm manual review, revealing patterns and insights that drive better business decisions.",
           "howItWorks": "Uses named entity recognition, relation extraction, classification models and sequence-to-sequence models for summarization. Techniques range from classic NLP pipelines to transformer-based models fine-tuned for specific tasks.",
           "applications": [
             "Customer feedback analysis and NPS tracking",
