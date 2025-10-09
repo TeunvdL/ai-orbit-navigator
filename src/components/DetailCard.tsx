@@ -12,6 +12,7 @@ import ovenTemperatureOptimization from'../assets/use-cases/oven-temperature-opt
 import predictiveMaintenance from'../assets/use-cases/predictive-maintenance.png';
 import productionProcessAutomation from'../assets/use-cases/production-process-automation.jpg';
 import smartWebsiteSearchAgent from '../assets/use-cases/smart-website-search-agent.jpg';
+import routePlanningOrderPickers from '../assets/use-cases/route-planning-order-pickers.png';
 
 interface DetailCardProps {
   node: TreeNodeData;
@@ -30,6 +31,7 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'predictive-maintenance': predictiveMaintenance,
   'production-process-optimization': productionProcessAutomation,
   'smart-website-search-agent': smartWebsiteSearchAgent,
+  'route-planning-order-pickers': routePlanningOrderPickers,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
