@@ -13,6 +13,7 @@ import predictiveMaintenance from'../assets/use-cases/predictive-maintenance.png
 import productionProcessAutomation from'../assets/use-cases/production-process-automation.jpg';
 import smartWebsiteSearchAgent from '../assets/use-cases/smart-website-search-agent.jpg';
 import routePlanningOrderPickers from '../assets/use-cases/route-planning-order-pickers.png';
+import sentimentAnalysis from '../assets/use-cases/sentiment-analysis.png';
 
 interface DetailCardProps {
   node: TreeNodeData;
@@ -32,6 +33,7 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'production-process-optimization': productionProcessAutomation,
   'smart-website-search-agent': smartWebsiteSearchAgent,
   'route-planning-order-pickers': routePlanningOrderPickers,
+  'sentiment-analysis': sentimentAnalysis,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
