@@ -48,7 +48,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "predict",
           "name": "Predict",
           "description": "Methods that forecast future trends or behaviors based on historical data. Applications include predictive maintenance, forecasting demand, and creating digital twins to simulate real-world systems.",
-          "overview": "Forecasting future values or outcomes using historical or current data to enable proactive decision making.",
+          "overview": "Predictive technologies empower organizations to anticipate future events, from equipment failures to demand fluctuations, by analyzing historical patterns and current conditions. From preventing costly downtime through predictive maintenance to optimizing inventory with accurate demand forecasts, these AI systems transform reactive operations into proactive, data-driven strategies that improve efficiency and reduce risk.",
           "howItWorks": "Typically uses supervised learning (regression, time-series models) or probabilistic models. Techniques include ARIMA, exponential smoothing, gradient boosting, and recurrent/transformer models for sequential data.",
           "applications": [
             "Demand and sales forecasting",
@@ -89,7 +89,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "optimize",
           "name": "Optimize",
           "description": "Approaches aimed at improving processes, systems, or decisions. This involves tasks like planning optimization, process mining, and recommendation systems to enhance efficiency and decision-making.",
-          "overview": "Optimization applies mathematical and algorithmic techniques to find better solutions for allocation, scheduling, routing and configuration problems.",
+          "overview": "Optimization technologies help organizations make better decisions about resource allocation, scheduling, routing, and process configuration by systematically exploring solution spaces to find the most efficient approaches. From optimizing delivery routes to reduce fuel costs to scheduling production lines for maximum throughput, these AI-powered systems uncover improvements that would be impossible to identify manually, delivering measurable cost savings and operational gains.",
           "howItWorks": "Combines operations research (linear/integer programming), heuristics, metaheuristics and sometimes reinforcement learning. Models encode objectives, constraints and use solvers or learned policies to propose optimal or near-optimal actions.",
           "applications": [
             "Route and fleet optimization",
@@ -196,7 +196,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "information-retrieval",
           "name": "Information Retrieval",
           "description": "Search and retrieve relevant documents or knowledge from text sources.",
-          "overview": "Enables finding the most relevant documents or passages from large text collections using indexing and ranking techniques.",
+          "overview": "Information retrieval technologies enable organizations to unlock knowledge trapped in vast document repositories, making critical information instantly accessible when decisions need to be made. From enterprise search systems that surface relevant policies and procedures to knowledge bases that empower customer support agents, these AI-powered solutions dramatically reduce time spent hunting for information and ensure teams work from accurate, up-to-date sources.",
           "howItWorks": "Combines full-text indexing, inverted indices and, increasingly, vector-based semantic search using embeddings and nearest-neighbor search. Ranking layers re-order results using BM25 or learned rankers.",
           "applications": [
             "Enterprise document search",
@@ -237,7 +237,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "smart-assistants",
           "name": "Smart Assistants",
           "description": "Conversational agents that interact with users in natural language.",
-          "overview": "Systems that understand user intents, manage dialog state and provide useful, contextual responses via text or voice interfaces.",
+          "overview": "Smart assistant technologies create conversational interfaces that understand natural language, maintain context across interactions, and provide helpful responses to user questions and requests. From customer service chatbots that handle routine inquiries 24/7 to internal virtual agents that guide employees through complex processes, these AI-powered assistants scale support capabilities while maintaining quality and reducing response times.",
           "howItWorks": "Built using intent recognition, dialog management, slot filling, and response generation. Modern assistants often use large language models combined with retrieval or knowledge bases to ground responses.",
           "applications": [
             "Customer service chatbots",
@@ -278,7 +278,7 @@ export const aiTaxonomyDataBusiness = {
           "id": "text-analysis",
           "name": "Text Analysis",
           "description": "Summarization & Extraction, Sentiment Analysis, Text Classification.",
-          "overview": "Covers extracting structured information from text (entities, topics, sentiments) and generating concise summaries or classifications.",
+          "overview": "Text analysis technologies transform unstructured text into actionable insights by extracting key information, detecting sentiment, categorizing content, and generating concise summaries. From analyzing customer feedback to track satisfaction trends to automatically routing support tickets based on content, these AI systems process volumes of text that would overwhelm manual review, revealing patterns and insights that drive better business decisions.",
           "howItWorks": "Uses named entity recognition, relation extraction, classification models and sequence-to-sequence models for summarization. Techniques range from classic NLP pipelines to transformer-based models fine-tuned for specific tasks.",
           "applications": [
             "Customer feedback analysis and NPS tracking",
