@@ -15,6 +15,11 @@ import smartWebsiteSearchAgent from '../assets/use-cases/smart-website-search-ag
 import routePlanningOrderPickers from '../assets/use-cases/route-planning-order-pickers.png';
 import sentimentAnalysis from '../assets/use-cases/sentiment-analysis.png';
 import bedOccupancyForecasting from '../assets/use-cases/bed-occupancy-forecasting.jpg';
+import absenteeismAnomalyDetection from '../assets/use-cases/absenteeism-anomaly-detection.jpg';
+import careDemandSegmentation from '../assets/use-cases/care-demand-segmentation.jpg';
+import fallRiskScoring from '../assets/use-cases/fall-risk-scoring.jpg';
+import smartTriageAssistant from '../assets/use-cases/smart-triage-assistant.jpg';
+import workforceOptimization from '../assets/use-cases/workforce-optimization.jpg';
 
 interface DetailCardProps {
   node: TreeNodeData;
@@ -36,6 +41,13 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'route-planning-order-pickers': routePlanningOrderPickers,
   'sentiment-analysis': sentimentAnalysis,
   'care-occupancy-bed-forecasting': bedOccupancyForecasting,
+  'care-absenteeism-anomaly-detection': absenteeismAnomalyDetection,
+  'care-demand-segmentation': careDemandSegmentation,
+  'care-fall-risk-scoring': fallRiskScoring,
+  'care-sentiment-analysis-feedback': sentimentAnalysis,
+  'care-dossier-agent-rag': smartWebsiteSearchAgent,
+  'care-smart-triage-assistant': smartTriageAssistant,
+  'care-workforce-optimization': workforceOptimization,
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
