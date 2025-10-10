@@ -13,13 +13,14 @@ import predictiveMaintenance from'../assets/use-cases/predictive-maintenance.png
 import productionProcessAutomation from'../assets/use-cases/production-process-automation.jpg';
 import smartWebsiteSearchAgent from '../assets/use-cases/smart-website-search-agent.jpg';
 import routePlanningOrderPickers from '../assets/use-cases/route-planning-order-pickers.png';
-import sentimentAnalysis from '../assets/use-cases/sentiment-analysis.png';
+import sentimentAnalysisIndustry from '../assets/use-cases/sentiment-analysis-industry.png';
 import bedOccupancyForecasting from '../assets/use-cases/bed-occupancy-forecasting.jpg';
 import absenteeismAnomalyDetection from '../assets/use-cases/absenteeism-anomaly-detection.jpg';
 import careDemandSegmentation from '../assets/use-cases/care-demand-segmentation.jpg';
 import fallRiskScoring from '../assets/use-cases/fall-risk-scoring.jpg';
 import smartTriageAssistant from '../assets/use-cases/smart-triage-assistant.jpg';
 import workforceOptimization from '../assets/use-cases/workforce-optimization.jpg';
+import sentimentAnalysisCare from '../assets/use-cases/sentiment-analysis-care.jpg';
 
 interface DetailCardProps {
   node: TreeNodeData;
@@ -39,12 +40,12 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'production-process-optimization': productionProcessAutomation,
   'smart-website-search-agent': smartWebsiteSearchAgent,
   'route-planning-order-pickers': routePlanningOrderPickers,
-  'sentiment-analysis': sentimentAnalysis,
+  'sentiment-analysis': sentimentAnalysisIndustry,
   'care-occupancy-bed-forecasting': bedOccupancyForecasting,
   'care-absenteeism-anomaly-detection': absenteeismAnomalyDetection,
   'care-demand-segmentation': careDemandSegmentation,
   'care-fall-risk-scoring': fallRiskScoring,
-  'care-sentiment-analysis-feedback': sentimentAnalysis,
+  'care-sentiment-analysis-feedback': sentimentAnalysisCare,
   'care-dossier-agent-rag': smartWebsiteSearchAgent,
   'care-smart-triage-assistant': smartTriageAssistant,
   'care-workforce-optimization': workforceOptimization,
