@@ -46,6 +46,7 @@ function processUseCaseTags(tags: string[]): string[] {
 // Dynamically load use cases (metadata + markdown) from the repository
 const metaModules = import.meta.glob('../data/use-cases/**/metadata.json', { eager: true, import: 'default' }) as Record<string, UseCaseMetadata>;
 const contentModules = import.meta.glob('../data/use-cases/**/use-case.md', { eager: true, as: 'raw' }) as Record<string, string>;
+const contentModulesNL = import.meta.glob('../data/use-cases/**/use-case.nl.md', { eager: true, as: 'raw' }) as Record<string, string>;
 
 const LOADED_USE_CASES: UseCase[] = Object.entries(metaModules).map(([path, metadata]) => {
   const dir = path.replace(/\/metadata\.json$/, '');
@@ -158,6 +159,21 @@ const NODE_TAG_MAPPING: Record<string, string> = {
   'Image Recognition': 'image-recognition',
   'Detect': 'detect'
 };
+
+export function getUseCaseContent(useCase: UseCase, language: 'en' | 'nl' = 'en'): string {
+  if (language === 'nl') {
+    const metaPath = Object.keys(metaModules).find(path => {
+      const meta = metaModules[path];
+      return meta.id === useCase.metadata.id;
+    });
+    if (metaPath) {
+      const dir = metaPath.replace(/\/metadata\.json$/, '');
+      const nlPath = `${dir}/use-case.nl.md`;
+      return contentModulesNL[nlPath] || useCase.content;
+    }
+  }
+  return useCase.content;
+}
 
 export function getUseCasesForNode(nodeName: string, businessFocus?: 'care' | 'industry'): UseCase[] {
   const tag = NODE_TAG_MAPPING[nodeName];

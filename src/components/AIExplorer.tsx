@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TreeNodeData } from '../types/treeTypes';
 import { aiTaxonomyData } from '../data/aiTaxonomyData';
 import { aiTaxonomyDataBusiness } from '../data/aiTaxonomyDataBusiness';
+import { aiTaxonomyDataBusinessNL } from '../data/aiTaxonomyDataBusiness.nl';
 import { Homepage } from './Homepage';
 import { NavigationView } from './NavigationView';
 import { DetailPage } from './DetailPage';
@@ -63,11 +64,15 @@ export const AIExplorer: React.FC = () => {
 
   const currentNode = currentPath[currentPath.length - 1];
 
+  const getBusinessData = () => {
+    return currentLanguage === 'nl' ? aiTaxonomyDataBusinessNL : aiTaxonomyDataBusiness;
+  };
+
   const handleBusinessModeToggle = (checked: boolean) => {
     setIsBusinessMode(checked);
-    setViewMode('homepage'); // Redirect to homepage on mode switch
-    setCurrentPath([checked ? aiTaxonomyDataBusiness : aiTaxonomyData]); // Set the correct tree structure
-    setDetailNode(null); // Clear any detail node
+    setViewMode('homepage');
+    setCurrentPath([checked ? getBusinessData() : aiTaxonomyData]);
+    setDetailNode(null);
   };
 
   const handleBusinessFocusToggle = (focus: 'care' | 'industry') => {
@@ -103,8 +108,16 @@ export const AIExplorer: React.FC = () => {
 
   const handleHome = () => {
     setViewMode('homepage');
-    setCurrentPath([isBusinessMode ? aiTaxonomyDataBusiness : aiTaxonomyData]);
+    setCurrentPath([isBusinessMode ? getBusinessData() : aiTaxonomyData]);
   };
+
+  // Update path when language changes
+  useEffect(() => {
+    if (isBusinessMode) {
+      setCurrentPath([getBusinessData()]);
+      setDetailNode(null);
+    }
+  }, [currentLanguage]);
 
   const handleBackToTaxonomy = () => {
     setViewMode('navigation');
@@ -205,9 +218,9 @@ export const AIExplorer: React.FC = () => {
           </div>
 
           <Homepage
-            rootNode={isBusinessMode ? aiTaxonomyDataBusiness : aiTaxonomyData}
+            rootNode={isBusinessMode ? getBusinessData() : aiTaxonomyData}
             onEnterTaxonomy={handleEnterTaxonomy}
-            isBusinessMode={isBusinessMode} // Pass the state to Homepage
+            isBusinessMode={isBusinessMode}
           />
         </div>
       );
