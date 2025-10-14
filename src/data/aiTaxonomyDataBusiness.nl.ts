@@ -1,7 +1,7 @@
 import { TreeNodeData } from '../types/treeTypes';
 
 export const aiTaxonomyDataBusinessNL: TreeNodeData = {
-  id: 'ai-nl',
+  id: 'ai-root',
   name: 'AI',
   description: 'Kunstmatige Intelligentie',
   overview: 'Kunstmatige intelligentie (AI) stelt machines in staat om taken uit te voeren die normaal gesproken menselijke intelligentie vereisen. In een zakelijke context automatiseert AI processen, verbetert het besluitvorming en creëert het nieuwe mogelijkheden voor efficiëntie en innovatie.',
@@ -29,7 +29,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
   ],
   children: [
     {
-      id: 'machine-learning-nl',
+      id: 'machine-learning-business',
       name: 'Machine Learning',
       description: 'Systemen die leren van data',
       overview: 'Machine Learning (ML) stelt computers in staat om te leren van data zonder expliciet geprogrammeerd te worden. In bedrijfscontexten helpt ML om patronen te ontdekken, voorspellingen te doen en processen te optimaliseren.',
@@ -57,7 +57,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
       ],
       children: [
         {
-          id: 'predict-nl',
+          id: 'predict',
           name: 'Voorspellen',
           description: 'Toekomstige uitkomsten voorspellen',
           overview: 'Voorspellende modellen gebruiken historische data om toekomstige gebeurtenissen, trends of gedragingen te voorspellen. Dit stelt organisaties in staat om proactief te plannen en risico\'s te beheersen.',
@@ -86,7 +86,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
           pitfalls: ['Vermijd overfitting op trainingsdata en zorg voor voldoende data voor betrouwbare voorspellingen. Monitor modelnauwkeurigheid continu.']
         },
         {
-          id: 'optimize-nl',
+          id: 'optimize',
           name: 'Optimaliseren',
           description: 'Processen en resources verbeteren',
           overview: 'Optimalisatiemodellen helpen om de beste beslissingen te nemen binnen gegeven beperkingen. Ze maximaliseren efficiency, minimaliseren kosten of balanceren meerdere doelstellingen.',
@@ -115,7 +115,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
           pitfalls: ['Vermijd over-optimalisatie op één dimensie ten koste van andere. Zorg voor menselijke validatie van aanbevelingen.']
         },
         {
-          id: 'detect-nl',
+          id: 'detect',
           name: 'Detecteren',
           description: 'Afwijkingen en patronen identificeren',
           overview: 'Detectiemodellen identificeren afwijkende patronen, defecten of anomalieën in data of processen. Dit maakt vroege interventie mogelijk en voorkomt grotere problemen.',
@@ -146,7 +146,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
       ]
     },
     {
-      id: 'nlp-nl',
+      id: 'NLP-business',
       name: 'Natural Language Processing',
       description: 'Tekstbegrip en -verwerking',
       overview: 'Natural Language Processing (NLP) stelt computers in staat om menselijke taal te begrijpen, interpreteren en genereren. In bedrijven helpt NLP bij het automatiseren van tekstverwerking, het verbeteren van zoekfunctionaliteit en het creëren van slimme assistenten.',
@@ -173,7 +173,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
       ],
       children: [
         {
-          id: 'information-retrieval-nl',
+          id: 'information-retrieval',
           name: 'Informatie Opvragen',
           description: 'Relevante informatie vinden',
           overview: 'Informatie-ophaalsystemen helpen gebruikers om snel en accuraat de juiste informatie te vinden in grote documentcollecties. Moderne systemen gebruiken semantisch zoeken om intentie te begrijpen.',
@@ -202,7 +202,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
           pitfalls: ['Vermijd verouderde content in de kennisbasis. Zorg voor governance en kwaliteitscontrole.']
         },
         {
-          id: 'smart-assistants-nl',
+          id: 'smart-assistants',
           name: 'Slimme Assistenten',
           description: 'AI-aangedreven hulpsystemen',
           overview: 'Slimme assistenten gebruiken NLP en kennisintegratie om gebruikers te helpen met vragen, taken en beslissingen. Ze kunnen conversaties voeren, informatie opvragen en acties uitvoeren.',
@@ -231,7 +231,7 @@ export const aiTaxonomyDataBusinessNL: TreeNodeData = {
           pitfalls: ['Vermijd overmoed - zorg voor escalatiemogelijkheden naar mensen. Monitor tevredenheid continu.']
         },
         {
-          id: 'text-analysis-nl',
+          id: 'text-analysis',
           name: 'Tekstanalyse',
           description: 'Inzichten uit tekst extraheren',
           overview: 'Tekstanalyse extraheert structuur, sentiment en betekenis uit ongestructureerde tekst. Dit maakt het mogelijk om grote volumes aan feedback, rapporten of documenten systematisch te analyseren.',
