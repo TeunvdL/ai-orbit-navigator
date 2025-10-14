@@ -152,7 +152,7 @@ export const AIExplorer: React.FC = () => {
                 <div className="space-y-4">
                   {/* Language Switcher */}
                   <div>
-                    <label className="text-sm font-medium mb-2 block">Language</label>
+                    <label className="text-sm font-medium mb-2 block">{currentLanguage === 'nl' ? '[NL: Language]' : 'Language'}</label>
                     <div className="flex gap-2">
                       <Button
                         variant={currentLanguage === 'en' ? 'default' : 'outline'}
@@ -221,6 +221,7 @@ export const AIExplorer: React.FC = () => {
             rootNode={isBusinessMode ? getBusinessData() : aiTaxonomyData}
             onEnterTaxonomy={handleEnterTaxonomy}
             isBusinessMode={isBusinessMode}
+            language={currentLanguage}
           />
         </div>
       );
@@ -404,6 +405,7 @@ export const AIExplorer: React.FC = () => {
             onBack={handleBackToTaxonomy}
             isBusinessMode={isBusinessMode}
             businessFocus={businessFocus}
+            language={currentLanguage}
           />
         </div>
       ) : null;

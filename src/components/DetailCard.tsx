@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Lightbulb, Cog, Target, TrendingUp, AlertTriangle, Check, AlertCircle, Building2, Rocket, ShieldAlert } from 'lucide-react';
 import { TreeNodeData } from '../types/treeTypes';
-import { getUseCasesForNode } from '../utils/useCases';
+import { getUseCasesForNode, getUseCaseContent } from '../utils/useCases';
 import { UseCaseCard } from './UseCaseCard';
 import { UseCaseModal } from './UseCaseModal';
 import qualityInspectionImage from '../assets/use-cases/automated-quality-inspection.jpg';
@@ -28,6 +28,7 @@ interface DetailCardProps {
   className?: string;
   isBusinessMode?: boolean;
   businessFocus?: 'care' | 'industry';
+  language?: 'en' | 'nl';
 }
 
 const USE_CASE_IMAGES: Record<string, string> = {
@@ -51,10 +52,22 @@ const USE_CASE_IMAGES: Record<string, string> = {
   'care-workforce-optimization': workforceOptimization,
 };
 
-export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus }) => {
+export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus, language = 'en' }) => {
   const useCases = isBusinessMode ? getUseCasesForNode(node.name, businessFocus) : [];
   const isLeafNode = !node.children || node.children.length === 0;
   const [selectedUseCase, setSelectedUseCase] = useState<typeof useCases[0] | null>(null);
+  
+  const labels = {
+    realWorldApps: language === 'nl' ? '[NL: Real-World Applications]' : 'Real-World Applications',
+    gettingStarted: language === 'nl' ? '[NL: Getting Started]' : 'Getting Started',
+    commonPitfalls: language === 'nl' ? '[NL: Common Pitfalls & How to Avoid Them]' : 'Common Pitfalls & How to Avoid Them',
+    overview: language === 'nl' ? '[NL: Overview]' : 'Overview',
+    howItWorks: language === 'nl' ? '[NL: How It Works]' : 'How It Works',
+    applications: language === 'nl' ? '[NL: Applications]' : 'Applications',
+    advantages: language === 'nl' ? '[NL: Advantages]' : 'Advantages',
+    limitations: language === 'nl' ? '[NL: Limitations]' : 'Limitations',
+    category: language === 'nl' ? '[NL: Category]' : 'Category',
+  };
   // Business mode with use cases - new layout
   if (isBusinessMode && isLeafNode && useCases.length > 0) {
     return (
@@ -73,7 +86,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
           <div className="mb-12">
             <h2 className="text-2xl font-semibold text-cyan-400 mb-6 flex items-center">
               <Building2 className="w-6 h-6 mr-3" />
-              Real-World Applications
+              {labels.realWorldApps}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {useCases.map((useCase) => (
@@ -92,7 +105,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             <div className="mb-12">
               <h2 className="text-2xl font-semibold text-cyan-400 mb-6 flex items-center">
                 <Rocket className="w-6 h-6 mr-3" />
-                Getting Started
+                {labels.gettingStarted}
               </h2>
               <div className="bg-gray-800/50 border border-cyan-500/30 rounded-lg p-6">
                 <ul className="space-y-3">
@@ -112,7 +125,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             <div className="mb-12">
               <h2 className="text-2xl font-semibold text-cyan-400 mb-6 flex items-center">
                 <ShieldAlert className="w-6 h-6 mr-3" />
-                Common Pitfalls & How to Avoid Them
+                {labels.commonPitfalls}
               </h2>
               <div className="bg-gray-800/50 border border-yellow-500/30 rounded-lg p-6">
                 <ul className="space-y-3">
@@ -134,6 +147,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             useCase={selectedUseCase}
             imageSrc={USE_CASE_IMAGES[selectedUseCase.metadata.id] || qualityInspectionImage}
             onClose={() => setSelectedUseCase(null)}
+            language={language}
           />
         )}
       </>
@@ -150,7 +164,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
           <span>{node.name}</span>
         </h2>
         {parentName && (
-          <p className="text-cyan-100 text-base mt-2">Category: {parentName}</p>
+          <p className="text-cyan-100 text-base mt-2">{labels.category}: {parentName}</p>
         )}
       </div>
 
@@ -162,7 +176,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             <div>
               <h3 className="text-lg font-semibold mb-3 flex items-center text-cyan-400">
                 <Lightbulb className="w-4 h-4 mr-2" />
-                Overview
+                {labels.overview}
               </h3>
               <p className="text-base leading-relaxed">{node.overview}</p>
             </div>
@@ -173,7 +187,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             <div>
               <h3 className="text-lg font-semibold mb-3 flex items-center text-cyan-400">
                 <Cog className="w-4 h-4 mr-2" />
-                How It Works
+                {labels.howItWorks}
               </h3>
               <p className="text-base leading-relaxed">{node.howItWorks}</p>
             </div>
@@ -184,7 +198,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             <div>
               <h3 className="text-lg font-semibold mb-3 flex items-center text-cyan-400">
                 <Target className="w-4 h-4 mr-2" />
-                Applications
+                {labels.applications}
               </h3>
               <ul className="space-y-2">
                 {node.applications.map((app, index) => (
@@ -202,7 +216,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             <div>
               <h3 className="text-lg font-semibold mb-3 flex items-center text-cyan-400">
                 <TrendingUp className="w-4 h-4 mr-2" />
-                Advantages
+                {labels.advantages}
               </h3>
               <ul className="space-y-2">
                 {node.advantages.map((advantage, index) => (
@@ -220,7 +234,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             <div>
               <h3 className="text-lg font-semibold mb-3 flex items-center text-cyan-400">
                 <AlertTriangle className="w-4 h-4 mr-2" />
-                Limitations
+                {labels.limitations}
               </h3>
               <ul className="space-y-2">
                 {node.limitations.map((limitation, index) => (

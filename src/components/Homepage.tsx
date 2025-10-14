@@ -5,11 +5,17 @@ import { CircleNode } from './CircleNode';
 interface HomepageProps {
   rootNode: TreeNodeData;
   onEnterTaxonomy: () => void;
-  isBusinessMode?: boolean; // Added prop for business mode
+  isBusinessMode?: boolean;
+  language?: 'en' | 'nl';
 }
 
-export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy, isBusinessMode }) => {
+export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy, isBusinessMode, language = 'en' }) => {
   const [isAnimating, setIsAnimating] = useState(false);
+  
+  const labels = {
+    subtitle: language === 'nl' ? '[NL: Navigate the frontier of artificial intelligence]' : 'Navigate the frontier of artificial intelligence',
+    hint: language === 'nl' ? '[NL: Click the circle to begin exploration]' : 'Click the circle to begin exploration',
+  };
 
   const handleEnterTaxonomy = () => {
     setIsAnimating(true);
@@ -35,7 +41,7 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy, i
       {/* Top centered content */}
       <div className="absolute top-16 left-0 right-0 z-10 text-center">
         <h2 className="text-2xl font-light text-foreground/90 tracking-wide">
-          Navigate the frontier of artificial intelligence
+          {labels.subtitle}
         </h2>
       </div>
 
@@ -56,7 +62,7 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy, i
 
       {/* Bottom right hint - positioned relative to screen center where AI node is */}
       <div className="absolute top-1/2 left-1/2 transform translate-x-52 translate-y-52 text-sm text-muted-foreground/70 animate-pulse z-20">
-        Click the circle to begin exploration
+        {labels.hint}
       </div>
     </div>
   );

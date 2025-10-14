@@ -1,17 +1,21 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { UseCase } from '../utils/useCases';
+import { UseCase, getUseCaseContent } from '../utils/useCases';
 import { Button } from './ui/button';
 
 interface UseCaseModalProps {
   useCase: UseCase;
   imageSrc: string;
   onClose: () => void;
+  language?: 'en' | 'nl';
 }
 
-export const UseCaseModal: React.FC<UseCaseModalProps> = ({ useCase, imageSrc, onClose }) => {
+export const UseCaseModal: React.FC<UseCaseModalProps> = ({ useCase, imageSrc, onClose, language = 'en' }) => {
+  // Get language-specific content
+  const content = getUseCaseContent(useCase, language);
+  
   // Remove the first H1 title and any horizontal rules from content
-  const contentWithoutTitle = useCase.content
+  const contentWithoutTitle = content
     .replace(/^#\s+.+$/m, '') // Remove first H1
     .replace(/^---+$/gm, '')   // Remove horizontal rules
     .trim();

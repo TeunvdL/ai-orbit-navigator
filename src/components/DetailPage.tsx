@@ -11,9 +11,12 @@ interface DetailPageProps {
   getParentName?: (node: TreeNodeData) => string | undefined;
   isBusinessMode?: boolean;
   businessFocus?: 'care' | 'industry';
+  language?: 'en' | 'nl';
 }
 
-export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack, isBusinessMode = false, businessFocus }) => {
+export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack, isBusinessMode = false, businessFocus, language = 'en' }) => {
+  const backLabel = language === 'nl' ? '[NL: Back to Taxonomy]' : 'Back to Taxonomy';
+  
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-y-auto">
       {/* Radial Color Highlights */}
@@ -38,12 +41,12 @@ export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack
               className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Taxonomy
+              {backLabel}
             </Button>
           </div>
 
           {/* Card Container */}
-          <DetailCard node={node} parentName={parentName} className={isBusinessMode ? "" : "mb-6"} isBusinessMode={isBusinessMode} businessFocus={businessFocus} />
+          <DetailCard node={node} parentName={parentName} className={isBusinessMode ? "" : "mb-6"} isBusinessMode={isBusinessMode} businessFocus={businessFocus} language={language} />
         </div>
       </div>
     </div>
