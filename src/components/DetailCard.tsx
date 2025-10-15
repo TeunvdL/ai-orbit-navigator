@@ -53,20 +53,20 @@ const USE_CASE_IMAGES: Record<string, string> = {
 };
 
 export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, className = '', isBusinessMode = false, businessFocus, language = 'en' }) => {
-  const useCases = isBusinessMode ? getUseCasesForNode(node.name, businessFocus) : [];
+  const useCases = isBusinessMode ? getUseCasesForNode(node.id || node.name, businessFocus) : [];
   const isLeafNode = !node.children || node.children.length === 0;
   const [selectedUseCase, setSelectedUseCase] = useState<typeof useCases[0] | null>(null);
   
   const labels = {
-    realWorldApps: language === 'nl' ? '[NL: Real-World Applications]' : 'Real-World Applications',
-    gettingStarted: language === 'nl' ? '[NL: Getting Started]' : 'Getting Started',
-    commonPitfalls: language === 'nl' ? '[NL: Common Pitfalls & How to Avoid Them]' : 'Common Pitfalls & How to Avoid Them',
-    overview: language === 'nl' ? '[NL: Overview]' : 'Overview',
-    howItWorks: language === 'nl' ? '[NL: How It Works]' : 'How It Works',
-    applications: language === 'nl' ? '[NL: Applications]' : 'Applications',
-    advantages: language === 'nl' ? '[NL: Advantages]' : 'Advantages',
-    limitations: language === 'nl' ? '[NL: Limitations]' : 'Limitations',
-    category: language === 'nl' ? '[NL: Category]' : 'Category',
+    realWorldApps: language === 'nl' ? 'Praktijkvoorbeelden' : 'Real-World Applications',
+    gettingStarted: language === 'nl' ? 'Aan de slag' : 'Getting Started',
+    commonPitfalls: language === 'nl' ? 'Valkuilen en hoe ze te vermijden' : 'Common Pitfalls & How to Avoid Them',
+    overview: language === 'nl' ? 'Overzicht' : 'Overview',
+    howItWorks: language === 'nl' ? 'Hoe het werkt' : 'How It Works',
+    applications: language === 'nl' ? 'Toepassingen' : 'Applications',
+    advantages: language === 'nl' ? 'Voordelen' : 'Advantages',
+    limitations: language === 'nl' ? 'Beperkingen' : 'Limitations',
+    category: language === 'nl' ? 'Categorie' : 'Category',
   };
   // Business mode with use cases - new layout
   if (isBusinessMode && isLeafNode && useCases.length > 0) {

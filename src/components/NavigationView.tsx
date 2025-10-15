@@ -337,6 +337,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
                       parentName={path.length > 1 ? path[path.length - 2]?.name : undefined}
                       className="transform transition-all duration-500"
                       isBusinessMode={isBusinessMode}
+                      businessFocus={businessFocus}
                     />
                   </div>
                 );

@@ -157,7 +157,28 @@ const NODE_TAG_MAPPING: Record<string, string> = {
   'Decision Making': 'decision-making',
   'Optimize': 'optimize',
   'Image Recognition': 'image-recognition',
-  'Detect': 'detect'
+  'Detect': 'detect',
+  // Dutch equivalents (Business NL taxonomy)
+  'Informatie Opvragen': 'information-retrieval',
+  'Slimme Assistenten': 'smart-assistants',
+  'Tekstanalyse': 'text-analysis',
+  'Voorspellen': 'predict',
+  'Optimaliseren': 'optimize',
+  'Detecteren': 'detect'
+};
+
+// Prefer stable node IDs over localized names when mapping to tags
+const NODE_ID_TAG_MAPPING: Record<string, string> = {
+  // Common IDs used across taxonomies
+  'information-retrieval': 'information-retrieval',
+  'smart-assistants': 'smart-assistants',
+  'text-analysis': 'text-analysis',
+  'predict': 'predict',
+  'decision-making': 'decision-making',
+  'optimize': 'optimize',
+  'image-recognition': 'image-recognition',
+  'detect': 'detect',
+  'predict-plan': 'predict-plan'
 };
 
 export function getUseCaseContent(useCase: UseCase, language: 'en' | 'nl' = 'en'): string {
@@ -175,8 +196,9 @@ export function getUseCaseContent(useCase: UseCase, language: 'en' | 'nl' = 'en'
   return useCase.content;
 }
 
-export function getUseCasesForNode(nodeName: string, businessFocus?: 'care' | 'industry'): UseCase[] {
-  const tag = NODE_TAG_MAPPING[nodeName];
+export function getUseCasesForNode(nodeKey: string, businessFocus?: 'care' | 'industry'): UseCase[] {
+  // Resolve tag by ID first (stable), then fall back to localized name mapping
+  const tag = NODE_ID_TAG_MAPPING[nodeKey] ?? NODE_TAG_MAPPING[nodeKey];
   if (!tag) return [];
   
   return PROCESSED_USE_CASES.filter(useCase => {

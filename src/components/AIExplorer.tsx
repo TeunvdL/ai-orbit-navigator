@@ -152,7 +152,7 @@ export const AIExplorer: React.FC = () => {
                 <div className="space-y-4">
                   {/* Language Switcher */}
                   <div>
-                    <label className="text-sm font-medium mb-2 block">{currentLanguage === 'nl' ? '[NL: Language]' : 'Language'}</label>
+                    <label className="text-sm font-medium mb-2 block">{currentLanguage === 'nl' ? 'Taal' : 'Language'}</label>
                     <div className="flex gap-2">
                       <Button
                         variant={currentLanguage === 'en' ? 'default' : 'outline'}
