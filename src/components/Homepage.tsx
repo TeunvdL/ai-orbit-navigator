@@ -13,8 +13,8 @@ export const Homepage: React.FC<HomepageProps> = ({ rootNode, onEnterTaxonomy, i
   const [isAnimating, setIsAnimating] = useState(false);
   
   const labels = {
-    subtitle: language === 'nl' ? '[NL: Navigate the frontier of artificial intelligence]' : 'Navigate the frontier of artificial intelligence',
-    hint: language === 'nl' ? '[NL: Click the circle to begin exploration]' : 'Click the circle to begin exploration',
+    subtitle: language === 'nl' ? 'Verken het AI-landschap' : 'Navigate the frontier of artificial intelligence',
+    hint: language === 'nl' ? 'Klik op de cirkel om te verkennen' : 'Click the circle to begin exploration',
   };
 
   const handleEnterTaxonomy = () => {

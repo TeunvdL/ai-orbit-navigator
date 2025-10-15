@@ -15,7 +15,7 @@ interface DetailPageProps {
 }
 
 export const DetailPage: React.FC<DetailPageProps> = ({ node, parentName, onBack, isBusinessMode = false, businessFocus, language = 'en' }) => {
-  const backLabel = language === 'nl' ? '[NL: Back to Taxonomy]' : 'Back to Taxonomy';
+  const backLabel = language === 'nl' ? 'Terug naar taxonomie' : 'Back to taxonomy';
   
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-y-auto">
