@@ -111,11 +111,28 @@ export const AIExplorer: React.FC = () => {
     setCurrentPath([isBusinessMode ? getBusinessData() : aiTaxonomyData]);
   };
 
-  // Update path when language changes
+  // Update taxonomy data when language changes while preserving current selection by IDs
   useEffect(() => {
-    if (isBusinessMode) {
-      setCurrentPath([getBusinessData()]);
-      setDetailNode(null);
+    if (!isBusinessMode) return;
+    const newRoot = getBusinessData();
+    const idToNode = new Map<string, TreeNodeData>();
+    const stack: TreeNodeData[] = [newRoot];
+    while (stack.length) {
+      const n = stack.pop()!;
+      idToNode.set(n.id, n);
+      n.children?.forEach(c => stack.push(c));
+    }
+    const newPath: TreeNodeData[] = [];
+    for (const oldNode of currentPath) {
+      const mapped = idToNode.get(oldNode.id);
+      if (!mapped) break;
+      newPath.push(mapped);
+    }
+    setCurrentPath(newPath.length ? newPath : [newRoot]);
+    if (detailNode) {
+      const mappedDetail = idToNode.get(detailNode.id);
+      setDetailNode(mappedDetail || null);
+      setViewMode(mappedDetail ? 'detail' : 'navigation');
     }
   }, [currentLanguage]);
 
@@ -315,6 +332,7 @@ export const AIExplorer: React.FC = () => {
             onHome={handleHome}
             isBusinessMode={isBusinessMode} // Pass isBusinessMode
             businessFocus={businessFocus} // Pass businessFocus
+            language={currentLanguage}
           />
         </div>
       );

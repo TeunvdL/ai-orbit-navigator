@@ -1,6 +1,5 @@
 # Care Demand Segmentation (Cohorting)
 
-**Short description**  
 Group patients/clients into **cohorts** based on care intensity, functional status, diagnoses, comorbidities, incident history, and service utilization. Cohorts enable targeted planning, staffing ratios, prevention programs, and financial steering (e.g., tariffs/contracts), and they improve the stability and predictability of operations.
 
 ---

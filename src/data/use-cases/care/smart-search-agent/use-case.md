@@ -1,6 +1,5 @@
 # Smart Search Agent
 
-**Short description**  
 A retrieval‑augmented assistant that helps care professionals **find, understand, and draft** content grounded in official protocols, guidelines, and (authorized) case data. The agent retrieves the most relevant passages, shows **source citations**, and generates structured **drafts** (handover notes, incident summaries, transfer reports) that a human can review and finalize.
 
 ---

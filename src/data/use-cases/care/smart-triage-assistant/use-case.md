@@ -1,6 +1,5 @@
 # Smart Triage Assistant (Protocol‑Guided Intake)
 
-**Short description**  
 A conversational assistant that supports **triage and intake** by guiding clinicians through protocol‑based questions, extracting key symptoms from free text, checking red‑flag criteria, and proposing a **triage level + next‑best actions** with **clear source citations**. The assistant speeds up safe decision‑making while keeping a **human‑in‑the‑loop** for final approval.
 
 > **Safety note:** This assistant **does not replace clinical judgment**. It provides protocol‑guided suggestions that must be reviewed/confirmed by qualified staff.

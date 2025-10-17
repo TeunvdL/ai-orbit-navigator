@@ -26,7 +26,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ path, onNavigate, onBack
       
       <div className="flex items-center gap-2 ml-4">
         {path.map((node, index) => (
-          <React.Fragment key={node.id}>
+          <span key={node.id} className="contents">
             {index > 0 && <ChevronRight className="w-4 h-4 text-muted-foreground" />}
             <button
               onClick={() => onNavigate(index)}
@@ -38,7 +38,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ path, onNavigate, onBack
             >
               {node.name}
             </button>
-          </React.Fragment>
+          </span>
         ))}
       </div>
     </div>

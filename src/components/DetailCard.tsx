@@ -71,7 +71,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
   // Business mode with use cases - new layout
   if (isBusinessMode && isLeafNode && useCases.length > 0) {
     return (
-      <>
+      <div className="contents">
         <div className={className}>
           {/* Descriptive Introduction */}
           <div className="mb-12">
@@ -90,11 +90,12 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {useCases.map((useCase) => (
-                <UseCaseCard
+                 <UseCaseCard
                   key={useCase.metadata.id}
                   useCase={useCase}
                   imageSrc={USE_CASE_IMAGES[useCase.metadata.id] || qualityInspectionImage}
-                  onClick={() => setSelectedUseCase(useCase)}
+                   onClick={() => setSelectedUseCase(useCase)}
+                   language={language}
                 />
               ))}
             </div>
@@ -150,7 +151,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ node, parentName, classN
             language={language}
           />
         )}
-      </>
+      </div>
     );
   }
 
