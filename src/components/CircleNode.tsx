@@ -80,10 +80,10 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       'NLP-business': 'Werk je met tekst en documenten, of heb je conversatieinterfaces nodig?',
       'predict': 'Heb je behoefte aan forecasting, vraagplanning of risico-inschatting?',
       'optimize': 'Wil je efficiëntie verbeteren, kosten verlagen of prestaties verhogen?',
-      'information-retrieval': 'Moet je zoeken in documenten of kennisbanken?',
+      'information-retrieval': 'Wil je zoeken in documenten of kennisbanken?',
       'smart-assistants': 'Zoek je chatbots, virtuele assistenten of klantenservice-automatisering?',
       'text-analysis': 'Wil je feedback analyseren, inzichten extraheren of teksten samenvatten?',
-      'detect': 'Moet je patronen, anomalieën of specifieke kenmerken in data identificeren?',
+      'detect': 'Wil je patronen, anomalieën of specifieke kenmerken in data identificeren?',
     };
     const guidanceMap = language === 'nl' ? nl : en;
     
