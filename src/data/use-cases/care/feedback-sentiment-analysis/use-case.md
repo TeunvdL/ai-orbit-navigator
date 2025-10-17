@@ -1,6 +1,5 @@
 # Sentiment Analysis for Patient & Caregiver Feedback
 
-**Short description**  
 Analyze **free-text feedback** from patients, family members, and caregivers to detect **emotions, tone, and satisfaction signals**. The system classifies sentiment (positive, neutral, negative) and extracts key themes, enabling care organizations to **spot risks early**, improve service quality, and measure the impact of interventions.
 
 ---

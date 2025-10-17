@@ -6,9 +6,10 @@ interface UseCaseCardProps {
   useCase: UseCase;
   imageSrc: string;
   onClick: () => void;
+  language?: 'en' | 'nl';
 }
 
-export const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, imageSrc, onClick }) => {
+export const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, imageSrc, onClick, language = 'en' }) => {
   return (
     <div 
       onClick={onClick}
@@ -32,7 +33,7 @@ export const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, imageSrc, onC
         
         {/* Read More */}
         <div className="flex items-center text-cyan-400 text-sm font-medium mt-4 group-hover:gap-3 gap-2 transition-all">
-          <span>View details</span>
+          <span>{language === 'nl' ? 'Bekijk details' : 'View details'}</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </div>
       </div>

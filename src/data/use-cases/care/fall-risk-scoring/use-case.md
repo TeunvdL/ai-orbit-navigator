@@ -1,6 +1,5 @@
 # Fall Risk Scoring & Prevention
 
-**Short description**  
 Identify patients or clients with an elevated **fall risk** based on medical, functional, and contextual factors. The model calculates a risk score and provides recommendations for preventive interventions (e.g., extra supervision, assistive devices, environmental adjustments).
 
 ---

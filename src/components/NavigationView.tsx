@@ -26,7 +26,8 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
   onBack,
   onHome,
   isBusinessMode,
-  businessFocus // Add businessFocus prop
+  businessFocus, // Add businessFocus prop
+  language
 }) => {
   const [hoveredNode, setHoveredNode] = useState<TreeNodeData | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -227,6 +228,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
             className="opacity-0"
             isBusinessMode={false} // Disable business mode for parent node to hide guidance
             businessFocus={businessFocus}
+            language={language}
           />
         </div>
 
@@ -248,6 +250,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
                 onHover={setHoveredNode}
                 isBusinessMode={isBusinessMode}
                 businessFocus={businessFocus} // Pass businessFocus prop
+                language={language}
               />
             );
           })}
@@ -271,6 +274,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
               } as React.CSSProperties}
               isBusinessMode={isBusinessMode}
               businessFocus={businessFocus} // Pass businessFocus prop
+              language={language}
             />
           </div>
         )}
@@ -283,7 +287,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
             <div className="inline-flex items-center gap-2 text-cyan-400 text-lg font-medium">
               <ChevronDown className="w-5 h-5 animate-bounce" />
-              <span>Scroll down to explore detailed information</span>
+              <span>{language === 'nl' ? 'Scroll om details te verkennen' : 'Scroll down to explore detailed information'}</span>
               <ChevronDown className="w-5 h-5 animate-bounce" />
             </div>
           </div>
@@ -338,6 +342,7 @@ export const NavigationView: React.FC<NavigationViewProps> = ({
                       className="transform transition-all duration-500"
                       isBusinessMode={isBusinessMode}
                       businessFocus={businessFocus}
+                      language={language}
                     />
                   </div>
                 );

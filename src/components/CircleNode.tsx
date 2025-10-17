@@ -35,6 +35,7 @@ interface CircleNodeProps {
   onHover?: (node: TreeNodeData | null) => void;
   className?: string;
   style?: React.CSSProperties;
+  language?: 'en' | 'nl';
 }
 
 export const CircleNode: React.FC<CircleNodeProps> = ({
@@ -47,7 +48,8 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   onClick,
   onHover,
   className = '',
-  style = {}
+  style = {},
+  language = 'en'
 }) => {
   const handleMouseEnter = () => {
     onHover?.(node);
@@ -63,7 +65,7 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
   const getBusinessGuidance = (nodeId: string): string | null => {
     if (!isBusinessMode || isRoot) return null;
     
-    const guidanceMap: { [key: string]: string } = {
+    const en: { [key: string]: string } = {
       'machine-learning-business': 'Do you work with structured data like spreadsheets, databases, or need predictions?',
       'NLP-business': 'Do you work with text, documents, or need conversational interfaces?',
       'predict': 'Need forecasting, demand planning, or risk assessment?',
@@ -73,6 +75,17 @@ export const CircleNode: React.FC<CircleNodeProps> = ({
       'text-analysis': 'Need to analyze feedback, extract insights, or summarize content?',
       'detect': 'Need to identify patterns, anomalies, or specific features in your data?',
     };
+    const nl: { [key: string]: string } = {
+      'machine-learning-business': 'Werk je met gestructureerde data zoals spreadsheets of databases, of heb je voorspellingen nodig?',
+      'NLP-business': 'Werk je met tekst en documenten, of heb je conversatieinterfaces nodig?',
+      'predict': 'Heb je behoefte aan forecasting, vraagplanning of risico-inschatting?',
+      'optimize': 'Wil je efficiëntie verbeteren, kosten verlagen of prestaties verhogen?',
+      'information-retrieval': 'Moet je zoeken in documenten of kennisbanken?',
+      'smart-assistants': 'Zoek je chatbots, virtuele assistenten of klantenservice-automatisering?',
+      'text-analysis': 'Wil je feedback analyseren, inzichten extraheren of teksten samenvatten?',
+      'detect': 'Moet je patronen, anomalieën of specifieke kenmerken in data identificeren?',
+    };
+    const guidanceMap = language === 'nl' ? nl : en;
     
     return guidanceMap[nodeId] || null;
   };
